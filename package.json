@@ -6,17 +6,36 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "i18n:extract": "formatjs extract 'pages/**/*.ts*' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
+    "i18n:compile": "formatjs compile",
+    "format": "prettier --write --config ./.prettierrc ."
   },
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "color2k": "^1.2.4",
     "next": "11.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "optics-ts": "^2.1.0",
+    "react": "^17.0.2",
+    "react-colorful": "^5.3.0",
+    "react-dom": "17.0.2",
+    "react-intl": "^5.20.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@emotion/babel-plugin": "^11.3.0",
+    "@formatjs/cli": "^4.2.31",
+    "@svgr/webpack": "^5.5.0",
+    "@types/node": "14",
     "@types/react": "17.0.18",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "babel-plugin-formatjs": "^10.3.5",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.2",
     "typescript": "4.3.5"
   }
 }
