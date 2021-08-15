@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "i18n:extract": "formatjs extract 'pages/**/*.ts*' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
+    "i18n:extract": "formatjs extract 'src/**/*.ts*' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
     "i18n:compile": "formatjs compile",
     "format": "prettier --write --config ./.prettierrc ."
   },

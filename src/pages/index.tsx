@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           `}
         />
         <h1 css={title} style={{ color }}>
-          <FormattedMessage defaultMessage="Welcome" />
+          <FormattedMessage defaultMessage="Boluo" id="boluo" description="Project name" />
         </h1>
         <div>
           <HexColorPicker color={color} onChange={setColor} />

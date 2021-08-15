@@ -1,0 +1,40 @@
+name: Auto modify commit
+
+# This action works with pull requests and pushes
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  modify:
+    strategy:
+      matrix:
+        node-version: [14.x]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Format
+        run: yarn install && yarn format
+
+      - name: i18n:extract
+        run: yarn i18n:extract
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          push: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
