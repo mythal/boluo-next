@@ -10,7 +10,8 @@
     "i18n:extract": "formatjs extract 'src/**/*.ts*' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
     "i18n:compile": "formatjs compile-folder --ast --format crowdin ./lang ./lang/compiled",
     "format": "prettier --write --config ./.prettierrc .",
-    "sync": "yarn run format && yarn run i18n:extract && yarn run i18n:compile"
+    "precommit": "yarn run format && yarn run i18n:extract && yarn run i18n:compile",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
@@ -37,6 +38,7 @@
     "eslint-config-next": "11.1.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.1",
     "prettier": "^2.3.2",
     "typescript": "4.3.5"
   }
