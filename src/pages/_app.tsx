@@ -5,6 +5,7 @@ import en from '../../lang/compiled/en.json';
 import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { TopLevelErrorBoundary } from '../components/TopLevelErrorBoundary';
 
 function loadLocaleData(locale: string) {
   if (locale.startsWith('ja')) {
@@ -30,9 +31,11 @@ const useMessages = () => {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <IntlProvider locale="en" messages={useMessages()} defaultLocale="en">
-      <Component {...pageProps} />
-    </IntlProvider>
+    <TopLevelErrorBoundary>
+      <IntlProvider locale="en" messages={useMessages()} defaultLocale="en">
+        <Component {...pageProps} />
+      </IntlProvider>
+    </TopLevelErrorBoundary>
   );
 }
 export default MyApp;
