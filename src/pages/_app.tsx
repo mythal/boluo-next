@@ -1,17 +1,17 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { IntlProvider } from 'react-intl';
+import { IntlProvider, ResolvedIntlConfig } from 'react-intl';
 import en from '../../lang/compiled/en.json';
 import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { TopLevelErrorBoundary } from '../components/TopLevelErrorBoundary';
 
-function loadLocaleData(locale: string) {
+async function loadLocaleData(locale: string) {
   if (locale.startsWith('ja')) {
-    return import('../../lang/compiled/ja_JP.json');
+    return (await import('../../lang/compiled/ja_JP.json')).default;
   } else if (locale.startsWith('zh')) {
-    return import('../../lang/compiled/zh_CN.json');
+    return (await import('../../lang/compiled/zh_CN.json')).default;
   }
   return en;
 }
@@ -19,7 +19,7 @@ export const localeAtom = atom('en');
 
 const useMessages = () => {
   const [locale] = useAtom(localeAtom);
-  const [messages, setMessages] = useState(en);
+  const [messages, setMessages] = useState<ResolvedIntlConfig['messages']>(en);
 
   useEffect(() => {
     (async () => {
