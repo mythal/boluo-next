@@ -9,7 +9,7 @@ import { HexColorPicker } from 'react-colorful';
 import { useAtom } from 'jotai';
 import { localeAtom } from './_app';
 import { LocaleSwtich } from '../components/LocaleSwitch';
-import { ClientOnly } from '../components/ClientOnly';
+import { ClientBox } from '../components/ClientBox';
 
 const container = css`
   width: 20em;
@@ -44,11 +44,11 @@ const Home: NextPage = () => {
           <HexColorPicker color={color} onChange={setColor} />
         </div>
         <div>
-          <ClientOnly>
+          <ClientBox>
             <Suspense fallback="...">
               <LocaleSwtich />
             </Suspense>
-          </ClientOnly>
+          </ClientBox>
         </div>
       </main>
     </div>
