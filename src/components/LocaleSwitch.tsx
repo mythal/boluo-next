@@ -1,13 +1,18 @@
-import { useAtom } from 'jotai';
-import { localeAtom } from '../locale';
+import { useRouter } from 'next/router';
+import { ChangeEventHandler } from 'react';
 
 export const LocaleSwitch = () => {
-  const [locale, setLocale] = useAtom(localeAtom);
+  const router = useRouter();
+  const handler: ChangeEventHandler<HTMLSelectElement> = async (event) => {
+    const locale = event.target.value;
+    document.cookie = `NEXT_LOCALE=${locale}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    await router.push('/', '/', { locale });
+  };
   return (
-    <select value={locale} onChange={(event) => setLocale(event.target.value)}>
+    <select value={router.locale ?? router.defaultLocale} onChange={handler}>
       <option value="en">English</option>
       <option value="zh-CN">简体中文</option>
-      <option value="ja-JP">日本語</option>
+      <option value="ja">日本語</option>
     </select>
   );
 };

@@ -2,8 +2,11 @@
 module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
-  reactStrictMode: true,
   webpack5: true,
+  i18n: {
+    locales: ['en', 'ja', 'zh-CN'],
+    defaultLocale: 'en',
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,

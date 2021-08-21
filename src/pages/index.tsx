@@ -8,7 +8,6 @@ import { Suspense, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { LocaleSwitch } from '../components/LocaleSwitch';
 import { ClientBox } from '../components/ClientBox';
-
 const container = css`
   width: 20em;
   margin: 10vh auto;

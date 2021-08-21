@@ -1,15 +1,16 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { TopLevelErrorBoundary } from '../components/TopLevelErrorBoundary';
-import { LocaleProvider } from '../locale';
+import { useLocaleProvider } from '../locale/useLocaleProvider';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const LocaleProvider = useLocaleProvider();
   return (
-    <TopLevelErrorBoundary>
-      <LocaleProvider>
+    <LocaleProvider>
+      <TopLevelErrorBoundary>
         <Component {...pageProps} />
-      </LocaleProvider>
-    </TopLevelErrorBoundary>
+      </TopLevelErrorBoundary>
+    </LocaleProvider>
   );
 }
 export default MyApp;
