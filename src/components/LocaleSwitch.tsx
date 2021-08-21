@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { localeAtom } from '../pages/_app';
 
-export const LocaleSwtich = () => {
+export const LocaleSwitch = () => {
   const [locale, setLocale] = useAtom(localeAtom);
   return (
     <select value={locale} onChange={(event) => setLocale(event.target.value)}>

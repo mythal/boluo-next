@@ -8,7 +8,7 @@ import { Suspense, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { useAtom } from 'jotai';
 import { localeAtom } from './_app';
-import { LocaleSwtich } from '../components/LocaleSwitch';
+import { LocaleSwitch } from '../components/LocaleSwitch';
 import { ClientBox } from '../components/ClientBox';
 
 const container = css`
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         <div>
           <ClientBox>
             <Suspense fallback="...">
-              <LocaleSwtich />
+              <LocaleSwitch />
             </Suspense>
           </ClientBox>
         </div>
