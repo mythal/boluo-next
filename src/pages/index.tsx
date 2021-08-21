@@ -6,8 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import { DEVELOPMENT } from '../const';
 import { Suspense, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
-import { useAtom } from 'jotai';
-import { localeAtom } from './_app';
 import { LocaleSwitch } from '../components/LocaleSwitch';
 import { ClientBox } from '../components/ClientBox';
 
@@ -22,7 +20,6 @@ const title = css`
 const Home: NextPage = () => {
   const favicon = DEVELOPMENT ? '/logo-dev.svg' : '/logo.svg';
   const [color, setColor] = useState('#000000');
-  const [, setLocale] = useAtom(localeAtom);
   return (
     <div>
       <Head>
