@@ -3,11 +3,12 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Logo from '../../public/logo.svg';
 import { FormattedMessage } from 'react-intl';
-import { DEVELOPMENT } from '../const';
 import { Suspense, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { LocaleSwitch } from '../components/LocaleSwitch';
 import { ClientBox } from '../components/ClientBox';
+import Link from 'next/link';
+
 const container = css`
   width: 20em;
   margin: 10vh auto;
@@ -16,17 +17,14 @@ const container = css`
 const title = css`
   text-decoration: none;
 `;
+
 const Home: NextPage = () => {
-  const favicon = DEVELOPMENT ? '/logo-dev.svg' : '/logo.svg';
   const [color, setColor] = useState('#000000');
   return (
     <div>
       <Head>
-        <title>Boluo Next</title>
-        <meta name="description" content="RPG tool, next generation" />
-        <link rel="icon" href={favicon} type="image/svg+xml" />
+        <title>Playground</title>
       </Head>
-
       <main css={container}>
         <Logo
           css={css`
@@ -45,6 +43,9 @@ const Home: NextPage = () => {
               <LocaleSwitch />
             </Suspense>
           </ClientBox>
+        </div>
+        <div>
+          <Link href="/messenger">Messenger</Link>
         </div>
       </main>
     </div>

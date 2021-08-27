@@ -2,15 +2,19 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { TopLevelErrorBoundary } from '../components/TopLevelErrorBoundary';
 import { useLocaleProvider } from '../locale/useLocaleProvider';
+import { Provider } from 'jotai';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const LocaleProvider = useLocaleProvider();
+
   return (
-    <LocaleProvider>
-      <TopLevelErrorBoundary>
-        <Component {...pageProps} />
-      </TopLevelErrorBoundary>
-    </LocaleProvider>
+    <TopLevelErrorBoundary>
+      <Provider>
+        <LocaleProvider>
+          <Component {...pageProps} />
+        </LocaleProvider>
+      </Provider>
+    </TopLevelErrorBoundary>
   );
 }
-export default MyApp;
+export default App;
