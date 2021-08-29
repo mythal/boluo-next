@@ -1,16 +1,15 @@
-import { useRouter } from 'next/router';
 import React, { ChangeEventHandler } from 'react';
-import { StyleProps } from '../utils/common-types';
+import { StyleProps } from '../helper/props';
+import { useAtom } from 'jotai';
+import { localeAtom } from '../state/locale';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
-  const router = useRouter();
+  const [locale, setLocale] = useAtom(localeAtom);
   const handler: ChangeEventHandler<HTMLSelectElement> = async (event) => {
-    const locale = event.target.value;
-    document.cookie = `NEXT_LOCALE=${locale}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-    await router.push('/', '/', { locale });
+    setLocale(event.target.value);
   };
   return (
-    <select className={className} value={router.locale ?? router.defaultLocale} onChange={handler}>
+    <select className={className} value={locale} onChange={handler}>
       <option value="en">English</option>
       <option value="zh-CN">简体中文</option>
       <option value="ja">日本語</option>

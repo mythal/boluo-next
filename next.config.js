@@ -4,10 +4,10 @@ module.exports = {
   poweredByHeader: false,
   trailingSlash: true,
   webpack5: true,
-  i18n: {
-    locales: ['en', 'ja', 'zh-CN'],
-    defaultLocale: 'en',
-  },
+  // i18n: {
+  //   locales: ['en', 'ja', 'zh-CN'],
+  //   defaultLocale: 'en',
+  // },
   webpack: (config) => {
     // noinspection JSValidateTypes
     config.module.rules.push({

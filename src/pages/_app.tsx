@@ -1,5 +1,5 @@
 import { TopLevelErrorBoundary } from '../components/TopLevelErrorBoundary';
-import { useLocaleProvider } from '../locale/useLocaleProvider';
+import { LocaleProvider } from '../components/LocaleProvider';
 import { Provider } from 'jotai';
 import { AppPropsWithLayout } from '../helper/layout';
 import 'modern-normalize/modern-normalize.css';
@@ -9,7 +9,6 @@ import { GlobalStyle } from '../styles/GlobalStyle';
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   useScheme();
-  const LocaleProvider = useLocaleProvider();
   const getLayout = Component.getLayout ?? ((page) => page);
   const title = Component.title;
 
