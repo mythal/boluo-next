@@ -1,36 +1,62 @@
-import { atom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import {
-  applyScheme,
   readSchemeFromStorage,
   Scheme,
   startSchemeSwitching,
   stopSchemeSwitching,
   writeSchemeToStorage,
-} from '../styles/scheme';
-import { useEffect, useRef } from 'react';
-import { useUpdateAtom } from 'jotai/utils';
+} from '../helper/scheme';
+import { darkTheme, lightTheme } from '../styles/theme';
+import { useEffect, useState } from 'react';
+import { isDaytime } from '../helper/time';
 
-export const useScheme = () => {
-  const initialTheme = useRef(readSchemeFromStorage());
-  const updateScheme = useUpdateAtom(schemeAtom);
+export const useTheme = () => {
+  const [scheme, updateScheme] = useAtom(schemeAtom);
+  const [theme, setTheme] = useState(lightTheme);
+
+  // Fetch scheme setting from user local storage
   useEffect(() => {
-    updateScheme(initialTheme.current);
-    applyScheme(initialTheme.current);
+    updateScheme(readSchemeFromStorage());
+  }, [updateScheme]);
+
+  // Set theme
+  useEffect(() => {
+    if (scheme === 'dark') {
+      setTheme(darkTheme);
+    } else if (scheme === 'light') {
+      setTheme(lightTheme);
+    } else if (scheme === 'auto') {
+      if (!window.matchMedia) {
+        // When unsupported
+        setTheme(isDaytime() ? lightTheme : darkTheme);
+        return;
+      }
+      // Detect prefers-color-scheme change https://stackoverflow.com/a/59621903/1137004
+      const colorSchemeQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+      const autoChangeScheme = (mediaQueryList: { matches: boolean }) => {
+        if (mediaQueryList.matches) {
+          setTheme(darkTheme);
+        } else {
+          setTheme(lightTheme);
+        }
+      };
+      autoChangeScheme(colorSchemeQueryList);
+      colorSchemeQueryList.addEventListener('change', autoChangeScheme);
+      return () => colorSchemeQueryList.removeEventListener('change', autoChangeScheme);
+    }
+  }, [scheme, updateScheme]);
+
+  useEffect(() => {
+    // Color transition on switching
     startSchemeSwitching();
     const handle = setTimeout(stopSchemeSwitching, 2000);
-    return () => {
-      startSchemeSwitching();
-      window.clearTimeout(handle);
-    };
-  }, [updateScheme]);
+    return () => window.clearTimeout(handle);
+  }, [theme]);
+
+  return theme;
 };
 
-export const schemeAtom = atom<Scheme, Scheme>('light', (get, set, update) => {
-  startSchemeSwitching();
-  set(schemeAtom, update);
-  setTimeout(() => {
-    applyScheme(update);
-    writeSchemeToStorage(update);
-    setTimeout(stopSchemeSwitching, 1000);
-  });
+export const schemeAtom = atom<Scheme, Scheme>('light', (_get, set, scheme) => {
+  writeSchemeToStorage(scheme);
+  set(schemeAtom, scheme);
 });

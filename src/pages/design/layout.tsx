@@ -5,6 +5,7 @@ import { css } from '@emotion/react';
 import { unit } from '../../styles/utility/sizing';
 import { SchemeSwitch } from '../../components/SchemeSwitch';
 import { flex } from '../../styles/utility/flex';
+import { m } from '../../styles/utility/spacing';
 
 const container = css`
   display: flex;
@@ -28,7 +29,7 @@ export function getLayout(page: ReactElement, title?: string) {
       </Head>
       <div css={container}>
         <nav>
-          <SchemeSwitch />
+          <SchemeSwitch css={m(1)} />
           <ul css={navList}>
             <li>
               <Link href="/design/">Design</Link>

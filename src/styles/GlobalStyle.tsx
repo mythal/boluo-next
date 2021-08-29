@@ -1,15 +1,10 @@
 import { css, Global } from '@emotion/react';
-import { dark } from './scheme';
-import { lightTheme, darkTheme } from './color';
+import { Theme } from './theme';
 
-const globalStyle = css`
+const globalStyle = (theme: Theme) => css`
   body {
-    background-color: ${lightTheme.background};
-    color: ${lightTheme.text};
-    ${dark(css`
-      background-color: ${darkTheme.background};
-      color: ${darkTheme.text};
-    `)};
+    background-color: ${theme.colors.background};
+    color: ${theme.colors.text};
   }
 
   body.switching,
@@ -21,10 +16,7 @@ const globalStyle = css`
   }
 
   a {
-    color: ${lightTheme.link};
-    ${dark(css`
-      color: ${darkTheme.link};
-    `)};
+    color: ${theme.colors.link};
   }
 `;
 
