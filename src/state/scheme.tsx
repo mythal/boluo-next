@@ -7,23 +7,25 @@ import {
   stopSchemeSwitching,
   writeSchemeToStorage,
 } from '../styles/scheme';
-import { useEffect } from 'react';
-
-const initialTheme = readSchemeFromStorage();
+import { useEffect, useRef } from 'react';
+import { useUpdateAtom } from 'jotai/utils';
 
 export const useScheme = () => {
+  const initialTheme = useRef(readSchemeFromStorage());
+  const updateScheme = useUpdateAtom(schemeAtom);
   useEffect(() => {
-    applyScheme(initialTheme);
+    updateScheme(initialTheme.current);
+    applyScheme(initialTheme.current);
     startSchemeSwitching();
     const handle = setTimeout(stopSchemeSwitching, 2000);
     return () => {
       startSchemeSwitching();
       window.clearTimeout(handle);
     };
-  }, []);
+  }, [updateScheme]);
 };
 
-export const schemeAtom = atom<Scheme, Scheme>(initialTheme, (get, set, update) => {
+export const schemeAtom = atom<Scheme, Scheme>('light', (get, set, update) => {
   startSchemeSwitching();
   set(schemeAtom, update);
   setTimeout(() => {
