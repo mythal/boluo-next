@@ -5,7 +5,7 @@ import { AppPropsWithLayout } from '../helper/layout';
 import 'modern-normalize/modern-normalize.css';
 import '../styles/global.css';
 import { useScheme } from '../state/scheme';
-import { GlobalStyle } from '../components/GlobalStyle';
+import { GlobalStyle } from '../styles/GlobalStyle';
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   useScheme();

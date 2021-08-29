@@ -58,7 +58,6 @@ export const writeSchemeToStorage = (scheme: Scheme) => {
 export const applyScheme = (scheme: Scheme) => {
   document.documentElement.dataset['scheme'] = scheme;
 };
-export const textColorLight = gray['900'];
 export const startSchemeSwitching = () => {
   const result = document.documentElement.getElementsByTagName('body');
   for (const body of result) {

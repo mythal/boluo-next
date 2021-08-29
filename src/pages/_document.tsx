@@ -11,7 +11,7 @@ class BoluoDocument extends Document {
 
     // noinspection HtmlRequiredTitleElement
     return (
-      <Html>
+      <Html data-scheme="light">
         <Head>
           <meta name="description" content="RPG tool, next generation" />
           <meta name="color-scheme" content="dark light" />
