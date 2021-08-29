@@ -1,18 +1,23 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
 import { TopLevelErrorBoundary } from '../components/TopLevelErrorBoundary';
 import { useLocaleProvider } from '../locale/useLocaleProvider';
 import { Provider } from 'jotai';
+import { AppPropsWithLayout } from '../helper/layout';
+import 'modern-normalize/modern-normalize.css';
+import '../styles/global.css';
+import { useScheme } from '../state/scheme';
+import { GlobalStyle } from '../components/GlobalStyle';
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppPropsWithLayout) {
+  useScheme();
   const LocaleProvider = useLocaleProvider();
+  const getLayout = Component.getLayout ?? ((page) => page);
+  const title = Component.title;
 
   return (
     <TopLevelErrorBoundary>
+      <GlobalStyle />
       <Provider>
-        <LocaleProvider>
-          <Component {...pageProps} />
-        </LocaleProvider>
+        <LocaleProvider>{getLayout(<Component {...pageProps} />, title)}</LocaleProvider>
       </Provider>
     </TopLevelErrorBoundary>
   );

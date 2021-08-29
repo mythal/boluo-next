@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { size } from './sizing';
+import { unit } from './sizing';
 
 export const gridArea = (gridArea: string) => css({ gridArea });
 
@@ -46,33 +46,28 @@ export const autoRowsFr = css`
 `;
 
 // Gap https://tailwindcss.com/docs/gap
-export const gap = {
-  n: (n: number) =>
-    css`
-      gap: ${size(n)};
-    `,
-  px: css`
-    gap: 1px;
-  `,
-  0: css`
-    gap: 0;
-  `,
-  x: {
-    n: (n: number) =>
-      css`
-        column-gap: ${size(n)};
-      `,
-    px: css`
-      column-gap: 1px;
-    `,
-  },
-  y: {
-    n: (n: number) =>
-      css`
-        row-gap: ${size(n)};
-      `,
-    px: css`
-      row-gap: 1px;
-    `,
-  },
-};
+const gapX = (n: number) =>
+  css`
+    column-gap: ${unit(n)};
+  `;
+gapX.px = css`
+  column-gap: 1px;
+`;
+
+const gapY = (n: number) =>
+  css`
+    row-gap: ${unit(n)};
+  `;
+gapY.px = css`
+  row-gap: 1px;
+`;
+
+export const gap = (n: number) =>
+  css`
+    gap: ${unit(n)};
+  `;
+gap.px = css`
+  gap: 1px;
+`;
+gap.x = gapX;
+gap.y = gapY;

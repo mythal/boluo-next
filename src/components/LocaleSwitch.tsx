@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
-import { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler } from 'react';
+import { StyleProps } from '../utils/common-types';
 
-export const LocaleSwitch = () => {
+export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
   const router = useRouter();
   const handler: ChangeEventHandler<HTMLSelectElement> = async (event) => {
     const locale = event.target.value;
@@ -9,7 +10,7 @@ export const LocaleSwitch = () => {
     await router.push('/', '/', { locale });
   };
   return (
-    <select value={router.locale ?? router.defaultLocale} onChange={handler}>
+    <select className={className} value={router.locale ?? router.defaultLocale} onChange={handler}>
       <option value="en">English</option>
       <option value="zh-CN">简体中文</option>
       <option value="ja">日本語</option>

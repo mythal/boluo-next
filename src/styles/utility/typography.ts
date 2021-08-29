@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { alpha, Color } from './color';
-import { size } from './sizing';
+import { unit } from './sizing';
 
 // Text Color https://tailwindcss.com/docs/text-color
 export const textColor = (color: Color, a = 100) => {
@@ -66,7 +66,7 @@ export const leading = {
     line-height: 2;
   `,
   x: (x: number) => css`
-    line-height: ${size(x)};
+    line-height: ${unit(x)};
   `,
 };
 
@@ -188,6 +188,17 @@ export const fontExtrabold = css`
 export const fontBlack = css`
   font-weight: 900;
 `;
+
+export const font = {
+  thin: fontThin,
+  extralight: fontExtralight,
+  normal: fontNormal,
+  medium: fontMedium,
+  semibold: fontSemibold,
+  bold: fontBold,
+  extrabold: fontExtrabold,
+  black: fontBlack,
+};
 
 export const list = {
   // List Style Type https://tailwindcss.com/docs/list-style-type

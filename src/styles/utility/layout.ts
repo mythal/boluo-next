@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { size } from './sizing';
+import { unit } from './sizing';
 
 // Position https://tailwindcss.com/docs/position
 export const position = {
@@ -188,31 +188,34 @@ export const overscroll = {
 // ...
 
 // Top / Right / Bottom / Left https://tailwindcss.com/docs/top-right-bottom-left
+const insetX = (n: number) => css`
+  right: ${unit(n)};
+  left: ${unit(n)};
+`;
+const insetY = (n: number) => css`
+  top: ${unit(n)};
+  bottom: ${unit(n)};
+`;
 export const inset = (n: number) => css`
-  top: ${size(n)};
-  right: ${size(n)};
-  bottom: ${size(n)};
-  left: ${size(n)};
+  top: ${unit(n)};
+  right: ${unit(n)};
+  bottom: ${unit(n)};
+  left: ${unit(n)};
 `;
-export const insetX = (n: number) => css`
-  right: ${size(n)};
-  left: ${size(n)};
-`;
-export const insetY = (n: number) => css`
-  top: ${size(n)};
-  bottom: ${size(n)};
-`;
+inset.x = insetX;
+inset.y = insetY;
+
 export const top = (n: number) => css`
-  top: ${size(n)};
+  top: ${unit(n)};
 `;
 export const right = (n: number) => css`
-  right: ${size(n)};
+  right: ${unit(n)};
 `;
 export const bottom = (n: number) => css`
-  bottom: ${size(n)};
+  bottom: ${unit(n)};
 `;
 export const left = (n: number) => css`
-  left: ${size(n)};
+  left: ${unit(n)};
 `;
 
 // Visibility https://tailwindcss.com/docs/visibility
@@ -246,8 +249,4 @@ export const z = {
   auto: css`
     z-index: auto;
   `,
-  x: (x: number) =>
-    css`
-      z-index: ${x};
-    `,
 };

@@ -1,16 +1,16 @@
 import React, { Component, ErrorInfo } from 'react';
-import { overflow } from '../styles/layout';
-import { p } from '../styles/spacing';
-import { bgColor } from '../styles/backgrounds';
-import { black, green } from '../styles/color';
-import { fontMono, text, textColor, whitespace } from '../styles/typography';
-import { rounded } from '../styles/borders';
+import { overflow } from '../styles/utility/layout';
+import { p } from '../styles/utility/spacing';
+import { bgColor } from '../styles/utility/backgrounds';
+import { black, green } from '../styles/utility/color';
+import { fontMono, text, textColor, whitespace } from '../styles/utility/typography';
+import { rounded } from '../styles/utility/borders';
 import { FormattedMessage } from 'react-intl';
 
 const styles = {
   errorMessage: [
     overflow.x.auto,
-    p.n(4),
+    p(4),
     rounded.normal,
     bgColor(black),
     textColor(green['400']),
@@ -22,7 +22,7 @@ const styles = {
 
 export function Oops({ error }: { error: string }) {
   return (
-    <div css={p.n(8)}>
+    <div css={p(8)}>
       <h1>
         <FormattedMessage defaultMessage="Oops" />
       </h1>

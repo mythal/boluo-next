@@ -60,18 +60,16 @@ export const flex = {
 };
 
 // Order https://tailwindcss.com/docs/order
-export const order = {
-  n: (n: number) =>
-    css`
-      order: ${n};
-    `,
-  first: css`
-    order: -9999;
-  `,
-  last: css`
-    order: 9999;
-  `,
-  none: css`
-    order: 0;
-  `,
-};
+export const order = (value: number) =>
+  css`
+    order: ${value};
+  `;
+order.first = css`
+  order: -9999;
+`;
+order.last = css`
+  order: 9999;
+`;
+order.none = css`
+  order: 0;
+`;
