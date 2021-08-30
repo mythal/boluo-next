@@ -21,7 +21,7 @@ const navList = css`
   }
 `;
 
-export const DesignLayout: React.FC<{title?: string}> = ({ children, title }) => {
+export const DesignLayout: React.FC<{ title?: string }> = ({ children, title }) => {
   return (
     <Fragment>
       <Head>
@@ -46,5 +46,5 @@ export const DesignLayout: React.FC<{title?: string}> = ({ children, title }) =>
 };
 
 export function getLayout(page: ReactElement, title?: string) {
-  return (<DesignLayout title={title}>{page}</DesignLayout>);
+  return <DesignLayout title={title}>{page}</DesignLayout>;
 }
