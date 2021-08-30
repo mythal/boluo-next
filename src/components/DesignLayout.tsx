@@ -1,11 +1,11 @@
-import { Fragment, ReactElement } from 'react';
-import { Head } from '../../helper/head';
-import { Link } from '../../helper/link';
+import React, { Fragment, ReactElement } from 'react';
+import { Head } from '../helper/head';
+import { Link } from '../helper/link';
 import { css } from '@emotion/react';
-import { unit } from '../../styles/utility/sizing';
-import { SchemeSwitch } from '../../components/SchemeSwitch';
-import { flex } from '../../styles/utility/flex';
-import { m } from '../../styles/utility/spacing';
+import { unit } from '../styles/utility/sizing';
+import { SchemeSwitch } from './SchemeSwitch';
+import { flex } from '../styles/utility/flex';
+import { m } from '../styles/utility/spacing';
 
 const container = css`
   display: flex;
@@ -21,7 +21,7 @@ const navList = css`
   }
 `;
 
-export function getLayout(page: ReactElement, title?: string) {
+export const DesignLayout: React.FC<{title?: string}> = ({ children, title }) => {
   return (
     <Fragment>
       <Head>
@@ -39,8 +39,12 @@ export function getLayout(page: ReactElement, title?: string) {
             </li>
           </ul>
         </nav>
-        <main css={[flex.grow['1']]}>{page}</main>
+        <main css={[flex.grow['1']]}>{children}</main>
       </div>
     </Fragment>
   );
+};
+
+export function getLayout(page: ReactElement, title?: string) {
+  return (<DesignLayout title={title}>{page}</DesignLayout>);
 }

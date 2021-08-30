@@ -1,6 +1,6 @@
 import { p } from '../../styles/utility/spacing';
 import { Page } from '../../helper/layout';
-import { getLayout } from './layout';
+import { getLayout } from '../../components/DesignLayout';
 
 const Error: Page = () => {
   return <p>hello, world</p>;
