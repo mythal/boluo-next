@@ -10,6 +10,7 @@ import { m, p } from '../styles/utility/spacing';
 const container = css`
   display: flex;
   width: 100%;
+  height: 100%;
   gap: ${unit(4)};
 `;
 
@@ -41,6 +42,9 @@ export const DesignLayout: React.FC<{ title?: string }> = ({ children, title }) 
             </li>
             <li>
               <Link href="/design/pop">Tooltip & Menu</Link>
+            </li>
+            <li>
+              <Link href="/design/virtual-list">Virtual List</Link>
             </li>
           </ul>
           <SchemeSwitch css={m(4)} />
