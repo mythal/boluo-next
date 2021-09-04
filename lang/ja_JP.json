@@ -1,4 +1,7 @@
 {
+  "AyGP4T": {
+    "message": "Error Message"
+  },
   "R2cODw": {
     "message": "暗いスキームに切り替える"
   },
@@ -8,6 +11,9 @@
   "boluo": {
     "description": "Project name",
     "message": "パイン"
+  },
+  "rELDbB": {
+    "message": "Refresh"
   },
   "w7ht18": {
     "message": "何か問題が起きています"
