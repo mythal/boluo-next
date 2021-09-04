@@ -1,4 +1,7 @@
 {
+  "AyGP4T": {
+    "message": "Error Message"
+  },
   "R2cODw": {
     "message": "Switch to dark scheme"
   },
@@ -8,6 +11,9 @@
   "boluo": {
     "description": "Project name",
     "message": "Boluo"
+  },
+  "rELDbB": {
+    "message": "Refresh"
   },
   "w7ht18": {
     "message": "Something going wrong"

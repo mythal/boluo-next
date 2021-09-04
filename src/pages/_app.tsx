@@ -1,4 +1,4 @@
-import { TopLevelErrorBoundary } from '../components/TopLevelErrorBoundary';
+import { ErrorBoundary } from '../components/ErrorBoundary';
 import { LocaleProvider } from '../components/LocaleProvider';
 import { Provider } from 'jotai';
 import { AppPropsWithLayout } from '../helper/layout';
@@ -12,14 +12,14 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   const title = Component.title;
 
   return (
-    <TopLevelErrorBoundary>
+    <ErrorBoundary>
       <Provider>
         <ThemeProvider>
           <GlobalStyle />
           <LocaleProvider>{getLayout(<Component {...pageProps} />, title)}</LocaleProvider>
         </ThemeProvider>
       </Provider>
-    </TopLevelErrorBoundary>
+    </ErrorBoundary>
   );
 }
 export default App;

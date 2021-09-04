@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import { unit } from '../styles/utility/sizing';
 import { SchemeSwitch } from './SchemeSwitch';
 import { flex } from '../styles/utility/flex';
-import { m } from '../styles/utility/spacing';
+import { m, p } from '../styles/utility/spacing';
 
 const container = css`
   display: flex;
@@ -29,7 +29,6 @@ export const DesignLayout: React.FC<{ title?: string }> = ({ children, title }) 
       </Head>
       <div css={container}>
         <nav>
-          <SchemeSwitch css={m(1)} />
           <ul css={navList}>
             <li>
               <Link href="/design/">Design</Link>
@@ -37,9 +36,16 @@ export const DesignLayout: React.FC<{ title?: string }> = ({ children, title }) 
             <li>
               <Link href="/design/error">Error Handling</Link>
             </li>
+            <li>
+              <Link href="/design/buttons">Button</Link>
+            </li>
+            <li>
+              <Link href="/design/pop">Tooltip & Menu</Link>
+            </li>
           </ul>
+          <SchemeSwitch css={m(4)} />
         </nav>
-        <main css={[flex.grow['1']]}>{children}</main>
+        <main css={[flex.grow['1'], p(4)]}>{children}</main>
       </div>
     </Fragment>
   );

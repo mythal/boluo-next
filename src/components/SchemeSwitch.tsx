@@ -1,11 +1,17 @@
 import { useAtom } from 'jotai';
 import { schemeAtom } from '../state/scheme';
 import React, { useCallback } from 'react';
-import Sun from '../icons/sun.svg';
-import Moon from '../icons/moon.svg';
 import { useIntl } from 'react-intl';
 import { StyleProps } from '../helper/props';
 import { Button } from './Button';
+import { text } from '../styles/utility/typography';
+import { css } from '@emotion/react';
+import Icon from './Icon';
+
+const wrapper = css`
+  ${text.sm};
+  width: max-content;
+`;
 
 export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
   const intl = useIntl();
@@ -19,12 +25,24 @@ export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
   const darkButtonLabel = intl.formatMessage({ defaultMessage: 'Switch to dark scheme' });
 
   return (
-    <div className={className}>
-      <Button onClick={isLight ? switchToAuto : switchToLight} data-active={isLight} aria-label={lightButtonLabel}>
-        <Sun aria-hidden />
+    <div className={className} css={wrapper}>
+      <Button
+        onClick={isLight ? switchToAuto : switchToLight}
+        data-on={isLight}
+        aria-label={lightButtonLabel}
+        data-group
+        data-icon
+      >
+        <Icon noStrut icon="sun" />
       </Button>
-      <Button onClick={isDark ? switchToAuto : switchToDark} data-active={isDark} aria-label={darkButtonLabel}>
-        <Moon aria-hidden />
+      <Button
+        onClick={isDark ? switchToAuto : switchToDark}
+        data-on={isDark}
+        aria-label={darkButtonLabel}
+        data-group
+        data-icon
+      >
+        <Icon noStrut icon={'moon'} />
       </Button>
     </div>
   );

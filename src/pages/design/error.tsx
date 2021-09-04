@@ -1,9 +1,13 @@
-import { p } from '../../styles/utility/spacing';
 import { Page } from '../../helper/layout';
 import { getLayout } from '../../components/DesignLayout';
+import Oops from '../../components/Oops';
 
 const Error: Page = () => {
-  return <p>hello, world</p>;
+  return (
+    <div>
+      <Oops error={'Something'} />
+    </div>
+  );
 };
 
 Error.getLayout = getLayout;
