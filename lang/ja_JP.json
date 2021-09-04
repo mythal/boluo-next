@@ -1,13 +1,19 @@
 {
+  "AyGP4T": {
+    "message": "エラーメッセージ"
+  },
   "R2cODw": {
-    "message": "Switch to dark scheme"
+    "message": "暗いスキームに切り替える"
   },
   "aWL1mo": {
-    "message": "Switch to light scheme"
+    "message": "ライトスキームに切り替える"
   },
   "boluo": {
     "description": "Project name",
     "message": "パイン"
+  },
+  "rELDbB": {
+    "message": "再読み込み"
   },
   "w7ht18": {
     "message": "何か問題が起きています"

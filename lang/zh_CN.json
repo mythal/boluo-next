@@ -1,16 +1,22 @@
 {
+  "AyGP4T": {
+    "message": "错误信息"
+  },
   "R2cODw": {
-    "message": "Switch to dark scheme"
+    "message": "切换到暗色模式"
   },
   "aWL1mo": {
-    "message": "Switch to light scheme"
+    "message": "切换到亮色模式"
   },
   "boluo": {
     "description": "Project name",
     "message": "菠萝"
   },
+  "rELDbB": {
+    "message": "刷新"
+  },
   "w7ht18": {
-    "message": "有什么东西搞错了"
+    "message": "出错了！"
   },
   "z/ipXX": {
     "message": "糟糕！"
