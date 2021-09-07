@@ -9,7 +9,6 @@ declare module '*.svg' {
   export default ReactComponent;
 }
 
-
 import '@emotion/react';
 import { Theme as MyTheme } from './styles/theme';
 

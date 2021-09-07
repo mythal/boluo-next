@@ -46,6 +46,9 @@ export const DesignLayout: React.FC<{ title?: string }> = ({ children, title }) 
             <li>
               <Link href="/design/virtual-list">Virtual List</Link>
             </li>
+            <li>
+              <Link href="/design/sortable">Sortable</Link>
+            </li>
           </ul>
           <SchemeSwitch css={m(4)} />
         </nav>
