@@ -6,7 +6,8 @@ import {
   stopSchemeSwitching,
   writeSchemeToStorage,
 } from '../helper/scheme';
-import { darkTheme, lightTheme } from '../styles/theme';
+import { lightTheme } from '../styles/themes/light';
+import { darkTheme } from '../styles/themes/dark';
 import { useEffect, useState } from 'react';
 import { isDaytime } from '../helper/time';
 

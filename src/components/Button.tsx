@@ -2,7 +2,7 @@ import React from 'react';
 import { unit } from '../styles/utility/sizing';
 import styled from '@emotion/styled';
 import { get } from 'optics-ts';
-import { buttonColors, colors } from '../styles/theme';
+import { buttonColors, colors } from '../styles/themes/light';
 import { DataAttr } from '../helper/props';
 import { text } from '../styles/utility/typography';
 import { darken } from 'color2k';
@@ -19,55 +19,56 @@ type Attr = DataAttr<{
 // https://ishadeed.com/article/styling-the-good-old-button/
 
 export const Button = styled.button<Attr>`
-  --border-radius: 2px;
-  --bg-color: ${get(buttonColors.prop('bg'))};
-  --shadow-color: ${get(colors.prop('shadow'))};
-
+  ${text.base};
   display: inline-flex;
   gap: ${unit(1)};
   align-items: center;
   justify-content: center;
   appearance: none;
   font-family: inherit;
-  cursor: pointer;
-
-  padding: ${unit(2)} ${unit(5)};
-  border-radius: var(--border-radius);
-
-  &:not([data-light]) {
-    border: 1px solid ${({ theme }) => theme.colors.stroke};
-  }
-
-  &[data-light] {
-    border: 1px solid var(--bg-color);
-    &:active {
-      filter: brightness(70%);
-    }
-  }
-
-  background-color: var(--bg-color);
-  color: ${get(buttonColors.prop('text'))};
-  transition: transform 60ms ease-in, box-shadow 60ms ease-in;
-  // fix shadow overlap https://stackoverflow.com/a/20208253/1137004
-  z-index: 1;
-  position: relative;
-
-  min-height: 2.5em;
-  min-width: 5em;
-  line-height: 1.2em;
-
+  user-select: none;
   &[data-small='true'] {
-    min-height: 1.75em;
-    min-width: 3.5em;
     ${text.sm};
-    padding: ${unit(1)} ${unit(2)};
   }
-
+  &:focus {
+    outline: none;
+  }
+  // cursor
+  cursor: pointer;
+  &[disabled] {
+    cursor: not-allowed;
+  }
+  // padding
+  padding: 0.5em 1em;
+  &[data-small='true'] {
+    // padding: 0.25em 0.5em;
+  }
   &[data-icon='true'] {
-    min-width: unset;
     padding: 0 ${unit(3)};
   }
 
+  // width
+  width: max-content;
+  max-width: 8em;
+  min-width: 6em;
+  &[data-small='true'] {
+    min-width: 5em;
+  }
+  &[data-icon='true'] {
+    min-width: unset;
+  }
+  // height
+  min-height: 2.5em;
+  line-height: 1.2em;
+  &[data-small='true'] {
+    min-height: 2.25em;
+  }
+
+  // radius
+  --border-radius: 2px;
+  border-radius: var(--border-radius);
+
+  // group
   &[data-group='true'] {
     &:first-of-type {
       border-radius: var(--border-radius) 0 0 var(--border-radius);
@@ -85,40 +86,57 @@ export const Button = styled.button<Attr>`
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
   }
+  // animation
+  transition: transform 60ms ease-in, box-shadow 60ms ease-in;
+  &:active:not([data-light='true']) {
+    transform: translateY(1px);
+  }
+  // colors
+  --bg-color: ${get(buttonColors.prop('bg'))};
+  background-color: var(--bg-color);
 
-  &:hover:not([disabled]) {
+  color: ${get(buttonColors.prop('text'))};
+  &[disabled] {
+    color: ${get(buttonColors.prop('textDisabled'))};
+  }
+  &:hover:not([disabled]):not(:active) {
     --bg-color: ${get(buttonColors.prop('bgHover'))};
   }
-
   &.on,
   &[data-on='true'] {
     --bg-color: ${get(buttonColors.prop('bgOn'))};
-    border-color: ${get(buttonColors.prop('borderOn'))};
   }
-
   &:active {
-    &:not([data-light]) {
-      transform: translateY(1px);
-    }
-    --shadow-color: ${({ theme }) => darken(theme.colors.shadow, 0.2)};
+    --bg-color: ${get(buttonColors.prop('bgActive'))};
+  }
+  &[data-light='true']:active {
     --bg-color: ${get(buttonColors.prop('bgActive'))};
   }
 
-  &:focus {
-    outline: none;
+  // border
+  &:not([data-light]) {
+    border: 1px solid ${({ theme }) => theme.colors.stroke};
+  }
+  &[data-light='true'] {
+    border: 1px solid var(--bg-color);
+  }
+  &.on,
+  &[data-on='true'] {
+    border-color: ${get(buttonColors.prop('borderOn'))};
   }
 
-  &[disabled] {
-    cursor: not-allowed;
-    color: ${get(buttonColors.prop('textDisabled'))};
+  // shadow
+  --shadow-color: ${get(colors.prop('shadow'))};
+
+  &:active {
+    --shadow-color: ${({ theme }) => darken(theme.colors.shadow, 0.2)};
   }
-
-  // The shadow
-
   &:focus {
     --extra-shadow: 0 0 0 1px var(--bg-color) inset, 0 0 0 2px ${get(colors.prop('borderFocus'))} inset;
   }
-
+  // fix shadow overlap https://stackoverflow.com/a/20208253/1137004
+  z-index: 1;
+  position: relative;
   &:not([data-light]) {
     --shadow-offset: 2px;
 
@@ -139,7 +157,6 @@ export const Button = styled.button<Attr>`
   }
 
   &[data-light] {
-    // box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.29), 0 1px 1px 0 rgba(0, 0, 0, 0.22);
     box-shadow: var(--extra-shadow);
   }
 `;

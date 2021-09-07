@@ -7,7 +7,7 @@ import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import { unit } from '../../styles/utility/sizing';
 import { darken } from 'color2k';
-import { Theme } from '../../styles/theme';
+import { Theme } from '../../styles/themes/light';
 import { text } from '../../styles/utility/typography';
 import { green } from '../../styles/utility/color';
 

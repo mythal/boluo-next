@@ -10,7 +10,7 @@ declare module '*.svg' {
 }
 
 import '@emotion/react';
-import { Theme as MyTheme } from './styles/theme';
+import { Theme as MyTheme } from './styles/themes/light';
 
 declare module '@emotion/react' {
   export interface Theme extends MyTheme {}

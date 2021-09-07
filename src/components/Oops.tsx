@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import React, { useRef } from 'react';
 import { css, keyframes } from '@emotion/react';
 import { useContainerQuery } from '../hooks/useContainerQuery';
-import { Theme } from '../styles/theme';
+import { Theme } from '../styles/themes/light';
 import { lighten } from 'color2k';
 import { unit, w } from '../styles/utility/sizing';
 import { RefreshButton } from './RefreshButton';

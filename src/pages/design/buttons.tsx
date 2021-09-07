@@ -15,7 +15,7 @@ const Buttons: Page = () => {
         <Button data-icon>
           <Icon icon="fairy" />
         </Button>
-        <Button data-icon>
+        <Button>
           <Icon icon="dice-twenty-faces-twenty" /> With text
         </Button>
         <Button disabled>Disabled</Button>
