@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: true,
-  webpack5: true,
+  swcMinify: true,
   // i18n: {
   //   locales: ['en', 'ja', 'zh-CN'],
   //   defaultLocale: 'en',
