@@ -1,29 +1,28 @@
 import { Page } from '../../helper/layout';
 import { getLayout } from '../../components/DesignLayout';
 import { selectRandom } from '../../helper/random';
-import { css } from '@emotion/react';
 import { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
-import { font } from '../../styles/utility/typography';
 import { IndexLocationWithAlign, Virtuoso, VirtuosoHandle } from 'react-virtuoso';
-import { h, unit } from '../../styles/utility/sizing';
+import { css } from '@emotion/react';
 import { gray } from '../../styles/utility/color';
 
-const style = {
-  chatBox: css`
-    height: 100%;
-  `,
-  item: css`
-    padding: ${unit(2)} 0;
-    &[data-is-even='true'] {
-      background-color: ${gray['200']};
-    }
-  `,
-};
 interface Item {
   name: string;
   text: string;
 }
 
+const styles = {
+  chatBox: css`
+    height: 20rem;
+    width: 100%;
+  `,
+  item: css`
+    padding: 1rem 0;
+    &:nth-child(2n + 0) {
+      background-color: ${gray['200']};
+    }
+  `,
+};
 const nameList: string[] = ['DM', 'Wizard', 'Ranger'];
 
 const fakeTextList: string[] = [
@@ -111,11 +110,10 @@ const VirtualList: Page = () => {
   useDetectUpScroll(scroller, bottomLock);
 
   return (
-    <div css={h.full}>
+    <div css={styles.chatBox}>
       <a href="https://virtuoso.dev/">Virtuoso Documentation</a>
       <Virtuoso
         ref={virtualListRef}
-        css={style.chatBox}
         totalCount={itemList.length}
         initialTopMostItemIndex={999}
         alignToBottom
@@ -124,8 +122,8 @@ const VirtualList: Page = () => {
         endReached={() => (bottomLock.current = true)}
         itemContent={(index: number, item: Item) => {
           return (
-            <div key={index} css={style.item} data-is-even={index % 2 === 0}>
-              <span css={[font.bold]}>{item.name}</span>: {item.text}
+            <div key={index} css={styles.item}>
+              <span>{item.name}</span>: {item.text}
             </div>
           );
         }}

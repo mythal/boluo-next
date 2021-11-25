@@ -1,6 +1,6 @@
-import Icon from './Icon';
+import Icon from './fundamental/Icon';
 import { FormattedMessage } from 'react-intl';
-import { Button } from './Button';
+import { Button } from './fundamental/Button';
 import React, { useCallback } from 'react';
 import { StyleProps } from '../helper/props';
 

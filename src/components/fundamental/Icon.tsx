@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { icons } from '../icons/icons';
+import { icons } from '../../icons/icons';
 import React from 'react';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 const strutStyle = css`
   &::before {
     /*
-    * https://juejin.im/entry/5bc441a5f265da0aca333506
+    * https://juejin.cn/post/6844903693406437384 https://archive.ph/Qik5h
     * https://codepen.io/airen/pen/pZVvyL
     */
     content: '\u200b';
@@ -20,14 +20,14 @@ const strutStyle = css`
   align-items: center;
   font-size: 1em;
 `;
-const Icon = ({ icon, noStrut, className }: Props) => {
+const Icon: React.FC<Props> = ({ icon, noStrut, className }: Props) => {
   const DynamicIcon = icons[icon];
-  const loaded = <DynamicIcon aria-hidden className={className} />;
+  const loaded = <DynamicIcon aria-hidden role="img" width="1em" height="1em" className={className} />;
   if (noStrut) {
     return loaded;
   } else {
     return <span css={strutStyle}>{loaded}</span>;
   }
 };
-
+Icon.displayName = 'Icon';
 export default React.memo(Icon);

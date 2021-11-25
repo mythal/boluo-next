@@ -1,5 +1,5 @@
 import React from 'react';
-import { localeAtom, messagesAtom } from '../state/locale';
+import { localeAtom, messagesAtom } from '../../state/locale';
 import { useAtomValue } from 'jotai/utils';
 import { IntlProvider } from 'react-intl';
 import { IntlErrorCode, OnErrorFn } from '@formatjs/intl';

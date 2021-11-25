@@ -1,8 +1,14 @@
 root = true
-[*.{js,jsx,ts,tsx,json}]
+[*]
 end_of_line = lf
 insert_final_newline = true
-charset = utf-8
 trim_trailing_whitespace = true
+charset = utf-8
+
+[*.{js,jsx,ts,tsx,json,webmanifest}]
+indent_style = space
+indent_size = 2
+
+[{.babelrc,.prettierrc}]
 indent_style = space
 indent_size = 2

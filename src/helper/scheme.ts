@@ -25,15 +25,9 @@ export const writeSchemeToStorage = (scheme: Scheme) => {
 };
 
 export const startSchemeSwitching = () => {
-  const result = document.documentElement.getElementsByTagName('body');
-  for (const body of result) {
-    body.classList.add('switching');
-  }
+  document.documentElement.classList.add('switching');
 };
 
 export const stopSchemeSwitching = () => {
-  const result = document.documentElement.getElementsByTagName('body');
-  for (const body of result) {
-    body.classList.remove('switching');
-  }
+  document.documentElement.classList.remove('switching');
 };
