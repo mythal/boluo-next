@@ -1,22 +1,28 @@
 {
+  "3cc4Ct": {
+    "message": "Light"
+  },
   "AyGP4T": {
     "message": "エラーメッセージ"
   },
-  "R2cODw": {
-    "message": "暗いスキームに切り替える"
+  "MWO2zy": {
+    "message": "Something going wrong."
   },
-  "aWL1mo": {
-    "message": "ライトスキームに切り替える"
+  "NXI/XL": {
+    "message": "Auto"
   },
   "boluo": {
     "description": "Project name",
     "message": "パイン"
   },
+  "pULdOq": {
+    "message": "This may be caused by a network problem. If the error persists after refreshing the page, please contact the admin."
+  },
   "rELDbB": {
     "message": "再読み込み"
   },
-  "w7ht18": {
-    "message": "何か問題が起きています"
+  "tOdNiY": {
+    "message": "Dark"
   },
   "z/ipXX": {
     "message": "おっとっと！"
