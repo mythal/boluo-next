@@ -1,22 +1,28 @@
 {
+  "3cc4Ct": {
+    "message": "Light"
+  },
   "AyGP4T": {
     "message": "错误信息"
   },
-  "R2cODw": {
-    "message": "切换到暗色模式"
+  "MWO2zy": {
+    "message": "Something going wrong."
   },
-  "aWL1mo": {
-    "message": "切换到亮色模式"
+  "NXI/XL": {
+    "message": "Auto"
   },
   "boluo": {
     "description": "Project name",
     "message": "菠萝"
   },
+  "pULdOq": {
+    "message": "This may be caused by a network problem. If the error persists after refreshing the page, please contact the admin."
+  },
   "rELDbB": {
     "message": "刷新"
   },
-  "w7ht18": {
-    "message": "出错了！"
+  "tOdNiY": {
+    "message": "Dark"
   },
   "z/ipXX": {
     "message": "糟糕！"
