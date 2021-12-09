@@ -3,14 +3,14 @@
 // SVGR with Typescript
 // https://github.com/gregberge/svgr/issues/38
 declare module '*.svg' {
-  const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+  import React from 'react';
+  const content: React.FC<React.SVGProps<SVGSVGElement>>;
 
-  export { ReactComponent };
-  export default ReactComponent;
+  export default content;
 }
 
 import '@emotion/react';
-import { Theme as MyTheme } from './styles/themes/light';
+import { Theme as MyTheme } from './src/styles/theme';
 
 declare module '@emotion/react' {
   export interface Theme extends MyTheme {}

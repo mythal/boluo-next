@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
-import { p } from '../styles/utility/spacing';
 import { useState } from 'react';
+import { Button } from '../components/fundamental/Button';
 
 const Messenger: NextPage = () => {
   const [counter, setCounter] = useState(0);
   return (
-    <div css={[p(10)]}>
-      hello, world ({counter}) <button onClick={() => setCounter((counter) => counter + 1)}>+1</button>
+    <div>
+      hello, world ({counter}) <Button onClick={() => setCounter((counter) => counter + 1)}>+1</Button>
     </div>
   );
 };

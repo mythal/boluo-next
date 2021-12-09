@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ['@typescript-eslint', 'react-hooks'],
+  plugins: ['@typescript-eslint', '@emotion', 'react-hooks'],
   extends: [
     'next/core-web-vitals',
     'plugin:@typescript-eslint/eslint-recommended',

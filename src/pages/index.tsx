@@ -3,13 +3,11 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Logo from '../../public/logo.svg';
 import { FormattedMessage } from 'react-intl';
-import { memo, Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { LocaleSwitch } from '../components/LocaleSwitch';
-import { ClientBox } from '../components/ClientBox';
+import { ClientBox } from '../components/fundamental/ClientBox';
 import Link from 'next/link';
-import { p, space } from '../styles/utility/spacing';
-import { fontNormal } from '../styles/utility/typography';
 
 const container = css`
   width: 20em;
@@ -23,19 +21,15 @@ const Home: NextPage = () => {
       <Head>
         <title>Playground</title>
       </Head>
-      <main css={[container, space.y(3)]}>
-        <Logo
-          css={css`
-            float: right;
-          `}
-        />
-        <h1 css={[fontNormal]} style={{ color }}>
+      <main>
+        <Logo />
+        <h1 style={{ color }}>
           <FormattedMessage defaultMessage="Boluo" id="boluo" description="Project name" />
         </h1>
         <div>
           <HexColorPicker color={color} onChange={setColor} />
         </div>
-        <div css={[p.y(3)]}>
+        <div>
           <ClientBox>
             <Suspense fallback="...">
               <LocaleSwitch />
@@ -55,4 +49,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default memo(Home);
+export default Home;

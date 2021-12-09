@@ -107,7 +107,7 @@ export const delay = {
 };
 
 // Animation https://tailwindcss.com/docs/animation
-const spin = keyframes`
+export const spin = keyframes`
   from {
     transform: rotate(0deg);
   }
@@ -115,7 +115,7 @@ const spin = keyframes`
     transform: rotate(360deg);
   }
 `;
-const ping = keyframes`
+export const ping = keyframes`
   0% {
     transform: scale(1);
     opacity: 1;
@@ -125,7 +125,7 @@ const ping = keyframes`
     opacity: 0;
   }
 `;
-const pulse = keyframes`
+export const pulse = keyframes`
   0%, 100% {
     opacity: 1;
   }
@@ -133,7 +133,7 @@ const pulse = keyframes`
     opacity: .5;
   }
 `;
-const bounce = keyframes`
+export const bounce = keyframes`
   0%, 100% {
     transform: translateY(-25%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);

@@ -17,10 +17,22 @@ import {
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { getLayout } from '../../components/DesignLayout';
+import { css } from '@emotion/react';
 
 interface SortableItemProps {
   id: string;
 }
+const styles = {
+  item: css`
+    width: 100%;
+    padding: 1rem 1rem;
+    cursor: move;
+
+    &:hover {
+      background-color: rgba(131, 131, 131, 0.55);
+    }
+  `,
+};
 export function SortableItem({ id }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
@@ -30,7 +42,7 @@ export function SortableItem({ id }: SortableItemProps) {
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div ref={setNodeRef} css={styles.item} style={style} {...attributes} {...listeners}>
       {id}
     </div>
   );

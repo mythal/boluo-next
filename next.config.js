@@ -2,8 +2,12 @@
 module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
-  trailingSlash: true,
-  swcMinify: true,
+  // trailingSlash: true,
+  // swcMinify: true,
+  // experimental: {
+  //   concurrentFeatures: false,
+  //   serverComponents: false,
+  // },
   // i18n: {
   //   locales: ['en', 'ja', 'zh-CN'],
   //   defaultLocale: 'en',
@@ -12,20 +16,12 @@ module.exports = {
     // noinspection JSValidateTypes
     config.module.rules.push({
       test: /\.svg$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            // svgr options: https://react-svgr.com/docs/options/
-            svgo: true,
-            memo: true,
-          },
-        },
-      ],
+      use: ['@svgr/webpack'],
     });
 
     // `react-intl` without parser
     // https://formatjs.io/docs/guides/advanced-usage#react-intl-without-parser-40-smaller
+    // https://github.com/vercel/next.js/issues/30434
     config.resolve.alias['@formatjs/icu-messageformat-parser'] = '@formatjs/icu-messageformat-parser/no-parser';
     return config;
   },

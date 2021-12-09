@@ -1,26 +1,32 @@
 import React, { Fragment, ReactElement } from 'react';
 import { Head } from '../helper/head';
 import { Link } from '../helper/link';
-import { css } from '@emotion/react';
-import { unit } from '../styles/utility/sizing';
 import { SchemeSwitch } from './SchemeSwitch';
-import { flex } from '../styles/utility/flex';
-import { m, p } from '../styles/utility/spacing';
+import { css } from '@emotion/react';
 
-const container = css`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  gap: ${unit(4)};
-`;
+const styles = {
+  container: css`
+    display: flex;
+    gap: 1rem;
+  `,
+  sidebar: css`
+    padding: 2rem 1rem;
+  `,
+  main: css`
+    width: 100%;
+    padding: 2rem;
+  `,
+};
 
-const navList = css`
-  padding: 0 ${unit(4)};
-  list-style-type: none;
-  & > li {
-    padding: ${unit(1)} 0;
-  }
-`;
+const sidebarMap = {
+  'error-handling': 'Error Handling',
+  buttons: 'Button',
+  pop: 'Tooltip & Menu',
+  'virtual-list': 'Virtual List',
+  sortable: 'Sortable List',
+  form: 'Form Controls',
+  notifications: 'Notifications',
+};
 
 export const DesignLayout: React.FC<{ title?: string }> = ({ children, title }) => {
   return (
@@ -28,31 +34,21 @@ export const DesignLayout: React.FC<{ title?: string }> = ({ children, title }) 
       <Head>
         <title>{title ? `Design - ${title}` : 'Design'}</title>
       </Head>
-      <div css={container}>
-        <nav>
-          <ul css={navList}>
+      <div css={styles.container}>
+        <nav css={styles.sidebar}>
+          <ul>
             <li>
               <Link href="/design/">Design</Link>
             </li>
-            <li>
-              <Link href="/design/error">Error Handling</Link>
-            </li>
-            <li>
-              <Link href="/design/buttons">Button</Link>
-            </li>
-            <li>
-              <Link href="/design/pop">Tooltip & Menu</Link>
-            </li>
-            <li>
-              <Link href="/design/virtual-list">Virtual List</Link>
-            </li>
-            <li>
-              <Link href="/design/sortable">Sortable</Link>
-            </li>
+            {Object.entries(sidebarMap).map(([slug, title]) => (
+              <li key={slug}>
+                <Link href={`/design/${slug}`}>{title}</Link>
+              </li>
+            ))}
           </ul>
-          <SchemeSwitch css={m(4)} />
+          <SchemeSwitch />
         </nav>
-        <main css={[flex.grow['1'], p(4)]}>{children}</main>
+        <main css={styles.main}>{children}</main>
       </div>
     </Fragment>
   );

@@ -1,17 +1,19 @@
-import { space } from '../../styles/utility/spacing';
 import { Page } from '../../helper/layout';
 import { getLayout } from '../../components/DesignLayout';
-import { Button } from '../../components/Button';
-import { display } from '../../styles/utility/layout';
+import { Button } from '../../components/fundamental/Button';
+import Icon from '../../components/fundamental/Icon';
 import { gap } from '../../styles/utility/grid';
-import Icon from '../../components/Icon';
+import { display } from '../../styles/utility/layout';
+import { m } from '../../styles/utility/spacing';
+import { SpinnerIcon } from '../../components/SpinnerIcon';
 
 const Buttons: Page = () => {
+  const line = [display.flex, gap(2), m.y(2)];
+
   return (
-    <div css={[space.y(4)]}>
-      <div css={[space.x(2), space.y(1)]}>
+    <div>
+      <div css={line}>
         <Button>Button</Button>
-        <Button data-on>ON State</Button>
         <Button data-icon>
           <Icon icon="fairy" />
         </Button>
@@ -20,14 +22,17 @@ const Buttons: Page = () => {
         </Button>
         <Button disabled>Disabled</Button>
       </div>
-      <div css={[display.flex, gap(2)]}>
+      <div css={line}>
         <Button data-small>small</Button>
         <Button data-small>
           <Icon icon="archive" /> small
         </Button>
+        <Button data-small>
+          <SpinnerIcon /> small
+        </Button>
       </div>
-      <div css={[display.flex, gap(2)]}>
-        <Button data-light>Light</Button>
+      <div css={line}>
+        <Button data-type="primary">Primary</Button>
       </div>
     </div>
   );
