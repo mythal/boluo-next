@@ -102,9 +102,9 @@ export const lightTheme = ((): Theme => {
       bg: '#faf9cc',
     },
     toast: {
-      default: '#000',
-      warning: '#919100',
-      error: '#c50000',
+      default: '#383838',
+      warning: '#9a9a00',
+      error: '#ad0000',
     },
     input,
   };
@@ -163,7 +163,11 @@ export const darkTheme: Theme = ((): Theme => {
     tooltip: {
       bg: '#F5F4BC',
     },
-    toast: lightTheme.toast,
+    toast: {
+      default: '#000',
+      warning: '#838305',
+      error: '#960808',
+    },
     input,
   };
 })();

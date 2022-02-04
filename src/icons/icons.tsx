@@ -1,3 +1,4 @@
+import React from 'react';
 import Fairy from './fairy.svg';
 import Sun from './sun.svg';
 import Moon from './moon.svg';
@@ -6,7 +7,7 @@ import Refresh from './refresh.svg';
 import Archive from './archive.svg';
 import CircleNotch from './circle-notch.svg';
 import Close from './close.svg';
-import React from 'react';
+import X from './x.svg';
 
 const iconMap = {
   sun: Sun,
@@ -17,6 +18,7 @@ const iconMap = {
   archive: Archive,
   spinner: CircleNotch,
   close: Close,
+  x: X,
 };
 
 export const icons: Record<keyof typeof iconMap, React.FC<React.SVGProps<SVGSVGElement>>> = iconMap;

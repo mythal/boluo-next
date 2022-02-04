@@ -40,7 +40,7 @@ const style = css`
 export const ToastCloseButton: React.FC<Props> = ({ onClose }) => {
   return (
     <button css={style} aria-label="close" onClick={() => onClose()}>
-      <Icon icon="close" />
+      <Icon icon="x" />
     </button>
   );
 };
