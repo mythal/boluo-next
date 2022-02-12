@@ -1,12 +1,12 @@
 import React, { ChangeEventHandler } from 'react';
 import { StyleProps } from '../helper/props';
-import { useAtom } from 'jotai';
-import { localeAtom } from '../state/locale';
+import { getLocale, useStore } from '../state/store';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
-  const [locale, setLocale] = useAtom(localeAtom);
+  const locale = useStore(getLocale);
+  const setLocale = useStore((state) => state.switchLanguage);
   const handler: ChangeEventHandler<HTMLSelectElement> = async (event) => {
-    setLocale(event.target.value);
+    await setLocale(event.target.value);
   };
   return (
     <select className={className} value={locale} onChange={handler}>

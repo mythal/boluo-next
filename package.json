@@ -23,7 +23,6 @@
     "@emotion/styled": "^11.6.0",
     "@popperjs/core": "^2.11.2",
     "color2k": "^1.2.5",
-    "jotai": "^1.5.3",
     "modern-normalize": "^1.1.0",
     "next": "^12.0.10",
     "optics-ts": "^2.3.0",
@@ -33,7 +32,9 @@
     "react-intl": "^5.24.4",
     "react-popper": "^2.2.5",
     "react-virtuoso": "^2.5.2",
-    "styled-jsx": "^5.0.0"
+    "styled-jsx": "^5.0.0",
+    "swr": "^1.2.1",
+    "zustand": "^3.6.9"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",

@@ -1,9 +1,8 @@
-import { useAtom } from 'jotai';
-import { schemeAtom } from '../state/scheme';
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { StyleProps } from '../helper/props';
 import { css } from '@emotion/react';
+import { useStore } from '../state/store';
 
 const style = css`
   padding: 0.25rem 1rem;
@@ -15,7 +14,8 @@ const style = css`
 
 export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
   const intl = useIntl();
-  const [scheme, setScheme] = useAtom(schemeAtom);
+  const scheme = useStore(useCallback((state) => state.scheme, []));
+  const setScheme = useStore((state) => state.switchScheme);
   const text = {
     light: intl.formatMessage({ defaultMessage: 'Light' }),
     dark: intl.formatMessage({ defaultMessage: 'Dark' }),
