@@ -8,6 +8,8 @@ import Archive from './archive.svg';
 import CircleNotch from './circle-notch.svg';
 import Close from './close.svg';
 import X from './x.svg';
+import Pause from './pause.svg';
+import Play from './play.svg';
 
 const iconMap = {
   sun: Sun,
@@ -19,6 +21,8 @@ const iconMap = {
   spinner: CircleNotch,
   close: Close,
   x: X,
+  pause: Pause,
+  play: Play,
 };
 
 export const icons: Record<keyof typeof iconMap, React.FC<React.SVGProps<SVGSVGElement>>> = iconMap;
