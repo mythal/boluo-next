@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler } from 'react';
 import { StyleProps } from '../helper/props';
-import { getLocale, useStore } from '../state/store';
+import { useStore } from '../state/store';
+import { getLocale } from '../state/storeOptic';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
   const locale = useStore(getLocale);

@@ -1,10 +1,12 @@
 import { Page } from '../../helper/layout';
 import { getLayout } from '../../components/DesignLayout';
 import { selectRandom } from '../../helper/random';
-import { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
-import { IndexLocationWithAlign, Virtuoso, VirtuosoHandle } from 'react-virtuoso';
+import { useEffect, useRef, useState } from 'react';
+import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
 import { css } from '@emotion/react';
 import { gray } from '../../styles/utility/color';
+import { useVirtualListBottomLock } from '../../hooks/useVirtualListBottomLock';
+import { useDetectUpScroll } from '../../hooks/useDetectUpScroll';
 
 interface Item {
   name: string;
@@ -64,49 +66,11 @@ const useItemList = () => {
   return itemList;
 };
 
-const useBottomLock = (virtualListRef: RefObject<VirtuosoHandle>, itemList: Item[]): MutableRefObject<boolean> => {
-  const bottomLock = useRef(true);
-  useEffect(() => {
-    if (bottomLock.current) {
-      const handle = window.setTimeout(() => {
-        const config: IndexLocationWithAlign = {
-          index: itemList.length - 1,
-          align: 'end',
-          behavior: 'smooth',
-        };
-        if (bottomLock.current) {
-          virtualListRef.current?.scrollToIndex(config);
-        }
-      }, 100);
-      return () => window.clearTimeout(handle);
-    }
-  }, [itemList, virtualListRef]);
-  return bottomLock;
-};
-
-const useDetectUpScroll = (scroller: HTMLDivElement | null, bottomLock: MutableRefObject<boolean>) => {
-  const scrollTop = useRef<number>(0);
-  useEffect(() => {
-    if (!scroller) {
-      return;
-    }
-    const handler = () => {
-      const currentTop = scroller.scrollTop;
-      if (scrollTop.current > currentTop) {
-        bottomLock.current = false;
-      }
-      scrollTop.current = currentTop;
-    };
-    scroller.addEventListener('scroll', handler, { passive: true });
-    return () => scroller.removeEventListener('scroll', handler);
-  }, [bottomLock, scroller]);
-};
-
 const VirtualList: Page = () => {
   const itemList = useItemList();
   const virtualListRef = useRef<VirtuosoHandle>(null);
   const [scroller, setScroller] = useState<HTMLDivElement | null>(null);
-  const bottomLock = useBottomLock(virtualListRef, itemList);
+  const bottomLock = useVirtualListBottomLock(virtualListRef, itemList.length);
   useDetectUpScroll(scroller, bottomLock);
 
   return (

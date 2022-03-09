@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { IntlErrorCode, OnErrorFn } from '@formatjs/intl';
-import { getLocale, getMessages, getSwitchLanguage, LOCALE_KEY, useStore } from '../../state/store';
+import { LOCALE_KEY, useStore } from '../../state/store';
+import { getLocale, getMessages, getSwitchLanguage } from '../../state/storeOptic';
 
 const onError: OnErrorFn = (err) => {
   if (err.code === IntlErrorCode.MISSING_TRANSLATION) {

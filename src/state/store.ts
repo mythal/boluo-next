@@ -1,7 +1,6 @@
 import create from 'zustand';
 import { combine, devtools, subscribeWithSelector } from 'zustand/middleware';
-import { writeSchemeToStorage, Scheme } from '../helper/scheme';
-import { OpticFor, get, optic } from 'optics-ts';
+import { Scheme, writeSchemeToStorage } from '../helper/scheme';
 import type { IntlConfig } from 'react-intl';
 import enMessages from '../../lang/compiled/en.json';
 
@@ -29,18 +28,11 @@ const combinedState = combine(initialState, (set) => ({
       locale = 'en';
       messages = enMessages;
     }
-    localStorage.setItem(LOCALE_KEY, locale);
     set({ locale, messages }, PARTIAL, `switch ${locale} `);
   },
 }));
 
 export type Store = ReturnType<typeof combinedState>;
-export const storeOptic: OpticFor<Store> = optic<Store>();
-export const getLocale = get(storeOptic.prop('locale'));
-export const getMessages = get(storeOptic.prop('messages'));
-export const getSwitchLanguage = get(storeOptic.prop('switchLanguage'));
-export const getScheme = get(storeOptic.prop('scheme'));
-export const getSwitchScheme = get(storeOptic.prop('switchScheme'));
 
 export const useStore = create(devtools(subscribeWithSelector(combinedState)));
 
@@ -50,5 +42,11 @@ useStore.subscribe(
   (state) => state.scheme,
   (scheme) => {
     writeSchemeToStorage(scheme);
+  }
+);
+useStore.subscribe(
+  (state) => state.locale,
+  (locale) => {
+    localStorage.setItem(LOCALE_KEY, locale);
   }
 );

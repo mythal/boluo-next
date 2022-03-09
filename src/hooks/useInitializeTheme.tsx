@@ -1,10 +1,11 @@
 import { defaultTheme, lightTheme, darkTheme, Theme } from '../styles/theme';
-import { getScheme, getSwitchScheme, useStore } from './store';
+import { useStore } from '../state/store';
 import { useCallback, useEffect, useState } from 'react';
 import { readSchemeFromStorage, startSchemeSwitching, stopSchemeSwitching } from '../helper/scheme';
 import { isDaytime } from '../helper/time';
+import { getScheme, getSwitchScheme } from '../state/storeOptic';
 
-export const useInitTheme = (): Theme => {
+export const useInitializeTheme = (): Theme => {
   const scheme = useStore(getScheme);
   const updateScheme = useStore(getSwitchScheme);
   const [theme, setTheme] = useState(defaultTheme);
