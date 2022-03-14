@@ -1,7 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn run lint
-npx pretty-quick --staged
-yarn run i18n:extract
-yarn run i18n:compile
+npx lint-staged
