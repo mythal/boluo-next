@@ -8,18 +8,18 @@ i18n-extract:
 
 dev: i18n-extract i18n-compile
 	@echo "Starting development server..."
-	yarn run next dev
+	yarn dev
 
 build: i18n-extract i18n-compile
 	@echo "Building production bundle..."
-	yarn run next build
+	yarn build
 
 analyze: export ANALYZE = true
 analyze: build
 
 start: build
 	@echo "Starting production server..."
-	yarn run next start
+	yarn start
 
 format:
 	@echo "Formatting code..."
@@ -27,4 +27,4 @@ format:
 
 lint:
 	@echo "Linting code..."
-	yarn run next lint
+	yarn lint
