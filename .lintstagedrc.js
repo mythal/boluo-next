@@ -6,5 +6,6 @@ const buildEslintCommand = (filenames) =>
 
 module.exports = {
   '*.{js,jsx,ts,tsx}': [buildEslintCommand],
+  '*.{js,jsx,ts,tsx}': ['make i18n-extract', 'make i18n-compile'],
   '*.{js,ts,jsx,tsx,css,md}': 'prettier --write --config ./.prettierrc',
 };

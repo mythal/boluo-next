@@ -2,8 +2,8 @@
 module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // trailingSlash: true,
-  // swcMinify: true,
+  trailingSlash: true,
+  swcMinify: true,
   // experimental: {
   //   concurrentFeatures: false,
   //   serverComponents: false,
