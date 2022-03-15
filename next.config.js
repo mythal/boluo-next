@@ -1,17 +1,20 @@
 /** @type {import('next').NextConfig} */
+
+const BACKEND_URL = process.env.BACKEND_URL || 'https://test.boluo.chat';
+
 module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: true,
   swcMinify: true,
-  // experimental: {
-  //   concurrentFeatures: false,
-  //   serverComponents: false,
-  // },
-  // i18n: {
-  //   locales: ['en', 'ja', 'zh-CN'],
-  //   defaultLocale: 'en',
-  // },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${BACKEND_URL}/api/:path*`, // Proxy to Backend
+      },
+    ];
+  },
   webpack: (config) => {
     // noinspection JSValidateTypes
     config.module.rules.push({
