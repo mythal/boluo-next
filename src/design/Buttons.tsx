@@ -1,13 +1,11 @@
-import { Page } from '../../helper/layout';
-import { getLayout } from '../../components/DesignLayout';
-import { Button } from '../../components/fundamental/Button';
-import Icon from '../../components/fundamental/Icon';
-import { gap } from '../../styles/utility/grid';
-import { display } from '../../styles/utility/layout';
-import { m } from '../../styles/utility/spacing';
-import { SpinnerIcon } from '../../components/SpinnerIcon';
+import { Button } from '../components/fundamental/Button';
+import Icon from '../components/fundamental/Icon';
+import { gap } from '../styles/utility/grid';
+import { display } from '../styles/utility/layout';
+import { m } from '../styles/utility/spacing';
+import { SpinnerIcon } from '../components/SpinnerIcon';
 
-const Buttons: Page = () => {
+export const Buttons = () => {
   const line = [display.flex, gap(2), m.y(2)];
 
   return (
@@ -37,8 +35,3 @@ const Buttons: Page = () => {
     </div>
   );
 };
-
-Buttons.getLayout = getLayout;
-Buttons.title = 'Button';
-
-export default Buttons;

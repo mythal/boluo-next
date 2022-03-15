@@ -1,14 +1,12 @@
-import { Page } from '../../helper/layout';
-import { display } from '../../styles/utility/layout';
-import { gap } from '../../styles/utility/grid';
-import { m } from '../../styles/utility/spacing';
-import { Toast } from '../../components/fundamental/Toast';
-import { getLayout } from '../../components/DesignLayout';
+import { display } from '../styles/utility/layout';
+import { gap } from '../styles/utility/grid';
+import { m } from '../styles/utility/spacing';
+import { Toast } from '../components/fundamental/Toast';
 import { useState } from 'react';
-import { itemsStart } from '../../styles/utility/box-alignment';
-import { empty } from '../../helper/function';
+import { itemsStart } from '../styles/utility/box-alignment';
+import { empty } from '../helper/function';
 
-const Notifications: Page = () => {
+export const Notifications = () => {
   const line = [display.flex, gap(2), m.y(2), itemsStart];
   const [open, setOpen] = useState(true);
 
@@ -33,7 +31,3 @@ const Notifications: Page = () => {
     </div>
   );
 };
-
-Notifications.getLayout = getLayout;
-Notifications.title = 'Notifications';
-export default Notifications;

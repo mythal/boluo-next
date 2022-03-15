@@ -1,12 +1,10 @@
-import { Page } from '../../helper/layout';
-import { getLayout } from '../../components/DesignLayout';
-import { selectRandom } from '../../helper/random';
+import { selectRandom } from '../helper/random';
 import { useEffect, useRef, useState } from 'react';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
 import { css } from '@emotion/react';
-import { gray } from '../../styles/utility/color';
-import { useVirtualListBottomLock } from '../../hooks/useVirtualListBottomLock';
-import { useDetectUpScroll } from '../../hooks/useDetectUpScroll';
+import { gray } from '../styles/utility/color';
+import { useVirtualListBottomLock } from '../hooks/useVirtualListBottomLock';
+import { useDetectUpScroll } from '../hooks/useDetectUpScroll';
 
 interface Item {
   name: string;
@@ -66,7 +64,7 @@ const useItemList = () => {
   return itemList;
 };
 
-const VirtualList: Page = () => {
+export const VirtualList = () => {
   const itemList = useItemList();
   const virtualListRef = useRef<VirtuosoHandle>(null);
   const [scroller, setScroller] = useState<HTMLDivElement | null>(null);
@@ -101,8 +99,3 @@ const VirtualList: Page = () => {
     </div>
   );
 };
-
-VirtualList.getLayout = getLayout;
-VirtualList.title = 'Virtual List';
-
-export default VirtualList;

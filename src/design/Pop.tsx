@@ -1,6 +1,4 @@
-import { Page } from '../../helper/layout';
-import { getLayout } from '../../components/DesignLayout';
-import { Button } from '../../components/fundamental/Button';
+import { Button } from '../components/fundamental/Button';
 import { usePopper } from 'react-popper';
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { css, Theme } from '@emotion/react';
@@ -92,7 +90,7 @@ const useBoxScrollPosition = (): MutableRefObject<HTMLDivElement | null> => {
   return boxRef;
 };
 
-const Pop: Page = () => {
+export const Pop = () => {
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
@@ -130,8 +128,3 @@ const Pop: Page = () => {
     </div>
   );
 };
-
-Pop.getLayout = getLayout;
-Pop.title = 'Tooltip & Menu';
-
-export default Pop;

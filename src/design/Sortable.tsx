@@ -16,7 +16,6 @@ import {
 } from '@dnd-kit/sortable';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { getLayout } from '../../components/DesignLayout';
 import { css } from '@emotion/react';
 
 interface SortableItemProps {
@@ -48,7 +47,7 @@ export function SortableItem({ id }: SortableItemProps) {
   );
 }
 
-function Sortable() {
+export function Sortable() {
   const [items, setItems] = useState(['1', '2', '3']);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -80,6 +79,3 @@ function Sortable() {
     }
   }
 }
-Sortable.getLayout = getLayout;
-Sortable.title = 'Sortable';
-export default Sortable;
