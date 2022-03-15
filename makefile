@@ -14,6 +14,9 @@ build: i18n-extract i18n-compile
 	@echo "Building production bundle..."
 	yarn run next build
 
+analyze: export ANALYZE = true
+analyze: build
+
 start: build
 	@echo "Starting production server..."
 	yarn run next start

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const ANALYZE = Boolean(process.env.ANALYZE);
 const BACKEND_URL = process.env.BACKEND_URL || 'https://test.boluo.chat';
 
 module.exports = {
@@ -16,6 +17,13 @@ module.exports = {
     ];
   },
   webpack: (config) => {
+    if (ANALYZE) {
+      const plugin = new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+      });
+      config.plugins.push(plugin);
+    }
+
     // noinspection JSValidateTypes
     config.module.rules.push({
       test: /\.svg$/,
