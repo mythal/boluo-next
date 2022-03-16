@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
+const withMDX = require('@next/mdx')();
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ANALYZE = Boolean(process.env.ANALYZE);
 const BACKEND_URL = process.env.BACKEND_URL || 'https://test.boluo.chat';
 
-module.exports = {
+module.exports = withMDX({
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: true,
@@ -36,4 +37,4 @@ module.exports = {
     config.resolve.alias['@formatjs/icu-messageformat-parser'] = '@formatjs/icu-messageformat-parser/no-parser';
     return config;
   },
-};
+});

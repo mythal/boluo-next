@@ -1,13 +1,14 @@
 import { Page } from '../../helper/layout';
 import { FC } from 'react';
 import Link from 'next/link';
-import { DefaultContent, tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
+import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
+import Home from '../../design/Home.mdx';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
     return tabRouteTable[tab].component;
   } else {
-    return <DefaultContent />;
+    return <Home />;
   }
 };
 

@@ -1,16 +1,13 @@
 import { ReactElement } from 'react';
-import { Buttons } from './Buttons';
+import { useRouter } from 'next/router';
 import { Form } from './Form';
 import { ErrorHandling } from './ErrorHandling';
 import { Notifications } from './Notifications';
 import { Pop } from './Pop';
 import { Sortable } from './Sortable';
 import { VirtualList } from './VirtualList';
-import { useRouter } from 'next/router';
-
-export const DefaultContent = () => {
-  return <p>This is the place to design and tweak UI components.</p>;
-};
+import { Buttons } from './Buttons';
+import Home from './Home.mdx';
 
 interface RouteItem {
   title: string;
@@ -22,7 +19,7 @@ const createRouteTable = <T extends { [key: string]: RouteItem }>(table: T) => t
 export const tabRouteTable = createRouteTable({
   '': {
     title: 'Design',
-    component: <DefaultContent />,
+    component: <Home />,
   },
   buttons: {
     title: 'Buttons',
