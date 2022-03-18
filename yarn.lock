@@ -1150,6 +1150,26 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@floating-ui/core@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-0.6.1.tgz#aed861a1b6dbebadf14a9dd829ba67f4f3ae795c"
+  integrity sha512-Y30eVMcZva8o84c0HcXAtDO4BEzPJMvF6+B7x7urL2xbAqVsGJhojOyHLaoQHQYjb6OkqRq5kO+zeySycQwKqg==
+
+"@floating-ui/dom@^0.4.0", "@floating-ui/dom@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-0.4.1.tgz#3e164482d7f036527f65a794bdf054d2cc44fcbf"
+  integrity sha512-VAdIkn+zc4VB3pSemBk2JwjXlbVEBUbQft4V5jGpUeA9Vxd1fQD5eL3dMIMLVW003NYCOoW42JjjyBPNTpr8uQ==
+  dependencies:
+    "@floating-ui/core" "^0.6.1"
+
+"@floating-ui/react-dom@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-0.6.0.tgz#e58abf75bec1eac01f0adfff1454106bf9d3dd50"
+  integrity sha512-/dF+jpAUtoonjs2lO0F+miqEQlzA9XJGOxWBiJsq/COhK2kz7XzryyJdxfaNEH+RN63vRs9osDolOJXlst50hg==
+  dependencies:
+    "@floating-ui/dom" "^0.4.0"
+    use-isomorphic-layout-effect "^1.1.1"
+
 "@formatjs/cli@^4.8.2":
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/@formatjs/cli/-/cli-4.8.2.tgz#65b08c01d0ee0099d56c419ecd49c0bf2f947f56"
@@ -1413,11 +1433,6 @@
   version "1.0.0-next.21"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
-
-"@popperjs/core@^2.11.4":
-  version "2.11.4"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.4.tgz#d8c7b8db9226d2d7664553a0741ad7d0397ee503"
-  integrity sha512-q/ytXxO5NKvyT37pmisQAItCFqA7FD/vNb8dgaJy3/630Fsc+Mz9/9f2SziBoIZ30TJooXyTwZmhi1zjXmObYg==
 
 "@rushstack/eslint-patch@^1.0.8":
   version "1.1.0"
@@ -3544,7 +3559,7 @@ longest-streak@^3.0.0:
   resolved "https://registry.yarnpkg.com/longest-streak/-/longest-streak-3.0.1.tgz#c97315b7afa0e7d9525db9a5a2953651432bdc5d"
   integrity sha512-cHlYSUpL2s7Fb3394mYxwTYj8niTaNHUCLr0qdiCXQfSjfuA7CKofpX2uSwEfFDQ0EB7JcnMnm+GjbqqoinYYg==
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -4364,11 +4379,6 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-fast-compare@^3.0.1:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
-  integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
-
 react-intl@^5.24.7:
   version "5.24.7"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-5.24.7.tgz#a57084543ff8e58ed2d2bc2f1d3b8add3a2f0e3b"
@@ -4389,14 +4399,6 @@ react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
-
-react-popper@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.2.5.tgz#1214ef3cec86330a171671a4fbcbeeb65ee58e96"
-  integrity sha512-kxGkS80eQGtLl18+uig1UIf9MKixFSyPxglsgLBxlYnyDf65BiY9B3nZSc6C9XUNDgStROB0fMQlTEz1KxGddw==
-  dependencies:
-    react-fast-compare "^3.0.1"
-    warning "^4.0.2"
 
 react-virtuoso@^2.8.1:
   version "2.8.1"
@@ -5077,6 +5079,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-isomorphic-layout-effect@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.1.tgz#7bb6589170cd2987a152042f9084f9effb75c225"
+  integrity sha512-L7Evj8FGcwo/wpbv/qvSfrkHFtOpCzvM5yl2KVyDJoylVuSvzphiiasmjgQPttIGBAy2WKiBNR98q8w7PiNgKQ==
+
 use-subscription@1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/use-subscription/-/use-subscription-1.5.1.tgz#73501107f02fad84c6dd57965beb0b75c68c42d1"
@@ -5127,13 +5134,6 @@ vue@^3.2.23:
     "@vue/runtime-dom" "3.2.31"
     "@vue/server-renderer" "3.2.31"
     "@vue/shared" "3.2.31"
-
-warning@^4.0.2:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
-  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
-  dependencies:
-    loose-envify "^1.0.0"
 
 webpack-bundle-analyzer@^4.5.0:
   version "4.5.0"

@@ -1,7 +1,8 @@
-import { Button } from '../components/fundamental/Button';
-import { usePopper } from 'react-popper';
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef } from 'react';
 import { css, Theme } from '@emotion/react';
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react-dom';
+
+import { Button } from '../components/fundamental/Button';
 
 const styles = {
   tooltip: (theme: Theme) => css`
@@ -9,6 +10,7 @@ const styles = {
     padding: 1rem;
     font-size: max(0.75rem, 12px);
     display: inline-block;
+    min-width: 8em;
     max-width: 10em;
     background-color: ${theme.tooltip.bg};
     color: black;
@@ -19,49 +21,8 @@ const styles = {
       pointer-events: none;
     }
   `,
-  arrow: css`
-    pointer-events: none;
-
-    &,
-    &::before {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: inherit;
-    }
-
-    & {
-      visibility: hidden;
-    }
-
-    &::before {
-      visibility: visible;
-      content: '';
-      transform: rotate(45deg);
-    }
-
-    [data-popper-reference-hidden='true'] > &::before {
-      visibility: hidden;
-    }
-
-    [data-popper-placement^='top'] > & {
-      bottom: -4px;
-    }
-
-    [data-popper-placement^='bottom'] > & {
-      top: -4px;
-    }
-
-    [data-popper-placement^='left'] > & {
-      right: -4px;
-    }
-
-    [data-popper-placement^='right'] > & {
-      left: -4px;
-    }
-  `,
   box: (theme: Theme) => css`
-    margin: 2rem 0;
+    //margin: 2rem 0;
     width: 30em;
     height: 20em;
     position: relative;
@@ -69,10 +30,11 @@ const styles = {
     border: 1px solid #000;
     overscroll-behavior: contain;
     background-color: ${theme.mode === 'light' ? '#EEE' : '#333'};
+    resize: both;
   `,
   inner: css`
-    width: 40em;
-    height: 40em;
+    width: 2000px;
+    height: 2000px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,36 +53,38 @@ const useBoxScrollPosition = (): MutableRefObject<HTMLDivElement | null> => {
 };
 
 export const Pop = () => {
-  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
-  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
-  const popper = usePopper(referenceElement, popperElement, {
+  const { x, y, reference, floating, strategy, update, refs } = useFloating({
     placement: 'right',
-    modifiers: [
-      { name: 'arrow', options: { element: arrowElement } },
-      { name: 'offset', options: { offset: [0, 20] } },
-    ],
+    middleware: [shift(), flip(), offset(12)],
   });
+  useEffect(() => {
+    if (!refs.reference.current || !refs.floating.current) {
+      return;
+    }
+    return autoUpdate(refs.reference.current, refs.floating.current, update);
+  }, [refs.floating, refs.reference, update]);
   const boxRef = useBoxScrollPosition();
 
   return (
     <div>
       <div>
-        <div>
-          <a href="https://popper.js.org/react-popper/v2/">Popper Documentation</a>
-        </div>
+        <p>
+          <a href="https://floating-ui.com/docs/getting-started">Floating UI Documentation</a>
+        </p>
         <div ref={boxRef} css={styles.box}>
           <div className="inner" css={styles.inner}>
-            <Button ref={setReferenceElement}>I am a useless button</Button>
+            <Button ref={reference}>I am a useless button</Button>
             <div
-              ref={setPopperElement}
-              {...popper.attributes.popper}
-              style={popper.styles.popper}
+              ref={floating}
+              style={{
+                position: strategy,
+                top: y ?? '',
+                left: x ?? '',
+              }}
               css={styles.tooltip}
               role="tooltip"
             >
               大人になるって事は近づいたり离れたりを缲り返して、お互いがあんまり伤つかずにすむ距离を见つけ出すって事に…
-              <div ref={setArrowElement} style={popper.styles.arrow} css={styles.arrow} data-popper-arrow={true} />
             </div>
           </div>
         </div>
