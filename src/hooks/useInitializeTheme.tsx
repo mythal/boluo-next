@@ -1,19 +1,17 @@
-import { defaultTheme, lightTheme, darkTheme, Theme } from '../styles/theme';
-import { useStore } from '../state/store';
+import { darkTheme, defaultTheme, lightTheme, Theme } from '../styles/theme';
 import { useCallback, useEffect, useState } from 'react';
-import { readSchemeFromStorage, startSchemeSwitching, stopSchemeSwitching } from '../helper/scheme';
+import { startSchemeSwitching, stopSchemeSwitching } from '../helper/scheme';
 import { isDaytime } from '../helper/time';
-import { getScheme, getSwitchScheme } from '../state/storeOptic';
+import { useAppSelector } from '../state/store';
 
 export const useInitializeTheme = (): Theme => {
-  const scheme = useStore(getScheme);
-  const updateScheme = useStore(getSwitchScheme);
+  const scheme = useAppSelector((state) => state.interface.scheme);
   const [theme, setTheme] = useState(defaultTheme);
 
   // Fetch scheme setting from user local storage
-  useEffect(() => {
-    updateScheme(readSchemeFromStorage());
-  }, [updateScheme]);
+  // useEffect(() => {
+  //   updateScheme(readSchemeFromStorage());
+  // }, [dispatch]);
 
   useEffect(() => {
     const colorSchemeMeta = document.documentElement.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
@@ -67,7 +65,7 @@ export const useInitializeTheme = (): Theme => {
       };
     }
     return () => window.clearTimeout(schemeSwitchHandle);
-  }, [scheme, switchDark, switchLight, updateScheme]);
+  }, [scheme, switchDark, switchLight]);
 
   return theme;
 };

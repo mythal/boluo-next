@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { StyleProps } from '../helper/props';
 import { css } from '@emotion/react';
-import { useStore } from '../state/store';
+import { dispatchAction, useAppSelector } from '../state/store';
 
 const style = css`
   padding: 0.25rem 1rem;
@@ -14,24 +14,20 @@ const style = css`
 
 export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
   const intl = useIntl();
-  const scheme = useStore(useCallback((state) => state.scheme, []));
-  const setScheme = useStore((state) => state.switchScheme);
+  const scheme = useAppSelector((state) => state.interface.scheme);
   const text = {
     light: intl.formatMessage({ defaultMessage: 'Light' }),
     dark: intl.formatMessage({ defaultMessage: 'Dark' }),
     auto: intl.formatMessage({ defaultMessage: 'Auto' }),
   };
-  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = useCallback(
-    (e) => {
-      const value = e.target.value;
-      if (value === 'dark' || value === 'light') {
-        setScheme(value);
-      } else {
-        setScheme('auto');
-      }
-    },
-    [setScheme]
-  );
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
+    const value = e.target.value;
+    if (value === 'dark' || value === 'light') {
+      dispatchAction('switchScheme', value);
+    } else {
+      dispatchAction('switchScheme', 'auto');
+    }
+  }, []);
 
   return (
     <div className={className}>

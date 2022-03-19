@@ -1,16 +1,19 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, useState } from 'react';
 import { StyleProps } from '../helper/props';
-import { useStore } from '../state/store';
-import { getLocale } from '../state/storeOptic';
+import { useAppDispatch, useAppSelector } from '../state/store';
+import { changeLocale } from '../state/interface';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
-  const locale = useStore(getLocale);
-  const setLocale = useStore((state) => state.switchLanguage);
+  const locale = useAppSelector((state) => state.interface.locale);
+  const dispatch = useAppDispatch();
+  const [loadState, setLoadState] = useState<'loaded' | 'loading'>('loaded');
   const handler: ChangeEventHandler<HTMLSelectElement> = async (event) => {
-    await setLocale(event.target.value);
+    setLoadState('loading');
+    await dispatch(changeLocale(event.target.value));
+    setLoadState('loaded');
   };
   return (
-    <select className={className} value={locale} onChange={handler}>
+    <select className={className} disabled={loadState !== 'loaded'} value={locale} onChange={handler}>
       <option value="en">English</option>
       <option value="zh-CN">简体中文</option>
       <option value="ja">日本語</option>

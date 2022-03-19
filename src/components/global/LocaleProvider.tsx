@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { IntlErrorCode, OnErrorFn } from '@formatjs/intl';
-import { LOCALE_KEY, useStore } from '../../state/store';
-import { getLocale, getMessages, getSwitchLanguage } from '../../state/storeOptic';
+import { useAppSelector } from '../../state/store';
 
 const onError: OnErrorFn = (err) => {
   if (err.code === IntlErrorCode.MISSING_TRANSLATION) {
@@ -13,15 +12,8 @@ const onError: OnErrorFn = (err) => {
 };
 
 export const LocaleProvider: React.FC = ({ children }) => {
-  const locale = useStore(getLocale);
-  const messages = useStore(getMessages);
-  const switchLanguage = useStore(getSwitchLanguage);
-  useEffect(() => {
-    const locale = localStorage.getItem(LOCALE_KEY);
-    if (locale) {
-      switchLanguage(locale).then(console.log);
-    }
-  }, [switchLanguage]);
+  const locale = useAppSelector((state) => state.interface.locale);
+  const messages = useAppSelector((state) => state.interface.messages);
   return (
     <IntlProvider locale={locale} messages={messages} defaultLocale="en" onError={onError}>
       {children}

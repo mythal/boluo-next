@@ -1,52 +1,61 @@
-import create from 'zustand';
-import { combine, devtools, subscribeWithSelector } from 'zustand/middleware';
-import { Scheme, writeSchemeToStorage } from '../helper/scheme';
-import type { IntlConfig } from 'react-intl';
-import enMessages from '../../lang/compiled/en.json';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import thunk, { ThunkDispatch } from 'redux-thunk';
+import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
+import { composeWithDevTools } from '@redux-devtools/extension';
+import { interfaceActions, interfaceReducer } from './interface';
 
-export const LOCALE_KEY = 'LOCALE';
-export type Locale = 'en' | 'ja' | 'zh-CN';
-
-const initialState = {
-  scheme: 'light' as Scheme,
-  locale: 'en' as Locale,
-  messages: enMessages as IntlConfig['messages'],
+const actionMap = {
+  ...interfaceActions,
 };
 
-const combinedState = combine(initialState, (set) => ({
-  switchScheme: (scheme: Scheme) => set({ scheme }, PARTIAL, `switch to ${scheme}`),
-  switchLanguage: async (localeString: string) => {
-    let locale: Locale;
-    let messages: IntlConfig['messages'];
-    if (localeString.startsWith('zh')) {
-      locale = 'zh-CN';
-      messages = (await import('../../lang/compiled/zh_CN.json')).default;
-    } else if (localeString.startsWith('ja')) {
-      locale = 'ja';
-      messages = (await import('../../lang/compiled/ja_JP.json')).default;
-    } else {
-      locale = 'en';
-      messages = enMessages;
+type ActionMap = typeof actionMap;
+
+export type Action<K> = K extends keyof ActionMap
+  ? {
+      type: K;
+      payload: ReturnType<ActionMap[K]>;
     }
-    set({ locale, messages }, PARTIAL, `switch ${locale} `);
-  },
-}));
+  : never;
 
-export type Store = ReturnType<typeof combinedState>;
+export function makeAction<K extends keyof ActionMap, Args extends Parameters<ActionMap[K]>>(
+  type: K,
+  ...args: Args
+): Action<K> {
+  // FIXME: remove ts-ignore.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return {
+    type,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    payload: actionMap[type](...args),
+  };
+}
 
-export const useStore = create(devtools(subscribeWithSelector(combinedState)));
+export function dispatchAction<K extends keyof ActionMap, Args extends Parameters<ActionMap[K]>>(
+  type: K,
+  ...args: Args
+) {
+  store.dispatch(makeAction(type, ...args));
+}
 
-const REPLACE = true;
-const PARTIAL = false;
-useStore.subscribe(
-  (state) => state.scheme,
-  (scheme) => {
-    writeSchemeToStorage(scheme);
-  }
-);
-useStore.subscribe(
-  (state) => state.locale,
-  (locale) => {
-    localStorage.setItem(LOCALE_KEY, locale);
-  }
-);
+export type Actions = Action<keyof ActionMap>;
+
+export const applicationReducer = combineReducers({
+  interface: interfaceReducer,
+});
+
+export type AppState = ReturnType<typeof applicationReducer>;
+
+export const store = createStore(applicationReducer, undefined, composeWithDevTools(applyMiddleware(thunk)));
+export type AppDispatch = ThunkDispatch<AppState, unknown, Actions>;
+
+export const useAppDispatch = (): AppDispatch => {
+  return useReduxDispatch<AppDispatch>();
+};
+
+export function useAppSelector<T>(mapper: (state: AppState) => T, equalityFn?: (a: T, b: T) => boolean): T {
+  return useReduxSelector<AppState, T>(mapper, equalityFn);
+}
+
+export default store;
