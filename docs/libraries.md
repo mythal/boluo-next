@@ -5,3 +5,4 @@ Here is the documentation for some libraries used in this project.
 - [Format.JS](https://formatjs.io/docs/getting-started/installation)
 - [zustand](https://github.com/pmndrs/zustand)
 - [optics-ts](https://akheron.github.io/optics-ts/)
+- [Floating-UI](https://floating-ui.com/docs/getting-started)
