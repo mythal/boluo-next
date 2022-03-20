@@ -6,12 +6,27 @@ import Home from '../../design/Home.mdx';
 import { css, Theme } from '@emotion/react';
 import { gray } from '../../styles/utility/color';
 import { SchemeSwitch } from '../../components/SchemeSwitch';
+import Head from 'next/head';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
-    return tabRouteTable[tab].component;
+    return (
+      <div css={styles.content}>
+        <Head>
+          <title>Design :: {tabRouteTable[tab].title}</title>
+        </Head>
+        {tabRouteTable[tab].component}
+      </div>
+    );
   } else {
-    return <Home />;
+    return (
+      <div css={styles.content}>
+        <Head>
+          <title>Design</title>
+        </Head>
+        <Home />
+      </div>
+    );
   }
 };
 
@@ -65,9 +80,7 @@ const Design: Page = () => {
           <SchemeSwitch />
         </div>
       </div>
-      <div css={styles.content}>
-        <DesignRoute tab={tab} />
-      </div>
+      <DesignRoute tab={tab} />
     </div>
   );
 };
