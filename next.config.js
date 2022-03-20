@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 const withMDX = require('@next/mdx')();
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ANALYZE = Boolean(process.env.ANALYZE);
 const BACKEND_URL = process.env.BACKEND_URL || 'https://test.boluo.chat';
 
@@ -19,6 +19,7 @@ module.exports = withMDX({
   },
   webpack: (config) => {
     if (ANALYZE) {
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
       const plugin = new BundleAnalyzerPlugin({
         analyzerMode: 'static',
       });
