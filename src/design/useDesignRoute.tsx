@@ -8,6 +8,7 @@ import { Sortable } from './Sortable';
 import { VirtualList } from './VirtualList';
 import { Buttons } from './Buttons';
 import Home from './Home.mdx';
+import { Colors } from './Colors';
 
 interface RouteItem {
   title: string;
@@ -48,6 +49,10 @@ export const tabRouteTable = createRouteTable({
   virtual: {
     title: 'Virtual List',
     component: <VirtualList />,
+  },
+  colors: {
+    title: 'Colors',
+    component: <Colors />,
   },
 });
 
