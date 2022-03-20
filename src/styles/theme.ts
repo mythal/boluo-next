@@ -1,6 +1,6 @@
 import { SerializedStyles } from '@emotion/utils';
-import { darken, lighten, mix } from 'color2k';
-import { blue, blueGray, green, red, yellow } from './utility/color';
+import { darken, lighten } from 'color2k';
+import { blue, green, red, yellow } from './utility/color';
 
 interface ButtonTheme {
   text: string;
@@ -65,9 +65,9 @@ export const lightTheme = ((): Theme => {
     },
     primary: {
       text: '#FFF',
-      bg: lighten(primary, 0.0625),
-      bgHover: lighten(primary, 0.125),
-      bgActive: lighten(primary, 0),
+      bg: primary,
+      bgHover: lighten(primary, 0.0625),
+      bgActive: darken(primary, 0.0625),
     },
   };
   const input: Theme['input'] = {
@@ -94,7 +94,7 @@ export const lightTheme = ((): Theme => {
     button,
     text: '#9b0000',
     background: '#fff',
-    focusRing: 'rgba(0,102,255,0.25)',
+    focusRing: 'rgba(173,173,173,0.25)',
     on: '#000',
     off: '#FFF',
     select: button.default.bg,
