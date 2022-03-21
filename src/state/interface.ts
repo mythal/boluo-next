@@ -2,7 +2,6 @@ import { I, i } from '../helper/function';
 import { Action, AppDispatch, makeAction, store } from './store';
 import { Reducer } from 'redux';
 import { IntlConfig } from 'react-intl';
-import enMessages from '../../lang/compiled/en.json';
 import type { ReactChild } from 'react';
 import { Id, makeId } from '../helper/id';
 import * as O from 'optics-ts';
@@ -19,13 +18,12 @@ export interface Notification {
 export interface InterfaceState {
   scheme: Scheme;
   locale: Locale;
-  messages: IntlMessages;
   notifications: Notification[];
 }
 
 export const interfaceActions = {
   switchScheme: i as I<Scheme>,
-  changeLocale: (locale: Locale, messages: IntlMessages) => ({ locale, messages }),
+  changeLocale: (locale: Locale) => locale,
   notify: (child: ReactChild, level: Notification['level']): Notification => ({ child, level, id: makeId() }),
   dismissNotification: i as I<Id>,
 };
@@ -33,7 +31,6 @@ export const interfaceActions = {
 const initState: InterfaceState = {
   scheme: 'light',
   locale: 'en',
-  messages: undefined,
   notifications: [],
 };
 const notificationsOptic = O.optic<InterfaceState>().prop('notifications');
@@ -43,8 +40,7 @@ export const interfaceReducer: Reducer<InterfaceState, InterfaceActions> = (stat
     case 'switchScheme':
       return { ...state, scheme: action.payload };
     case 'changeLocale':
-      const { locale, messages } = action.payload;
-      return { ...state, locale, messages };
+      return { ...state, locale: action.payload };
     case 'notify':
       return O.modify(notificationsOptic)((notifications) => notifications.concat([action.payload]))(state);
     case 'dismissNotification':
@@ -56,18 +52,14 @@ export const interfaceReducer: Reducer<InterfaceState, InterfaceActions> = (stat
 
 export const changeLocale = (localeString: string) => async (dispatch: AppDispatch) => {
   let locale: Locale;
-  let messages: IntlConfig['messages'];
   if (localeString.startsWith('zh')) {
     locale = 'zh-CN';
-    messages = (await import('../../lang/compiled/zh_CN.json')).default;
   } else if (localeString.startsWith('ja')) {
     locale = 'ja';
-    messages = (await import('../../lang/compiled/ja_JP.json')).default;
   } else {
     locale = 'en';
-    messages = enMessages;
   }
-  dispatch(makeAction('changeLocale', locale, messages));
+  dispatch(makeAction('changeLocale', locale));
 };
 
 export const notify = (node: ReactChild, level: Notification['level'] = 'default') => {
