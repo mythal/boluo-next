@@ -4,14 +4,16 @@ import { css } from '@emotion/react';
 import { useContainerQuery } from '../hooks/useContainerQuery';
 import { RefreshButton } from './RefreshButton';
 import { Text } from './fundamental/Text';
+import { float } from '../styles/utility/layout';
+import { m } from '../styles/utility/spacing';
 
 const styles = {
   container: css`
     background-color: #000;
     color: #fff;
-    border-radius: 0.25rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25), 0 0 0.25rem rgba(0, 0, 0, 0.125);
     padding: 1rem;
+    width: 100%;
+    height: 100%;
   `,
   information: css`
     padding-bottom: 0.5em;
@@ -53,6 +55,7 @@ export interface Props {
 }
 
 const widthBreakpoints = {
+  xs: 0,
   sm: 150,
   md: 300,
   lg: 600,
@@ -61,30 +64,27 @@ const widthBreakpoints = {
 function Oops({ error, className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [width] = useContainerQuery(ref, { width: widthBreakpoints });
+  console.error(error);
   return (
-    <div data-width={width} className={className} ref={ref}>
+    <div css={styles.container} data-width={width} className={className} ref={ref}>
       <div>
+        {width !== 'xs' && (
+          <div css={styles.title}>
+            <FormattedMessage defaultMessage="Oops" />
+          </div>
+        )}
         <div>
-          <FormattedMessage defaultMessage="Oops" />
-        </div>
-        <div>
+          <RefreshButton css={width === 'xs' ? [] : [float.right, m.b(2), m.l(2)]} small text={width !== 'xs'} />
           <Text>
             <FormattedMessage defaultMessage="Something going wrong." />
           </Text>
-          {width === 'lg' && (
-            <Text>
+          {width !== 'xs' && (
+            <Text size="small">
               <FormattedMessage defaultMessage="This may be caused by a network problem. If the error persists after refreshing the page, please contact the admin." />
             </Text>
           )}
-          <RefreshButton small />
         </div>
       </div>
-      <details>
-        <summary>
-          <FormattedMessage defaultMessage="Error Message" />
-        </summary>
-        <pre>{String(error)}</pre>
-      </details>
     </div>
   );
 }
