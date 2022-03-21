@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
-  DndContext,
   closestCenter,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
-  DragEndEvent,
 } from '@dnd-kit/core';
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
+  useSortable,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { css } from '@emotion/react';
 
@@ -23,17 +25,23 @@ interface SortableItemProps {
 }
 const styles = {
   item: css`
+    color: black;
     width: 100%;
     padding: 1rem 1rem;
     cursor: move;
+    background-color: antiquewhite;
+    border: 1px solid antiquewhite;
 
     &:hover {
-      background-color: rgba(131, 131, 131, 0.55);
+      border: 1px solid black;
+    }
+    &[data-dragging='true'] {
+      opacity: 40%;
     }
   `,
 };
 export function SortableItem({ id }: SortableItemProps) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -41,13 +49,20 @@ export function SortableItem({ id }: SortableItemProps) {
   };
 
   return (
-    <div ref={setNodeRef} css={styles.item} style={style} {...attributes} {...listeners}>
+    <div ref={setNodeRef} css={styles.item} data-dragging={isDragging} style={style} {...attributes} {...listeners}>
       {id}
     </div>
   );
 }
-
+export const Item = forwardRef<HTMLDivElement, { id: string }>(({ id, ...props }, ref) => {
+  return (
+    <div css={styles.item} {...props} ref={ref}>
+      {id}
+    </div>
+  );
+});
 export function Sortable() {
+  const [activeId, setActiveId] = useState<string | null>(null);
   const [items, setItems] = useState(['1', '2', '3']);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -57,14 +72,24 @@ export function Sortable() {
   );
 
   return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         {items.map((id) => (
           <SortableItem key={id} id={id} />
         ))}
       </SortableContext>
+      <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay>
     </DndContext>
   );
+
+  function handleDragStart(event: DragStartEvent) {
+    setActiveId(event.active.id);
+  }
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -77,5 +102,6 @@ export function Sortable() {
         return arrayMove(items, oldIndex, newIndex);
       });
     }
+    setActiveId(null);
   }
 }
