@@ -5,6 +5,8 @@ import { Toast } from '../components/fundamental/Toast';
 import { useState } from 'react';
 import { itemsStart } from '../styles/utility/box-alignment';
 import { empty } from '../helper/function';
+import { Button } from '../components/fundamental/Button';
+import { notify } from '../state/interface';
 
 export const Notifications = () => {
   const line = [display.flex, gap(2), m.y(2), itemsStart];
@@ -12,6 +14,7 @@ export const Notifications = () => {
 
   return (
     <div>
+      <h2>Static toasts</h2>
       <div css={line}>
         <Toast>Hello, world</Toast>
         {open && <Toast onClose={() => setOpen(false)}>I can be closed</Toast>}
@@ -20,13 +23,40 @@ export const Notifications = () => {
         </Toast>
       </div>
       <div css={line}>
-        <Toast type="default">Default</Toast>
-        <Toast type="error" onClose={empty}>
+        <Toast level="default">Default</Toast>
+        <Toast level="error" onClose={empty}>
           Error
         </Toast>
-        <Toast type="warning" onClose={empty}>
+        <Toast level="warn" onClose={empty}>
           Warning
         </Toast>
+      </div>
+
+      <h2>Notifications</h2>
+      <div css={line}>
+        <Button
+          onClick={() => {
+            notify(`hello, world ${new Date()}`);
+          }}
+        >
+          Show
+        </Button>
+
+        <Button
+          onClick={() => {
+            notify(`warning!! ${new Date()}`, 'warn');
+          }}
+        >
+          Show warning
+        </Button>
+
+        <Button
+          onClick={() => {
+            notify(`error!!! ${new Date()}`, 'error');
+          }}
+        >
+          Show error
+        </Button>
       </div>
     </div>
   );

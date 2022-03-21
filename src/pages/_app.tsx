@@ -4,7 +4,8 @@ import { StyleProvider } from '../components/global/StyleProvider';
 import { LocaleProvider } from '../components/global/LocaleProvider';
 import { AppPropsWithLayout } from '../helper/layout';
 import 'modern-normalize/modern-normalize.css';
-import store from '../state/store';
+import { store } from '../state/store';
+import { NotificationOverlay } from '../components/global/NotificationOverlay';
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
@@ -15,6 +16,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
       <StyleProvider>
         <ErrorBoundary>
           <LocaleProvider>{getLayout(<Component {...pageProps} />, title)}</LocaleProvider>
+          <NotificationOverlay />
         </ErrorBoundary>
       </StyleProvider>
     </ReduxProvider>

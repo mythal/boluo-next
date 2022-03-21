@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { css, keyframes, Theme } from '@emotion/react';
 import { shadow } from '../../styles/utility/effect';
-import { animate } from '../../styles/utility/transitions';
-import { Button } from './Button';
-import Icon from './Icon';
 import { ToastCloseButton } from './ToastCloseButton';
+import type { Notification } from '../../state/interface';
 
 interface Props {
-  type?: 'default' | 'error' | 'warning';
+  level?: Notification['level'];
   timeout?: number;
   onClose?: () => void;
+  className?: string;
 }
 
 const styles = {
@@ -23,7 +22,8 @@ const styles = {
   `,
   container: (theme: Theme) => css`
     display: flex;
-    max-width: 10rem;
+    justify-content: space-between;
+    width: max(15vw, 10em);
     padding: 1rem;
     border-radius: 0.125rem;
     color: #fff;
@@ -31,10 +31,10 @@ const styles = {
     animation: ${place} 0.5s cubic-bezier(0, 0, 0.2, 1);
 
     --toast-bg-color: ${theme.toast.default};
-    &[data-kind='warning'] {
+    &[data-level='warn'] {
       --toast-bg-color: ${theme.toast.warning};
     }
-    &[data-kind='error'] {
+    &[data-level='error'] {
       --toast-bg-color: ${theme.toast.error};
     }
     background-color: var(--toast-bg-color);
@@ -56,7 +56,7 @@ export const place = keyframes`
   }
 `;
 
-export const Toast: React.FC<Props> = ({ type = 'default', onClose, timeout, children }) => {
+export const Toast: React.FC<Props> = ({ level = 'default', onClose, timeout, children, className }) => {
   useEffect(() => {
     if (timeout === undefined || onClose === undefined) {
       return;
@@ -65,7 +65,7 @@ export const Toast: React.FC<Props> = ({ type = 'default', onClose, timeout, chi
     return () => window.clearTimeout(handle);
   }, [onClose, timeout]);
   return (
-    <div role="alert" css={styles.container} data-kind={type}>
+    <div role="alert" css={styles.container} data-level={level} className={className}>
       <div>{children}</div>
       {onClose && (
         <div css={styles.closeButtonContainer}>

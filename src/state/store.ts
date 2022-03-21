@@ -57,5 +57,3 @@ export const useAppDispatch = (): AppDispatch => {
 export function useAppSelector<T>(mapper: (state: AppState) => T, equalityFn?: (a: T, b: T) => boolean): T {
   return useReduxSelector<AppState, T>(mapper, equalityFn);
 }
-
-export default store;
