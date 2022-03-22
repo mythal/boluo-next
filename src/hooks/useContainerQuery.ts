@@ -41,7 +41,7 @@ export const useContainerQuery = <W extends Breakpoints, H extends Breakpoints>(
       let breakpointName: keyof H | null = null;
       for (const name in heightConfig) {
         const breakpoint = heightConfig[name];
-        if (rect.height > breakpoint && breakpoint > fittest) {
+        if (rect.height >= breakpoint && breakpoint > fittest) {
           fittest = breakpoint;
           breakpointName = name;
         }
@@ -64,6 +64,7 @@ export const useContainerQuery = <W extends Breakpoints, H extends Breakpoints>(
       const entry = entries[0];
       const rect = entry.target.getBoundingClientRect();
       setWidthBreakpoint(calculateWidthBreakPoint(rect));
+      setHeightBreakpoint(calculateHeightBreakPoint(rect));
     });
     if (ref.current) {
       observer.observe(ref.current);
