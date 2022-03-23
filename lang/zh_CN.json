@@ -12,11 +12,17 @@
     "description": "Project name",
     "message": "菠萝"
   },
+  "cancel": {
+    "message": "Cancel"
+  },
   "pULdOq": {
     "message": "这可能是网络问题。如果刷新页面后错误仍然存在，请联系管理员。"
   },
   "rELDbB": {
     "message": "刷新"
+  },
+  "submit": {
+    "message": "Submit"
   },
   "tOdNiY": {
     "message": "暗色"
