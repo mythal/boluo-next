@@ -13,7 +13,7 @@
     "message": "パイン"
   },
   "cancel": {
-    "message": "Cancel"
+    "message": "キャンセル"
   },
   "pULdOq": {
     "message": "ネットワークに問題が発生している可能性があります。ページを更新しても問題が解決しない場合は、管理者に連絡してください。"
@@ -22,7 +22,7 @@
     "message": "再読み込み"
   },
   "submit": {
-    "message": "Submit"
+    "message": "提出する"
   },
   "tOdNiY": {
     "message": "ダーク"
