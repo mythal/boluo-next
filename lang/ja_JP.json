@@ -12,11 +12,17 @@
     "description": "Project name",
     "message": "パイン"
   },
+  "cancel": {
+    "message": "Cancel"
+  },
   "pULdOq": {
     "message": "ネットワークに問題が発生している可能性があります。ページを更新しても問題が解決しない場合は、管理者に連絡してください。"
   },
   "rELDbB": {
     "message": "再読み込み"
+  },
+  "submit": {
+    "message": "Submit"
   },
   "tOdNiY": {
     "message": "ダーク"
