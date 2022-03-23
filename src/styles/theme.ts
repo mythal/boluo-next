@@ -1,6 +1,6 @@
 import { SerializedStyles } from '@emotion/utils';
 import { darken, lighten } from 'color2k';
-import { blue, green, red, yellow } from './utility/color';
+import { blue, gray, green, red, yellow } from './utility/color';
 
 interface ButtonTheme {
   text: string;
@@ -45,6 +45,9 @@ export interface Theme {
     default: InputTheme;
     error: InputTheme;
     warning: InputTheme;
+  };
+  dialog: {
+    bg: string;
   };
 }
 
@@ -105,6 +108,9 @@ export const lightTheme = ((): Theme => {
       default: '#383838',
       warning: '#9a9a00',
       error: '#ad0000',
+    },
+    dialog: {
+      bg: gray['50'],
     },
     input,
   };
@@ -167,6 +173,9 @@ export const darkTheme: Theme = ((): Theme => {
       default: '#000',
       warning: '#838305',
       error: '#960808',
+    },
+    dialog: {
+      bg: gray['800'],
     },
     input,
   };

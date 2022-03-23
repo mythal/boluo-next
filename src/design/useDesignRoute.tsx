@@ -10,6 +10,7 @@ import { Buttons } from './Buttons';
 import Home from './Home.mdx';
 import { Colors } from './Colors';
 import { LoadingFallback } from './LoadingFallback';
+import { Dialogs } from './Dialogs';
 
 interface RouteItem {
   title: string;
@@ -58,6 +59,10 @@ export const tabRouteTable = createRouteTable({
   loading: {
     title: 'Loading',
     component: <LoadingFallback />,
+  },
+  dialogs: {
+    title: 'Dialog',
+    component: <Dialogs />,
   },
 });
 

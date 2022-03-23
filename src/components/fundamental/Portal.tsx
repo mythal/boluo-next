@@ -1,12 +1,18 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 // See also https://github.com/vercel/next.js/tree/canary/examples/with-portals
 export const Portal: React.FC = React.memo(({ children }) => {
-  const rootRef = useRef<HTMLDivElement | null>();
+  const rootRef = useRef<HTMLElement | null>();
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    rootRef.current = (document.getElementById('portal') as HTMLDivElement) ?? null;
+    const portalElement = document.getElementById('portal');
+    if (!portalElement) {
+      throw new Error("Can't found portal element.");
+    }
+    rootRef.current = portalElement;
+    setMounted(true);
   }, []);
-  return rootRef.current ? ReactDOM.createPortal(children, rootRef.current) : null;
+  return mounted && rootRef.current ? ReactDOM.createPortal(children, rootRef.current) : null;
 });
 Portal.displayName = 'Portal';

@@ -4,6 +4,7 @@ export const not = (x: unknown): boolean => !x;
 export type I<T> = (x: T) => T;
 export const i = <T>(x: T): T => x;
 
+export type EmptyFunction = () => void;
 export const empty = () => {
   // empty function
 };

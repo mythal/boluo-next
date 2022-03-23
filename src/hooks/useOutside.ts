@@ -29,7 +29,7 @@ export function useOutside(
   );
 
   useEffect(() => {
-    if (callback === undefined || !overlayRef.current || !overlayRef.current.offsetParent) {
+    if (callback === undefined) {
       return;
     }
     document.addEventListener('click', handleClickOutside);
