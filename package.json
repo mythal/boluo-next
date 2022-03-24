@@ -34,7 +34,6 @@
     "react-virtuoso": "^2.8.2",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
-    "styled-jsx": "^5.0.1",
     "swr": "^1.2.2",
     "transition-hook": "^1.5.2",
     "uuid": "^8.3.2"
