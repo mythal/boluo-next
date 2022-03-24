@@ -1,22 +1,31 @@
 {
-  "AyGP4T": {
-    "message": "エラーメッセージ"
+  "3cc4Ct": {
+    "message": "ライト"
   },
-  "R2cODw": {
-    "message": "暗いスキームに切り替える"
+  "MWO2zy": {
+    "message": "何か問題が起きました。"
   },
-  "aWL1mo": {
-    "message": "ライトスキームに切り替える"
+  "NXI/XL": {
+    "message": "オート"
   },
   "boluo": {
     "description": "Project name",
     "message": "パイン"
   },
+  "cancel": {
+    "message": "キャンセル"
+  },
+  "pULdOq": {
+    "message": "ネットワークに問題が発生している可能性があります。ページを更新しても問題が解決しない場合は、管理者に連絡してください。"
+  },
   "rELDbB": {
     "message": "再読み込み"
   },
-  "w7ht18": {
-    "message": "何か問題が起きています"
+  "submit": {
+    "message": "提出する"
+  },
+  "tOdNiY": {
+    "message": "ダーク"
   },
   "z/ipXX": {
     "message": "おっとっと！"
