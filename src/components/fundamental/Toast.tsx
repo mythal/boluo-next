@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css, keyframes, Theme } from '@emotion/react';
 import { shadow } from '../../styles/utility/effect';
 import { ToastCloseButton } from './ToastCloseButton';
 import type { Notification } from '../../state/interface';
+import { useTransition } from 'transition-hook';
 
 interface Props {
   level?: Notification['level'];
@@ -40,6 +41,10 @@ const styles = {
     background-color: var(--toast-bg-color);
     border: 1px solid var(--toast-bg-color);
     ${theme.mode === 'dark' && styles.darkOutline};
+
+    &[data-stage='leave'] {
+      animation: ${leave} 200ms;
+    }
   `,
 };
 
@@ -56,7 +61,25 @@ export const place = keyframes`
   }
 `;
 
+export const leave = keyframes`
+  0% {
+
+  }
+  100% {
+    transform: translateX(100%);
+  }
+`;
+
 export const Toast: React.FC<Props> = ({ level = 'default', onClose, timeout, children, className }) => {
+  const [show, setShow] = useState(true);
+  const { stage, shouldMount } = useTransition(show, 200);
+
+  useEffect(() => {
+    if (!shouldMount && onClose) {
+      onClose();
+    }
+  }, [onClose, shouldMount]);
+
   useEffect(() => {
     if (timeout === undefined || onClose === undefined) {
       return;
@@ -64,12 +87,16 @@ export const Toast: React.FC<Props> = ({ level = 'default', onClose, timeout, ch
     const handle = setTimeout(onClose, timeout);
     return () => window.clearTimeout(handle);
   }, [onClose, timeout]);
+
+  if (!shouldMount) {
+    return null;
+  }
   return (
-    <div role="alert" css={styles.container} data-level={level} className={className}>
+    <div role="alert" css={styles.container} data-level={level} className={className} data-stage={stage}>
       <div>{children}</div>
       {onClose && (
         <div css={styles.closeButtonContainer}>
-          <ToastCloseButton onClose={onClose} />
+          <ToastCloseButton onClose={() => setShow(false)} />
         </div>
       )}
     </div>
