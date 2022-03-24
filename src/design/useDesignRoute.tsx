@@ -29,7 +29,7 @@ export const tabRouteTable = createRouteTable({
     component: <ButtonDesign />,
   },
   forms: {
-    title: 'FormDesign Controls',
+    title: 'Form',
     component: <FormDesign />,
   },
   'error-handling': {
