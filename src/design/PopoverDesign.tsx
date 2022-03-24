@@ -52,7 +52,7 @@ const useBoxScrollPosition = (): MutableRefObject<HTMLDivElement | null> => {
   return boxRef;
 };
 
-export const Pop = () => {
+export const PopoverDesign = () => {
   const { x, y, reference, floating, strategy, update, refs } = useFloating({
     placement: 'right',
     middleware: [shift(), flip(), offset(12)],

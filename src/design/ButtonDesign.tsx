@@ -5,7 +5,7 @@ import { display } from '../styles/utility/layout';
 import { m } from '../styles/utility/spacing';
 import { SpinnerIcon } from '../components/SpinnerIcon';
 
-export const Buttons = () => {
+export const ButtonDesign = () => {
   const line = [display.flex, gap(2), m.y(2)];
 
   return (

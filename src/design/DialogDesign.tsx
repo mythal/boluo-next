@@ -1,11 +1,11 @@
 import { useCallback, useState, VFC } from 'react';
 import { Button } from '../components/fundamental/Button';
-import { Dialog } from '../components/Dialog';
+import { Dialog } from '../components/fundamental/Dialog';
 import { empty } from '../helper/function';
 import { display } from '../styles/utility/layout';
 import { gap } from '../styles/utility/grid';
 
-export const Dialogs: VFC = () => {
+export const DialogDesign: VFC = () => {
   const [open1, setOpen1] = useState<boolean>(false);
   const dismiss1 = useCallback(() => setOpen1(false), []);
 

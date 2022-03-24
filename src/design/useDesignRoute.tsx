@@ -1,16 +1,16 @@
 import { ReactElement } from 'react';
 import { useRouter } from 'next/router';
-import { Form } from './Form';
-import { ErrorHandling } from './ErrorHandling';
-import { Notifications } from './Notifications';
-import { Pop } from './Pop';
-import { Sortable } from './Sortable';
-import { VirtualList } from './VirtualList';
-import { Buttons } from './Buttons';
+import { FormDesign } from './FormDesign';
+import { ErrorHandlingDesign } from './ErrorHandlingDesign';
+import { NotificationDesign } from './NotificationDesign';
+import { PopoverDesign } from './PopoverDesign';
+import { SortableDesign } from './SortableDesign';
+import { VirtualListDesign } from './VirtualListDesign';
+import { ButtonDesign } from './ButtonDesign';
 import Home from './Home.mdx';
-import { Colors } from './Colors';
-import { LoadingFallback } from './LoadingFallback';
-import { Dialogs } from './Dialogs';
+import { ColorDesign } from './ColorDesign';
+import { LoadingDesign } from './LoadingDesign';
+import { DialogDesign } from './DialogDesign';
 
 interface RouteItem {
   title: string;
@@ -26,43 +26,43 @@ export const tabRouteTable = createRouteTable({
   },
   buttons: {
     title: 'Buttons',
-    component: <Buttons />,
+    component: <ButtonDesign />,
   },
   forms: {
-    title: 'Form Controls',
-    component: <Form />,
+    title: 'FormDesign Controls',
+    component: <FormDesign />,
   },
   'error-handling': {
     title: 'Error Handling',
-    component: <ErrorHandling />,
+    component: <ErrorHandlingDesign />,
   },
   notifications: {
     title: 'Notifications',
-    component: <Notifications />,
+    component: <NotificationDesign />,
   },
   popovers: {
     title: 'Popovers',
-    component: <Pop />,
+    component: <PopoverDesign />,
   },
   sortable: {
     title: 'Sortable',
-    component: <Sortable />,
+    component: <SortableDesign />,
   },
   virtual: {
     title: 'Virtual List',
-    component: <VirtualList />,
+    component: <VirtualListDesign />,
   },
   colors: {
     title: 'Colors',
-    component: <Colors />,
+    component: <ColorDesign />,
   },
   loading: {
     title: 'Loading',
-    component: <LoadingFallback />,
+    component: <LoadingDesign />,
   },
   dialogs: {
     title: 'Dialog',
-    component: <Dialogs />,
+    component: <DialogDesign />,
   },
 });
 

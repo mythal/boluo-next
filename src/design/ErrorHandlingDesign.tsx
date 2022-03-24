@@ -15,7 +15,7 @@ const styles = {
   `,
 };
 
-export const ErrorHandling = () => {
+export const ErrorHandlingDesign = () => {
   const [resize, setResize] = useState(true);
   return (
     <div>

@@ -61,7 +61,7 @@ export const Item = forwardRef<HTMLDivElement, { id: string }>(({ id, ...props }
     </div>
   );
 });
-export function Sortable() {
+export function SortableDesign() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [items, setItems] = useState(['1', '2', '3']);
   const sensors = useSensors(

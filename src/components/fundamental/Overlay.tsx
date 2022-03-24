@@ -1,11 +1,16 @@
-import React, { CSSProperties, FC, useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import { Portal } from './Portal';
 import { useOutside } from '../../hooks/useOutside';
 import { useOnEsc } from '../../hooks/useOnEsc';
+import { css } from '@emotion/react';
 
-const style: CSSProperties = {
-  position: 'absolute',
-  zIndex: 99,
+const styles = {
+  container: css`
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    top: 0;
+  `,
 };
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
@@ -18,7 +23,7 @@ export const Overlay: FC<Props> = ({ children, dismiss, ...props }) => {
   useOnEsc(dismiss);
   return (
     <Portal>
-      <div ref={containerRef} style={style} {...props}>
+      <div ref={containerRef} css={styles.container} {...props}>
         {children}
       </div>
     </Portal>

@@ -8,7 +8,7 @@ import { empty } from '../helper/function';
 import { Button } from '../components/fundamental/Button';
 import { notify } from '../state/interface';
 
-export const Notifications = () => {
+export const NotificationDesign = () => {
   const line = [display.flex, gap(2), m.y(2), itemsStart];
   const [open, setOpen] = useState(true);
 

@@ -64,7 +64,7 @@ const useItemList = () => {
   return itemList;
 };
 
-export const VirtualList = () => {
+export const VirtualListDesign = () => {
   const itemList = useItemList();
   const virtualListRef = useRef<VirtuosoHandle>(null);
   const [scroller, setScroller] = useState<HTMLDivElement | null>(null);

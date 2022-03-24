@@ -14,7 +14,7 @@ const styles = {
   `,
 };
 
-export const LoadingFallback: VFC = () => {
+export const LoadingDesign: VFC = () => {
   const [resize, setResize] = useState(true);
   return (
     <div>
