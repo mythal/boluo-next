@@ -22,22 +22,22 @@ interface Props {
 
 const dialogIn = keyframes`
   0% {
-    transform: translateY(-30em);
+    transform: translateX(-50%) translateY(-30em);
     opacity: 0;
   }
   100% {
     opacity: 100%;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(-50%);
   }
 `;
 
 const dialogOut = keyframes`
-  from {
-    transform: translateY(0);
+  0% {
+    transform: translateX(-50%) translateY(-50%);
     opacity: 100%;
   }
-  to {
-    transform: translateY(30em);
+  100% {
+    transform: translateX(-50%) translateY(30em);
     opacity: 0;
   }
 `;
@@ -49,7 +49,7 @@ const styles = {
     left: 50%;
     padding: 1em;
     min-width: 14em;
-    translate: -50% -50%;
+    transform: translateX(-50%) translateY(-50%);
     border: 1px solid rgba(128, 128, 128, 0.5);
     border-radius: 0.25em;
     ${shadow.lg};
