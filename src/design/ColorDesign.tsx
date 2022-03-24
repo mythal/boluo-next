@@ -8,9 +8,9 @@ export const ColorDesign: React.VFC = () => {
       <p>
         <a href="">react-colorful</a>
       </p>
-      <p>
+      <div>
         <ColorPicker color={color} onChange={setColor} />
-      </p>
+      </div>
     </div>
   );
 };

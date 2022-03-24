@@ -18,7 +18,7 @@ const styles = {
   `,
   item: css`
     padding: 1rem 0;
-    &:nth-child(2n + 0) {
+    &:nth-of-type(2n + 0) {
       background-color: ${gray['200']};
     }
   `,
