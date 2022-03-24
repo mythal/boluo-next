@@ -1,16 +1,8 @@
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { StyleProps } from '../helper/props';
-import { css } from '@emotion/react';
 import { dispatchAction, useAppSelector } from '../state/store';
-
-const style = css`
-  padding: 0.25rem 1rem;
-  min-height: 2.5rem;
-  display: flex;
-  width: 100%;
-  font-size: 1rem;
-`;
+import { switchStyle } from '../styles/styles';
 
 export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
   const intl = useIntl();
@@ -31,7 +23,7 @@ export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      <select value={scheme} onChange={handleChange} css={style}>
+      <select value={scheme} onChange={handleChange} css={switchStyle}>
         <option value="auto">{text.auto}</option>
         <option value="light">{text.light}</option>
         <option value="dark">{text.dark}</option>

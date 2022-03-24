@@ -10,6 +10,7 @@ import Close from './close.svg';
 import X from './x.svg';
 import Pause from './pause.svg';
 import Play from './play.svg';
+import Settings from './settings.svg';
 
 const iconMap = {
   sun: Sun,
@@ -23,6 +24,7 @@ const iconMap = {
   x: X,
   pause: Pause,
   play: Play,
+  settings: Settings,
 };
 
 export const icons: Record<keyof typeof iconMap, React.FC<React.SVGProps<SVGSVGElement>>> = iconMap;

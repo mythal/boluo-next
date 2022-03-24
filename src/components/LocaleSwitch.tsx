@@ -2,6 +2,7 @@ import React, { ChangeEventHandler, useState } from 'react';
 import { StyleProps } from '../helper/props';
 import { useAppDispatch, useAppSelector } from '../state/store';
 import { changeLocale } from '../state/interface';
+import { switchStyle } from '../styles/styles';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
   const locale = useAppSelector((state) => state.interface.locale);
@@ -13,7 +14,7 @@ export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
     setLoadState('loaded');
   };
   return (
-    <select className={className} disabled={loadState !== 'loaded'} value={locale} onChange={handler}>
+    <select className={className} disabled={loadState !== 'loaded'} css={switchStyle} value={locale} onChange={handler}>
       <option value="en">English</option>
       <option value="zh-CN">简体中文</option>
       <option value="ja">日本語</option>

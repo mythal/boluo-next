@@ -1,5 +1,5 @@
 import { Page } from '../../helper/layout';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
 import Home from '../../design/Home.mdx';
@@ -7,6 +7,11 @@ import { css, Theme } from '@emotion/react';
 import { gray } from '../../styles/utility/color';
 import { SchemeSwitch } from '../../components/SchemeSwitch';
 import Head from 'next/head';
+import { Button } from '../../components/fundamental/Button';
+import Icon from '../../components/fundamental/Icon';
+import { Dialog } from '../../components/fundamental/Dialog';
+import { LocaleSwitch } from '../../components/LocaleSwitch';
+import { m } from '../../styles/utility/spacing';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
@@ -62,6 +67,7 @@ const styles = {
 
 const Design: Page = () => {
   const tab = useDesignRoute();
+  const [settingDialog, setSettingDialog] = useState(false);
   const sidebarItems = Object.entries(tabRouteTable).map(([path, item]) => {
     return (
       <li key={path}>
@@ -74,11 +80,20 @@ const Design: Page = () => {
   return (
     <div css={styles.container}>
       <div css={styles.sidebar}>
-        <ul>{sidebarItems}</ul>
-
         <div>
-          <SchemeSwitch />
+          <Button onClick={() => setSettingDialog(true)}>
+            <Icon icon="settings" />
+          </Button>
+          <Dialog dismiss={() => setSettingDialog(false)} show={settingDialog}>
+            <div>
+              <SchemeSwitch />
+            </div>
+            <div css={m.t(2)}>
+              <LocaleSwitch />
+            </div>
+          </Dialog>
         </div>
+        <ul>{sidebarItems}</ul>
       </div>
       <DesignRoute tab={tab} />
     </div>
