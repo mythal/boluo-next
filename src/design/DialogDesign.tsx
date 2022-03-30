@@ -26,4 +26,3 @@ export const DialogDesign: VFC = () => {
     </div>
   );
 };
-export default DialogDesign;

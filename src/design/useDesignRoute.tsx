@@ -1,10 +1,20 @@
-import React from 'react';
+import { ReactElement } from 'react';
 import { useRouter } from 'next/router';
+import { FormDesign } from './FormDesign';
+import { ErrorHandlingDesign } from './ErrorHandlingDesign';
+import { NotificationDesign } from './NotificationDesign';
+import { PopoverDesign } from './PopoverDesign';
+import { SortableDesign } from './SortableDesign';
+import { VirtualListDesign } from './VirtualListDesign';
+import { ButtonDesign } from './ButtonDesign';
 import Home from './Home.mdx';
+import { ColorDesign } from './ColorDesign';
+import { LoadingDesign } from './LoadingDesign';
+import { DialogDesign } from './DialogDesign';
 
 interface RouteItem {
   title: string;
-  component: React.FC;
+  component: ReactElement;
 }
 
 const createRouteTable = <T extends { [key: string]: RouteItem }>(table: T) => table;
@@ -12,47 +22,47 @@ const createRouteTable = <T extends { [key: string]: RouteItem }>(table: T) => t
 export const tabRouteTable = createRouteTable({
   '': {
     title: 'Design',
-    component: Home,
+    component: <Home />,
   },
   buttons: {
     title: 'Buttons',
-    component: React.lazy(() => import('./ButtonDesign')),
+    component: <ButtonDesign />,
   },
   forms: {
     title: 'Form',
-    component: React.lazy(() => import('./FormDesign')),
+    component: <FormDesign />,
   },
   'error-handling': {
     title: 'Error Handling',
-    component: React.lazy(() => import('./ErrorHandlingDesign')),
+    component: <ErrorHandlingDesign />,
   },
   notifications: {
     title: 'Notifications',
-    component: React.lazy(() => import('./NotificationDesign')),
+    component: <NotificationDesign />,
   },
   popovers: {
     title: 'Popovers',
-    component: React.lazy(() => import('./PopoverDesign')),
+    component: <PopoverDesign />,
   },
   sortable: {
     title: 'Sortable',
-    component: React.lazy(() => import('./SortableDesign')),
+    component: <SortableDesign />,
   },
   virtual: {
     title: 'Virtual List',
-    component: React.lazy(() => import('./VirtualListDesign')),
+    component: <VirtualListDesign />,
   },
   colors: {
     title: 'Colors',
-    component: React.lazy(() => import('./ColorDesign')),
+    component: <ColorDesign />,
   },
   loading: {
     title: 'Loading',
-    component: React.lazy(() => import('./LoadingDesign')),
+    component: <LoadingDesign />,
   },
   dialogs: {
     title: 'Dialog',
-    component: React.lazy(() => import('./DialogDesign')),
+    component: <DialogDesign />,
   },
 });
 

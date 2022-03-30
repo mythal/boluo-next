@@ -6,13 +6,12 @@ import { AppPropsWithLayout } from '../helper/layout';
 import 'modern-normalize/modern-normalize.css';
 import { store } from '../state/store';
 import { NotificationList } from '../components/global/NotificationList';
-
-// import { usePreventScroll } from '@react-aria/overlays';
+import { usePreventScroll } from '@react-aria/overlays';
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
   const title = Component.title;
-  // usePreventScroll();
+  usePreventScroll();
 
   return (
     <ReduxProvider store={store}>

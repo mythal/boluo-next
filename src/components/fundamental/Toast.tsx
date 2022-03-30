@@ -3,7 +3,7 @@ import { css, keyframes, Theme } from '@emotion/react';
 import { shadow } from '../../styles/utility/effect';
 import { ToastCloseButton } from './ToastCloseButton';
 import type { Notification } from '../../state/interface';
-import { useAnimationTransition } from '../../hooks/useAnimationTransition';
+import { useTransition } from 'transition-hook';
 
 interface Props {
   level?: Notification['level'];
@@ -73,7 +73,7 @@ export const leave = keyframes`
 
 export const Toast: React.FC<Props> = ({ level = 'default', onClose, timeout, children, className }) => {
   const [show, setShow] = useState(true);
-  const { stage, shouldMount } = useAnimationTransition(show, 200);
+  const { stage, shouldMount } = useTransition(show, 200);
 
   useEffect(() => {
     if (!shouldMount && onClose) {

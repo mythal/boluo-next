@@ -29,4 +29,3 @@ export const LoadingDesign: VFC = () => {
     </div>
   );
 };
-export default LoadingDesign;

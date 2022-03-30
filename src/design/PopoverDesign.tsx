@@ -92,4 +92,3 @@ export const PopoverDesign = () => {
     </div>
   );
 };
-export default PopoverDesign;

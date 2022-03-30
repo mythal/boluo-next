@@ -14,4 +14,3 @@ export const ColorDesign: React.VFC = () => {
     </div>
   );
 };
-export default ColorDesign;
