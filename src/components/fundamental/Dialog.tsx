@@ -58,7 +58,7 @@ const styles = {
       animation: 300ms ease-in-out ${dialogIn};
     }
     &[data-stage='leave'] {
-      animation: 300ms ease-in-out ${dialogOut};
+      animation: 320ms ease-in-out ${dialogOut};
     }
   `,
   title: css`
