@@ -43,7 +43,7 @@ const styles = {
     ${theme.mode === 'dark' && styles.darkOutline};
 
     &[data-stage='leave'] {
-      animation: ${leave} 200ms;
+      animation: ${leave} 210ms;
     }
   `,
 };
@@ -67,6 +67,7 @@ export const leave = keyframes`
   }
   100% {
     transform: translateX(100%);
+    opacity: 0;
   }
 `;
 
