@@ -37,6 +37,9 @@ const style = (theme: Theme) => css`
   &:not(:disabled):hover {
     border-color: var(--input-border-hover-color);
   }
+  &:not(:disabled):focus {
+    border-color: var(--input-border-hover-color);
+  }
   border-radius: 1px;
   &:focus {
     outline: none;

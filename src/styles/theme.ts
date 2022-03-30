@@ -76,17 +76,17 @@ export const lightTheme = ((): Theme => {
   const input: Theme['input'] = {
     default: {
       bg: '#FFF',
-      border: '#4b4b4b',
-      borderHover: '#949494',
+      border: gray['300'],
+      borderHover: gray['400'],
     },
     error: {
-      bg: red['50'],
-      border: red['400'],
-      borderHover: red['300'],
+      bg: red['100'],
+      border: red['500'],
+      borderHover: red['400'],
     },
     warning: {
-      bg: yellow['50'],
-      border: yellow['400'],
+      bg: yellow['100'],
+      border: yellow['500'],
       borderHover: yellow['300'],
     },
   };
@@ -140,19 +140,19 @@ export const darkTheme: Theme = ((): Theme => {
   };
   const input: Theme['input'] = {
     default: {
-      bg: '#252525',
-      border: '#9f9f9f',
-      borderHover: '#DDD',
+      bg: gray['900'],
+      border: gray['600'],
+      borderHover: gray['400'],
     },
     error: {
-      bg: '#7e0101',
-      border: '#c50d0d',
-      borderHover: '#FF0000',
+      bg: red['900'],
+      border: red['700'],
+      borderHover: red['600'],
     },
     warning: {
       bg: yellow['900'],
-      border: yellow['600'],
-      borderHover: yellow['500'],
+      border: yellow['700'],
+      borderHover: yellow['600'],
     },
   };
   return {
