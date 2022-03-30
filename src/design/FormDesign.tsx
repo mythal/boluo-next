@@ -24,3 +24,4 @@ export const FormDesign = () => {
     </div>
   );
 };
+export default FormDesign;

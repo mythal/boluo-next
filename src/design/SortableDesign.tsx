@@ -105,3 +105,4 @@ export function SortableDesign() {
     setActiveId(null);
   }
 }
+export default SortableDesign;

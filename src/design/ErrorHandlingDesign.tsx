@@ -30,3 +30,4 @@ export const ErrorHandlingDesign = () => {
     </div>
   );
 };
+export default ErrorHandlingDesign;

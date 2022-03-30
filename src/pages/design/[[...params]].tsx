@@ -1,5 +1,5 @@
 import { Page } from '../../helper/layout';
-import { FC, useState } from 'react';
+import { FC, Suspense, useState } from 'react';
 import Link from 'next/link';
 import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
 import Home from '../../design/Home.mdx';
@@ -12,15 +12,19 @@ import Icon from '../../components/fundamental/Icon';
 import { Dialog } from '../../components/fundamental/Dialog';
 import { LocaleSwitch } from '../../components/LocaleSwitch';
 import { m } from '../../styles/utility/spacing';
+import { Loading } from '../../components/Loading';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
+    const DesignPage = tabRouteTable[tab].component;
     return (
       <div css={styles.content}>
         <Head>
           <title>Design :: {tabRouteTable[tab].title}</title>
         </Head>
-        {tabRouteTable[tab].component}
+        <Suspense fallback={<Loading />}>
+          <DesignPage />
+        </Suspense>
       </div>
     );
   } else {
@@ -61,6 +65,8 @@ const styles = {
     }
   `,
   content: css`
+    width: 100%;
+    height: 100%;
     padding: 1em 2em;
   `,
 };

@@ -99,3 +99,4 @@ export const VirtualListDesign = () => {
     </div>
   );
 };
+export default VirtualListDesign;

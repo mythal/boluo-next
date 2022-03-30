@@ -61,3 +61,4 @@ export const NotificationDesign = () => {
     </div>
   );
 };
+export default NotificationDesign;

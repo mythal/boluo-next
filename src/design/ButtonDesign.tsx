@@ -35,3 +35,4 @@ export const ButtonDesign = () => {
     </div>
   );
 };
+export default ButtonDesign;
