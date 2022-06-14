@@ -18,7 +18,7 @@ const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
     return (
       <div css={styles.content}>
         <Head>
-          <title>Design :: {tabRouteTable[tab].title}</title>
+          <title>{'Design :: ' + tabRouteTable[tab].title}</title>
         </Head>
         {tabRouteTable[tab].component}
       </div>
