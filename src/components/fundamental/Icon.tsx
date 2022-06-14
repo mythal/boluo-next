@@ -14,7 +14,7 @@ const strutStyle = css`
     * https://juejin.cn/post/6844903693406437384 https://archive.ph/Qik5h
     * https://codepen.io/airen/pen/pZVvyL
     */
-    content: '\u200b';
+    content: '\200b';
   }
   display: inline-flex;
   align-items: center;
