@@ -7,6 +7,7 @@ import {
   DragStartEvent,
   KeyboardSensor,
   PointerSensor,
+  UniqueIdentifier,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -21,7 +22,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { css } from '@emotion/react';
 
 interface SortableItemProps {
-  id: string;
+  id: UniqueIdentifier;
 }
 const styles = {
   item: css`
@@ -54,7 +55,7 @@ export function SortableItem({ id }: SortableItemProps) {
     </div>
   );
 }
-export const Item = forwardRef<HTMLDivElement, { id: string }>(({ id, ...props }, ref) => {
+export const Item = forwardRef<HTMLDivElement, { id: UniqueIdentifier }>(({ id, ...props }, ref) => {
   return (
     <div css={styles.item} {...props} ref={ref}>
       {id}
@@ -62,8 +63,8 @@ export const Item = forwardRef<HTMLDivElement, { id: string }>(({ id, ...props }
   );
 });
 export function SortableDesign() {
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const [items, setItems] = useState(['1', '2', '3']);
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const [items, setItems] = useState<UniqueIdentifier[]>(['1', '2', '3']);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {

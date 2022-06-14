@@ -5,6 +5,7 @@ import { useAppSelector } from '../../state/store';
 import type { IntlMessages, Locale } from '../../state/interface';
 import { notify } from '../../state/interface';
 import useSWRImmutable from 'swr/immutable';
+import { ChildrenProps } from '../../helper/props';
 
 const onError: OnErrorFn = (err) => {
   if (err.code === IntlErrorCode.MISSING_TRANSLATION) {
@@ -34,7 +35,7 @@ const useLoadMessages = (locale: Locale): IntlMessages => {
   return data.default;
 };
 
-export const LocaleProvider: React.FC = ({ children }) => {
+export const LocaleProvider: React.FC<ChildrenProps> = ({ children }) => {
   const locale = useAppSelector((state) => state.interface.locale);
   const messages = useLoadMessages(locale);
   return (

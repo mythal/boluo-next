@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { ChildrenProps } from '../../helper/props';
 
 // See also https://github.com/vercel/next.js/tree/canary/examples/with-portals
-export const Portal: React.FC = React.memo(({ children }) => {
+export const Portal: React.FC<ChildrenProps> = React.memo(({ children }) => {
   const rootRef = useRef<HTMLElement | null>();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {

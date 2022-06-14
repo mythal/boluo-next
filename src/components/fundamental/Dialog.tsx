@@ -8,9 +8,9 @@ import { text } from '../../styles/utility/typography';
 import { shadow } from '../../styles/utility/effect';
 import { Theme } from '../../styles/theme';
 import { useTransition } from 'transition-hook';
+import { ChildrenProps, StyleProps } from '../../helper/props';
 
-interface Props {
-  className?: string;
+interface Props extends StyleProps, ChildrenProps {
   title?: string;
   show?: boolean;
   dismiss: () => void;

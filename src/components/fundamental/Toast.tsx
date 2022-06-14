@@ -4,12 +4,12 @@ import { shadow } from '../../styles/utility/effect';
 import { ToastCloseButton } from './ToastCloseButton';
 import type { Notification } from '../../state/interface';
 import { useTransition } from 'transition-hook';
+import { ChildrenProps, StyleProps } from '../../helper/props';
 
-interface Props {
+interface Props extends StyleProps, ChildrenProps {
   level?: Notification['level'];
   timeout?: number;
   onClose?: () => void;
-  className?: string;
 }
 
 const styles = {

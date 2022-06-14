@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { FC } from 'react';
-import { StyleProps } from '../../helper/props';
+import { ChildrenProps, StyleProps } from '../../helper/props';
 import { text } from '../../styles/utility/typography';
 
 const style = css`
@@ -12,7 +12,7 @@ const style = css`
   }
 `;
 
-interface Props extends StyleProps {
+interface Props extends StyleProps, ChildrenProps {
   size?: 'small' | 'normal';
 }
 

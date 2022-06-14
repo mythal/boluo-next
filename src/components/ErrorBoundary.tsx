@@ -1,9 +1,8 @@
 import React, { Component, ErrorInfo } from 'react';
 import Oops from './Oops';
+import { ChildrenProps, StyleProps } from '../helper/props';
 
-interface Props {
-  className?: string;
-}
+interface Props extends ChildrenProps, StyleProps {}
 
 interface State {
   error: unknown;
