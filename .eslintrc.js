@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ['@typescript-eslint', '@emotion'],
+  plugins: ['@typescript-eslint', '@emotion', 'formatjs'],
   extends: [
     'next/core-web-vitals',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -24,5 +24,8 @@ module.exports = {
     'react/display-name': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+    'formatjs/no-offset': 'error',
+    'formatjs/no-emoji': 'error',
+    'formatjs/enforce-default-message': ['error', 'literal'],
   },
 };
