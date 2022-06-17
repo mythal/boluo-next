@@ -1,19 +1,30 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { StyleProps } from '../helper/props';
 import { dispatchAction, useAppSelector } from '../state/store';
-import { switchStyle } from '../styles/styles';
+import { Select } from './fundamental/Select';
 
 export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
   const intl = useIntl();
   const scheme = useAppSelector((state) => state.interface.scheme);
-  const text = {
-    light: intl.formatMessage({ defaultMessage: 'Light' }),
-    dark: intl.formatMessage({ defaultMessage: 'Dark' }),
-    auto: intl.formatMessage({ defaultMessage: 'Auto' }),
-  };
-  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
-    const value = e.target.value;
+  const selectItems = useMemo(
+    () => [
+      {
+        label: intl.formatMessage({ defaultMessage: 'Light' }),
+        value: 'light',
+      },
+      {
+        label: intl.formatMessage({ defaultMessage: 'Dark' }),
+        value: 'dark',
+      },
+      {
+        label: intl.formatMessage({ defaultMessage: 'Auto' }),
+        value: 'auto',
+      },
+    ],
+    [intl]
+  );
+  const handleChange = useCallback((value: string) => {
     if (value === 'dark' || value === 'light') {
       dispatchAction('switchScheme', value);
     } else {
@@ -23,11 +34,7 @@ export const SchemeSwitch: React.FC<StyleProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      <select value={scheme} onChange={handleChange} css={switchStyle}>
-        <option value="auto">{text.auto}</option>
-        <option value="light">{text.light}</option>
-        <option value="dark">{text.dark}</option>
-      </select>
+      <Select items={selectItems} value={scheme} onChange={handleChange} />
     </div>
   );
 };

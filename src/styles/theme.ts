@@ -1,6 +1,6 @@
 import { SerializedStyles } from '@emotion/utils';
 import { darken, lighten } from 'color2k';
-import { blue, gray, green, red, yellow } from './utility/color';
+import { black, blue, gray, green, red, white, yellow } from './utility/color';
 
 interface ButtonTheme {
   text: string;
@@ -14,6 +14,20 @@ interface InputTheme {
   placeholder: string;
   border: string;
   borderHover: string;
+}
+
+interface Select {
+  border: string;
+  activeBorder: string;
+  text: string;
+  bg: string;
+  disableBg: string;
+  disableText: string;
+  hoverBg: string;
+  activeBg: string;
+  listBg: string;
+  listBorder: string;
+  listHoverBg: string;
 }
 
 export interface Theme {
@@ -33,7 +47,7 @@ export interface Theme {
   focusRing: string;
   on: string;
   off: string;
-  select: string;
+  select: Select;
   tooltip: {
     bg: string;
   };
@@ -97,6 +111,19 @@ export const lightTheme = ((): Theme => {
       placeholder: yellow['500'],
     },
   };
+  const select: Select = {
+    border: gray['300'],
+    activeBorder: gray['500'],
+    text: black,
+    bg: white,
+    disableBg: gray['100'],
+    disableText: gray['500'],
+    hoverBg: gray['50'],
+    activeBg: gray['200'],
+    listBg: gray['50'],
+    listBorder: black,
+    listHoverBg: gray['100'],
+  };
   return {
     mode: 'light',
     primary,
@@ -107,7 +134,7 @@ export const lightTheme = ((): Theme => {
     focusRing: 'rgb(234,234,234)',
     on: '#000',
     off: '#FFF',
-    select: button.default.bg,
+    select,
     tooltip: {
       bg: '#faf9cc',
     },
@@ -168,6 +195,20 @@ export const darkTheme: Theme = ((): Theme => {
       borderHover: yellow['600'],
     },
   };
+
+  const select: Select = {
+    border: gray['600'],
+    activeBorder: gray['500'],
+    text: white,
+    bg: gray['900'],
+    disableBg: black,
+    disableText: gray['500'],
+    hoverBg: gray['50'],
+    activeBg: black,
+    listBg: black,
+    listBorder: gray['800'],
+    listHoverBg: gray['900'],
+  };
   return {
     mode: 'dark',
     primary,
@@ -178,7 +219,7 @@ export const darkTheme: Theme = ((): Theme => {
     focusRing: lighten(primary, 0.2),
     on: '#FFF',
     off: '#000000',
-    select: button.default.bg,
+    select,
     tooltip: {
       bg: '#F5F4BC',
     },
