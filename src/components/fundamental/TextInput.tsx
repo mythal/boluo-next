@@ -1,6 +1,7 @@
 import React from 'react';
 import { DataAttr } from '../../helper/props';
 import { css, Theme } from '@emotion/react';
+import { unit } from '../../styles/utility/sizing';
 
 type DataAttrProps = DataAttr<{
   state?: 'error' | 'default' | 'warning';
@@ -14,33 +15,38 @@ const style = (theme: Theme) => css`
     cursor: not-allowed;
   }
   /* spacing */
-  padding: 0.4rem 0.5rem;
+  padding: ${unit(2)} ${unit(3)};
 
   /* color variables */
   --input-bg: ${theme.input.default.bg};
   --input-border-color: ${theme.input.default.border};
   --input-border-hover-color: ${theme.input.default.borderHover};
+  --input-placeholder-color: ${theme.input.default.placeholder};
   &[data-state='error'] {
-    --input-bg: ${theme.input.error.bg};
     --input-border-color: ${theme.input.error.border};
     --input-border-hover-color: ${theme.input.error.borderHover};
+    --input-placeholder-color: ${theme.input.error.placeholder};
   }
   &[data-state='warning'] {
-    --input-bg: ${theme.input.warning.bg};
     --input-border-color: ${theme.input.warning.border};
     --input-border-hover-color: ${theme.input.warning.borderHover};
+    --input-placeholder-color: ${theme.input.warning.placeholder};
+  }
+  /* placeholder */
+  &::placeholder {
+    color: var(--input-placeholder-color);
   }
   /* background */
   background-color: var(--input-bg);
   /* border and shadow */
-  border: 1px solid var(--input-border-color);
+  border: ${unit(0.5)} solid var(--input-border-color);
   &:not(:disabled):hover {
     border-color: var(--input-border-hover-color);
   }
   &:not(:disabled):focus {
     border-color: var(--input-border-hover-color);
   }
-  border-radius: 1px;
+  border-radius: ${unit(1)};
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px ${theme.focusRing};

@@ -1,10 +1,7 @@
-import { useRef, VFC } from 'react';
+import { FC, useRef } from 'react';
 import { css } from '@emotion/react';
 import { SpinnerIcon } from './SpinnerIcon';
 import { useContainerQuery } from '../hooks/useContainerQuery';
-import { m } from '../styles/utility/spacing';
-import { animate } from '../styles/utility/transitions';
-import { text } from '../styles/utility/typography';
 
 const styles = {
   container: css`
@@ -13,12 +10,20 @@ const styles = {
     display: flex;
     align-items: center;
     justify-content: center;
-    &[data-width='md'] {
+    &[data-width='lg']&[data-height='lg'] {
+      font-size: 3rem;
+    }
+    &[data-width='md'],
+    &[data-height='md'] {
       font-size: 1.5rem;
+    }
+    &[data-width='sm'],
+    &[data-height='sm'] {
+      font-size: 1rem;
     }
     &[data-width='xs'],
     &[data-height='xs'] {
-      ${text.xs};
+      font-size: 0.75rem;
     }
   `,
 };
@@ -28,20 +33,22 @@ const config = {
     xs: 0,
     sm: 100,
     md: 180,
+    lg: 250,
   },
   height: {
     xs: 0,
     sm: 100,
+    md: 180,
+    lg: 250,
   },
 };
 
-export const Loading: VFC = () => {
+export const Loading: FC = () => {
   const container = useRef<HTMLDivElement>(null);
   const [width, height] = useContainerQuery(container, config);
   return (
     <div css={styles.container} ref={container} data-width={width} data-height={height}>
-      <SpinnerIcon />
-      {width !== 'xs' && <span css={[m.l(1), animate.pulse]}>loading</span>}
+      <SpinnerIcon label="loading..." />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import { css, Theme } from '@emotion/react';
 import React from 'react';
 import { DataAttr } from '../../helper/props';
+import { unit } from '../../styles/utility/sizing';
+
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   DataAttr<{
     small?: boolean;
@@ -73,7 +75,7 @@ const styles = {
     --focus-ring: 0 0 0 0 #00000000;
     &:focus {
       outline: none;
-      --focus-ring: 0 0 0 2px ${theme.focusRing};
+      --focus-ring: 0 0 0 ${unit(1)} ${theme.focusRing};
     }
     box-shadow: var(--focus-ring);
 

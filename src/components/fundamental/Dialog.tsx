@@ -5,10 +5,10 @@ import { Button } from './Button';
 import { useIntl } from 'react-intl';
 import { m } from '../../styles/utility/spacing';
 import { text } from '../../styles/utility/typography';
-import { shadow } from '../../styles/utility/effect';
 import { Theme } from '../../styles/theme';
 import { useTransition } from 'transition-hook';
 import { ChildrenProps, StyleProps } from '../../helper/props';
+import { unit } from '../../styles/utility/sizing';
 
 interface Props extends StyleProps, ChildrenProps {
   title?: string;
@@ -50,15 +50,16 @@ const styles = {
     padding: 1em;
     min-width: 14em;
     transform: translateX(-50%) translateY(-50%);
-    border: 1px solid rgba(128, 128, 128, 0.5);
+    border: ${unit(0.5)} solid ${theme.dialog.border};
     border-radius: 0.25em;
-    ${shadow.lg};
+    opacity: 0;
+    box-shadow: ${unit(1)} ${unit(1)} 0 ${theme.dialog.shadow};
 
     &[data-stage='enter'] {
-      animation: 300ms ease-in-out ${dialogIn};
+      animation: 300ms ease-in-out ${dialogIn} forwards;
     }
     &[data-stage='leave'] {
-      animation: 320ms ease-in-out ${dialogOut};
+      animation: 320ms ease-in-out ${dialogOut} forwards;
     }
   `,
   title: css`
@@ -97,7 +98,7 @@ export const Dialog: FC<Props> = ({
       {title && <div css={styles.title}>{title}</div>}
       <div>{children}</div>
       {(onSubmit || showDismissButton) && (
-        <div css={[m.t(4), text.textRight]}>
+        <div css={[m.t(8), text.textRight]}>
           {showDismissButton && <Button onClick={() => dismiss()}>{dismissText}</Button>}
           {onSubmit && (
             <Button data-type="primary" onClick={() => onSubmit()} css={[m.l(1)]} type="submit">

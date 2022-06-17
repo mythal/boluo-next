@@ -11,6 +11,7 @@ interface ButtonTheme {
 
 interface InputTheme {
   bg: string;
+  placeholder: string;
   border: string;
   borderHover: string;
 }
@@ -37,6 +38,7 @@ export interface Theme {
     bg: string;
   };
   toast: {
+    outline: string;
     default: string;
     warning: string;
     error: string;
@@ -48,6 +50,8 @@ export interface Theme {
   };
   dialog: {
     bg: string;
+    border: string;
+    shadow: string;
   };
 }
 
@@ -76,18 +80,21 @@ export const lightTheme = ((): Theme => {
   const input: Theme['input'] = {
     default: {
       bg: '#FFF',
+      placeholder: gray['400'],
       border: gray['300'],
-      borderHover: gray['400'],
+      borderHover: gray['600'],
     },
     error: {
       bg: red['100'],
       border: red['500'],
       borderHover: red['400'],
+      placeholder: red['600'],
     },
     warning: {
       bg: yellow['100'],
       border: yellow['500'],
       borderHover: yellow['300'],
+      placeholder: yellow['500'],
     },
   };
   return {
@@ -97,7 +104,7 @@ export const lightTheme = ((): Theme => {
     button,
     text: '#9b0000',
     background: '#fff',
-    focusRing: 'rgba(173,173,173,0.25)',
+    focusRing: 'rgb(234,234,234)',
     on: '#000',
     off: '#FFF',
     select: button.default.bg,
@@ -105,12 +112,15 @@ export const lightTheme = ((): Theme => {
       bg: '#faf9cc',
     },
     toast: {
-      default: '#383838',
-      warning: '#9a9a00',
-      error: '#ad0000',
+      outline: 'rgba(0,0,0,0.1)',
+      default: gray['700'],
+      warning: yellow['600'],
+      error: red['700'],
     },
     dialog: {
       bg: gray['50'],
+      border: gray['300'],
+      shadow: 'rgba(0,0,0,0.03)',
     },
     input,
   };
@@ -141,17 +151,20 @@ export const darkTheme: Theme = ((): Theme => {
   const input: Theme['input'] = {
     default: {
       bg: gray['900'],
+      placeholder: gray['700'],
       border: gray['600'],
       borderHover: gray['400'],
     },
     error: {
       bg: red['900'],
-      border: red['700'],
+      placeholder: red['700'],
+      border: red['500'],
       borderHover: red['600'],
     },
     warning: {
       bg: yellow['900'],
-      border: yellow['700'],
+      placeholder: yellow['700'],
+      border: yellow['500'],
       borderHover: yellow['600'],
     },
   };
@@ -162,7 +175,7 @@ export const darkTheme: Theme = ((): Theme => {
     button,
     text,
     background: 'rgba(46, 59, 79, 1)',
-    focusRing: 'rgba(122,122,122,0.89)',
+    focusRing: lighten(primary, 0.2),
     on: '#FFF',
     off: '#000000',
     select: button.default.bg,
@@ -170,12 +183,15 @@ export const darkTheme: Theme = ((): Theme => {
       bg: '#F5F4BC',
     },
     toast: {
-      default: '#000',
-      warning: '#838305',
-      error: '#960808',
+      outline: 'rgba(255,255,255,0.1)',
+      default: gray['900'],
+      warning: yellow['700'],
+      error: red['800'],
     },
     dialog: {
       bg: gray['800'],
+      border: gray['900'],
+      shadow: 'rgba(0, 0, 0, 0.25)',
     },
     input,
   };

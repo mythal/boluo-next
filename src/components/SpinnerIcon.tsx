@@ -7,7 +7,11 @@ const style = css`
   animation: ${spin} 1s linear infinite;
 `;
 
-export const SpinnerIcon: React.FC = () => {
-  return <Icon css={style} icon="spinner" />;
+interface Props {
+  label?: string;
+}
+
+export const SpinnerIcon: React.FC<Props> = ({ label }) => {
+  return <Icon css={style} icon="spinner" label={label} />;
 };
 SpinnerIcon.displayName = 'SpinnerIcon';

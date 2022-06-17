@@ -9,7 +9,7 @@ import { Button } from '../components/fundamental/Button';
 import { notify } from '../state/interface';
 
 export const NotificationDesign = () => {
-  const line = [display.flex, gap(2), m.y(2), itemsStart];
+  const line = [display.flex, gap(4), m.y(4), itemsStart];
   const [open, setOpen] = useState(true);
 
   return (

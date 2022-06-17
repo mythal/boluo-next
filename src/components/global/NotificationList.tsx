@@ -20,7 +20,7 @@ const styles = {
 const NotificationCard: VFC<Notification> = React.memo(({ id, level, child }) => {
   const onClose = useCallback(() => dismissNotification(id), [id]);
   return (
-    <Toast css={m.t(2)} key={id} level={level} onClose={onClose}>
+    <Toast css={m.t(4)} key={id} level={level} onClose={onClose}>
       {child}
     </Toast>
   );
