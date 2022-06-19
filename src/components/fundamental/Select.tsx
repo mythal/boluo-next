@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelect } from 'downshift';
 import { display, position } from '../../styles/utility/layout';
-import { css, Theme } from '@emotion/react';
+import { css, keyframes, Theme } from '@emotion/react';
 import { unit } from '../../styles/utility/sizing';
 import { StyleProps } from '../../helper/props';
 import Icon from './Icon';
+import { useTransition } from 'transition-hook';
 
 export interface SelectItem {
   label: string;
@@ -18,6 +19,28 @@ interface Props extends StyleProps {
   label?: string;
   disabled?: boolean;
 }
+
+const selectMenuExpand = keyframes`
+  0% {
+    opacity: 0;
+    transform: scaleY(0%);
+  }
+  100% {
+    opacity: 100%;
+    transform: scaleY(100%);
+  }
+`;
+
+const selectMenuFold = keyframes`
+  0% {
+    opacity: 100%;
+    transform: scaleY(100%);
+  }
+  100% {
+    opacity: 0.1;
+    transform: scaleY(10%);
+  }
+`;
 
 const styles = {
   toggleButton: (theme: Theme) => css`
@@ -51,11 +74,13 @@ const styles = {
     }
   `,
   itemList: (theme: Theme) => css`
+    transform-origin: top;
     &[data-open='false'] {
       display: none;
     }
     &[data-open='true'] {
       padding: 0;
+      opacity: 0;
       width: 100%;
       margin: ${unit(1)} 0 0 0;
       color: ${theme.select.text};
@@ -67,6 +92,13 @@ const styles = {
       --radius: ${unit(1)};
       border-radius: var(--radius);
       user-select: none;
+    }
+
+    &[data-stage='enter'] {
+      animation: 60ms ease-in-out ${selectMenuExpand} forwards;
+    }
+    &[data-stage='leave'] {
+      animation: 60ms ease-in-out ${selectMenuFold} forwards;
     }
 
     & > li {
@@ -117,6 +149,8 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
       }
     },
   });
+  const transitionTimeMs = 60;
+  const { stage, shouldMount } = useTransition(isOpen, transitionTimeMs);
 
   return (
     <div css={[position.relative]} className={className}>
@@ -139,7 +173,7 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
           <span>{isOpen ? <Icon icon="chevrons-up" /> : <Icon icon="chevrons-down" />}</span>
         </button>
       </div>
-      <ul css={styles.itemList} {...getMenuProps()} data-open={isOpen} aria-hidden={!isOpen}>
+      <ul css={styles.itemList} {...getMenuProps()} data-open={shouldMount} data-stage={stage} aria-hidden={!isOpen}>
         {items.map((item, index) => (
           <li
             key={item.value}
