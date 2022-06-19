@@ -80,12 +80,19 @@ const styles = {
         border-radius: 0 0 var(--radius) var(--radius);
       }
 
-      &:hover {
-        background-color: ${theme.select.listHoverBg};
+      &:hover,
+      &[data-highlighted='true'] {
+        background-color: ${theme.select.listHighlightBg};
+        color: ${theme.select.listHighlightText};
       }
 
-      &[data-highlighted='true'] {
-        background-color: ${theme.select.listHoverBg};
+      &[data-selected='true'] {
+        background-color: ${theme.select.listSelectedBg};
+        color: ${theme.select.listSelectedText};
+        &:hover,
+        &[data-highlighted='true'] {
+          background-color: ${theme.select.listSelectedHighlightBg};
+        }
       }
 
       padding: ${unit(3)} ${unit(4)};
@@ -134,7 +141,12 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
       </div>
       <ul css={styles.itemList} {...getMenuProps()} data-open={isOpen} aria-hidden={!isOpen}>
         {items.map((item, index) => (
-          <li key={item.value} {...getItemProps({ item, index })} data-highlighted={index === highlightedIndex}>
+          <li
+            key={item.value}
+            {...getItemProps({ item, index })}
+            data-highlighted={index === highlightedIndex}
+            data-selected={selectedItem?.value === item.value}
+          >
             {item.label}
           </li>
         ))}

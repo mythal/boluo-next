@@ -27,7 +27,11 @@ interface Select {
   activeBg: string;
   listBg: string;
   listBorder: string;
-  listHoverBg: string;
+  listSelectedBg: string;
+  listSelectedText: string;
+  listHighlightBg: string;
+  listHighlightText: string;
+  listSelectedHighlightBg: string;
 }
 
 export interface Theme {
@@ -70,6 +74,7 @@ export interface Theme {
 }
 
 export const lightTheme = ((): Theme => {
+  const primaryFamily = green;
   const primary = green['600'];
   const text = '#000';
   const link: Theme['link'] = {
@@ -122,7 +127,11 @@ export const lightTheme = ((): Theme => {
     activeBg: gray['200'],
     listBg: gray['50'],
     listBorder: black,
-    listHoverBg: gray['100'],
+    listHighlightBg: gray['100'],
+    listHighlightText: black,
+    listSelectedBg: primaryFamily['700'],
+    listSelectedText: white,
+    listSelectedHighlightBg: primaryFamily['600'],
   };
   return {
     mode: 'light',
@@ -154,6 +163,7 @@ export const lightTheme = ((): Theme => {
 })();
 
 export const darkTheme: Theme = ((): Theme => {
+  const primaryFamily = blue;
   const primary = blue['700'];
   const text = '#fff';
   const link: Theme['link'] = {
@@ -207,7 +217,11 @@ export const darkTheme: Theme = ((): Theme => {
     activeBg: black,
     listBg: black,
     listBorder: gray['800'],
-    listHoverBg: gray['900'],
+    listHighlightBg: gray['900'],
+    listHighlightText: white,
+    listSelectedText: white,
+    listSelectedBg: primaryFamily['700'],
+    listSelectedHighlightBg: primaryFamily['600'],
   };
   return {
     mode: 'dark',
