@@ -6,7 +6,7 @@ interface Props {
   icon: keyof typeof icons;
   className?: string;
   noStrut?: boolean;
-  label?: string;
+  label?: string | undefined;
 }
 
 const strutStyle = css`

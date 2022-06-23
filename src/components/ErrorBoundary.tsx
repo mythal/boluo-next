@@ -13,7 +13,7 @@ export class ErrorBoundary extends Component<Props, State> {
     super(props);
     this.state = { error: undefined };
   }
-  componentDidCatch(error: unknown, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: unknown, errorInfo: ErrorInfo) {
     console.error(errorInfo);
   }
 
@@ -21,7 +21,7 @@ export class ErrorBoundary extends Component<Props, State> {
     return { error };
   }
 
-  render() {
+  override render() {
     if (this.state.error) {
       return <Oops error={this.state.error} />;
     } else {

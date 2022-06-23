@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface StyleProps {
-  className?: string;
+  className?: string | undefined;
 }
 
 export type DataAttr<T> = { [P in keyof T & string as `data-${P}`]?: T[P] };
