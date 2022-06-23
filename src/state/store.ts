@@ -21,7 +21,6 @@ export function makeAction<K extends keyof ActionMap, Args extends Parameters<Ac
   type: K,
   ...args: Args
 ): Action<K> {
-  // FIXME: remove ts-ignore.
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return {
@@ -40,6 +39,10 @@ export function dispatchAction<K extends keyof ActionMap, Args extends Parameter
 }
 
 export type Actions = Action<keyof ActionMap>;
+
+export type GenericHandle<M extends ActionMap, K extends keyof ActionMap, S> = (
+  payload: ReturnType<M[K]>
+) => (state: S) => S; // currying
 
 export const applicationReducer = combineReducers({
   interface: interfaceReducer,

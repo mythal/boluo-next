@@ -1,17 +1,17 @@
 import { I, i } from '../helper/function';
-import { Action, AppDispatch, makeAction, store } from './store';
+import { Action, AppDispatch, GenericHandle, makeAction, store } from './store';
 import { Reducer } from 'redux';
 import { IntlConfig } from 'react-intl';
-import type { ReactChild } from 'react';
+import type { ReactNode } from 'react';
 import { Id, makeId } from '../helper/id';
-import * as O from 'optics-ts';
+import { prop, compose, remove, modify, find, set, appendTo } from 'optics-ts/standalone';
 
 export type Scheme = 'light' | 'dark' | 'auto';
 export type Locale = 'en' | 'ja' | 'zh-CN';
 export type IntlMessages = IntlConfig['messages'];
 export interface Notification {
   id: Id;
-  child: ReactChild;
+  child: ReactNode;
   level: 'warn' | 'default' | 'error';
 }
 
@@ -24,7 +24,7 @@ export interface InterfaceState {
 export const interfaceActions = {
   switchScheme: i as I<Scheme>,
   changeLocale: (locale: Locale) => locale,
-  notify: (child: ReactChild, level: Notification['level']): Notification => ({ child, level, id: makeId() }),
+  notify: (child: ReactNode, level: Notification['level']): Notification => ({ child, level, id: makeId() }),
   dismissNotification: i as I<Id>,
 };
 
@@ -33,18 +33,34 @@ const initState: InterfaceState = {
   locale: 'en',
   notifications: [],
 };
-const notificationsOptic = O.optic<InterfaceState>().prop('notifications');
+
 export type InterfaceActions = Action<keyof typeof interfaceActions>;
+type Handler<K extends keyof typeof interfaceActions> = GenericHandle<typeof interfaceActions, K, InterfaceState>;
+
+const handleSwitchScheme: Handler<'switchScheme'> = set(prop('scheme'));
+
+const handleNotify: Handler<'notify'> = set(compose('notifications', appendTo));
+
+const handleChangeLocale: Handler<'changeLocale'> = set(prop('locale'));
+
+const handleDissmissNotification: Handler<'dismissNotification'> = (id) =>
+  remove(
+    compose(
+      'notifications',
+      find((notification: Notification) => notification.id === id)
+    )
+  );
+
 export const interfaceReducer: Reducer<InterfaceState, InterfaceActions> = (state = initState, action) => {
   switch (action.type) {
     case 'switchScheme':
-      return { ...state, scheme: action.payload };
+      return handleSwitchScheme(action.payload)(state);
     case 'changeLocale':
-      return { ...state, locale: action.payload };
+      return handleChangeLocale(action.payload)(state);
     case 'notify':
-      return O.modify(notificationsOptic)((notifications) => notifications.concat([action.payload]))(state);
+      return handleNotify(action.payload)(state);
     case 'dismissNotification':
-      return O.remove(notificationsOptic.find((notification) => notification.id === action.payload))(state);
+      return handleDissmissNotification(action.payload)(state);
     default:
       return state;
   }
@@ -62,7 +78,7 @@ export const changeLocale = (localeString: string) => async (dispatch: AppDispat
   dispatch(makeAction('changeLocale', locale));
 };
 
-export const notify = (node: ReactChild, level: Notification['level'] = 'default') => {
+export const notify = (node: ReactNode, level: Notification['level'] = 'default') => {
   const action = makeAction('notify', node, level);
   store.dispatch(action);
 };
