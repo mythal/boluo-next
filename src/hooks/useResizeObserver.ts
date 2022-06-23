@@ -7,7 +7,7 @@ export const useResizeObserver = (ref: RefObject<HTMLElement | null>): DOMRect |
       if (entries.length !== 1) {
         throw new Error('wrong count of entries.');
       }
-      const entry = entries[0];
+      const entry = entries[0]!;
       const newRect = entry.target.getBoundingClientRect();
       setRect(newRect);
     });

@@ -20,7 +20,7 @@ export const useContainerQuery = <W extends Breakpoints, H extends Breakpoints>(
       let fittest: number = -1;
       let breakpointName: keyof W | null = null;
       for (const name in widthConfig) {
-        const breakpoint = widthConfig[name];
+        const breakpoint = widthConfig[name]!;
         if (rect.width >= breakpoint && breakpoint > fittest) {
           fittest = breakpoint;
           breakpointName = name;
@@ -40,7 +40,7 @@ export const useContainerQuery = <W extends Breakpoints, H extends Breakpoints>(
       let fittest: number = -1;
       let breakpointName: keyof H | null = null;
       for (const name in heightConfig) {
-        const breakpoint = heightConfig[name];
+        const breakpoint = heightConfig[name]!;
         if (rect.height >= breakpoint && breakpoint > fittest) {
           fittest = breakpoint;
           breakpointName = name;
@@ -61,7 +61,7 @@ export const useContainerQuery = <W extends Breakpoints, H extends Breakpoints>(
       if (entries.length !== 1) {
         throw new Error('wrong count of entries.');
       }
-      const entry = entries[0];
+      const entry = entries[0]!;
       const rect = entry.target.getBoundingClientRect();
       setWidthBreakpoint(calculateWidthBreakPoint(rect));
       setHeightBreakpoint(calculateHeightBreakPoint(rect));
