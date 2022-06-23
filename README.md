@@ -9,6 +9,6 @@ see also the [server backend](https://github.com/mythal/boluo-server).
 ## Start development server
 
 ```
-pnpm install
+yarn install
 make dev
 ```
