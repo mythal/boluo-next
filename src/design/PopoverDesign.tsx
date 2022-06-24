@@ -1,8 +1,10 @@
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, { CSSProperties, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { css, Theme } from '@emotion/react';
-import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react-dom';
+import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react-dom';
 
 import { Button } from '../components/fundamental/Button';
+import { Select } from '../components/fundamental/Select';
+import { m } from '../styles/utility/spacing';
 
 const styles = {
   tooltip: (theme: Theme) => css`
@@ -39,6 +41,40 @@ const styles = {
     justify-content: center;
     align-items: center;
   `,
+  arrow: (theme: Theme) => css`
+    z-index: -1;
+    position: absolute;
+    background: ${theme.tooltip.bg};
+    width: 1em;
+    height: 1em;
+    --translateX: 0;
+    --translateY: 0;
+    transform: translateX(var(--translateX)) translateY(var(--translateY)) rotate(45deg);
+
+    &[data-placement='right'] {
+      --translateX: -50%;
+      left: var(--arrow-x, 0);
+      top: var(--arrow-y, 0);
+    }
+
+    &[data-placement='left'] {
+      --translateX: 50%;
+      right: var(--arrow-x, 0);
+      top: var(--arrow-y, 0);
+    }
+
+    &[data-placement='top'] {
+      --translateY: 50%;
+      left: var(--arrow-x, 0);
+      bottom: var(--arrow-y, 0);
+    }
+
+    &[data-placement='bottom'] {
+      --translateY: -50%;
+      left: var(--arrow-x, 0);
+      top: var(--arrow-y, 0);
+    }
+  `,
 };
 const useBoxScrollPosition = (): MutableRefObject<HTMLDivElement | null> => {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -53,17 +89,29 @@ const useBoxScrollPosition = (): MutableRefObject<HTMLDivElement | null> => {
 };
 
 export const PopoverDesign = () => {
-  const { x, y, reference, floating, strategy, update, refs } = useFloating({
-    placement: 'right',
-    middleware: [shift(), flip(), offset(12)],
+  const [placementSetting, setPlacementSetting] = useState<'top' | 'bottom' | 'right' | 'left'>('right');
+  const arrowRef = useRef<HTMLDivElement>(null);
+  const {
+    x,
+    y,
+    reference,
+    floating,
+    strategy,
+    placement,
+    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
+  } = useFloating({
+    placement: placementSetting,
+    whileElementsMounted: autoUpdate,
+    middleware: [shift(), flip(), offset(12), arrow({ element: arrowRef })],
   });
-  useEffect(() => {
-    if (!refs.reference.current || !refs.floating.current) {
-      return;
-    }
-    return autoUpdate(refs.reference.current, refs.floating.current, update);
-  }, [refs.floating, refs.reference, update]);
   const boxRef = useBoxScrollPosition();
+
+  const arrowStyle: CSSProperties | undefined = useMemo(() => {
+    return {
+      '--arrow-x': `${arrowX ?? 0}px`,
+      '--arrow-y': `${arrowY ?? 0}px`,
+    } as CSSProperties;
+  }, [placement, arrowX, arrowY]);
 
   return (
     <div>
@@ -85,8 +133,22 @@ export const PopoverDesign = () => {
               role="tooltip"
             >
               大人になるって事は近づいたり离れたりを缲り返して、お互いがあんまり伤つかずにすむ距离を见つけ出すって事に…
+              <div style={arrowStyle} ref={arrowRef} css={[styles.arrow]} data-placement={placement} />
             </div>
           </div>
+        </div>
+
+        <div css={m.t(4)}>
+          <Select
+            items={[
+              { label: 'Left', value: 'left' },
+              { label: 'Right', value: 'right' },
+              { label: 'Top', value: 'top' },
+              { label: 'Bottom', value: 'bottom' },
+            ]}
+            value={placementSetting}
+            onChange={(value: string) => setPlacementSetting(value as typeof placementSetting)}
+          />
         </div>
       </div>
     </div>
