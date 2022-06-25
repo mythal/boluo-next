@@ -14,6 +14,9 @@ export const useInitializeTheme = (): Theme => {
   // }, [dispatch]);
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'test') {
+      return;
+    }
     const colorSchemeMeta = document.documentElement.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
     if (!colorSchemeMeta) {
       console.warn('The <meta name="color-scheme"/> tag cannot be found ');

@@ -24,3 +24,7 @@ jobs:
         run: make lint
         env:
           CI: true
+      - name: test
+        run: yarn run jest --ci
+        env:
+          CI: true
