@@ -37,8 +37,8 @@ const selectMenuFold = keyframes`
     transform: scaleY(100%);
   }
   100% {
-    opacity: 0.1;
-    transform: scaleY(10%);
+    opacity: 0;
+    transform: scaleY(0%);
   }
 `;
 
@@ -75,24 +75,19 @@ const styles = {
   `,
   itemList: (theme: Theme) => css`
     transform-origin: top;
-    &[data-open='false'] {
-      display: none;
-    }
-    &[data-open='true'] {
-      padding: 0;
-      opacity: 0;
-      width: 100%;
-      margin: ${unit(1)} 0 0 0;
-      color: ${theme.select.text};
-      list-style: none;
-      position: absolute;
-      z-index: 10;
-      box-shadow: ${unit(1)} ${unit(1)} 0 rgba(0, 0, 0, 0.1);
-      border: 1px solid ${theme.select.listBorder};
-      --radius: ${unit(1)};
-      border-radius: var(--radius);
-      user-select: none;
-    }
+    padding: 0;
+    opacity: 0;
+    width: 100%;
+    margin: ${unit(1)} 0 0 0;
+    color: ${theme.select.text};
+    list-style: none;
+    position: absolute;
+    z-index: 10;
+    box-shadow: ${unit(1)} ${unit(1)} 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid ${theme.select.listBorder};
+    --radius: ${unit(1)};
+    border-radius: var(--radius);
+    user-select: none;
 
     &[data-stage='enter'] {
       animation: 60ms ease-in-out ${selectMenuExpand} forwards;
@@ -112,7 +107,6 @@ const styles = {
         border-radius: 0 0 var(--radius) var(--radius);
       }
 
-      &:hover,
       &[data-highlighted='true'] {
         background-color: ${theme.select.listHighlightBg};
         color: ${theme.select.listHighlightText};
@@ -173,7 +167,7 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
           <span>{isOpen ? <Icon icon="chevrons-up" /> : <Icon icon="chevrons-down" />}</span>
         </button>
       </div>
-      <ul css={styles.itemList} {...getMenuProps()} data-open={shouldMount} data-stage={stage} aria-hidden={!isOpen}>
+      <ul css={styles.itemList} {...getMenuProps()} data-open={isOpen} data-stage={stage} aria-hidden={!isOpen}>
         {items.map((item, index) => (
           <li
             key={item.value}
