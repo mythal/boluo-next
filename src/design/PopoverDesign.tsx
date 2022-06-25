@@ -111,7 +111,7 @@ export const PopoverDesign = () => {
       '--arrow-x': `${arrowX ?? 0}px`,
       '--arrow-y': `${arrowY ?? 0}px`,
     } as CSSProperties;
-  }, [placement, arrowX, arrowY]);
+  }, [arrowX, arrowY]);
 
   return (
     <div>

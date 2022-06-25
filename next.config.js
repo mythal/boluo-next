@@ -9,6 +9,9 @@ module.exports = withMDX({
   poweredByHeader: false,
   trailingSlash: true,
   swcMinify: true,
+  eslint: {
+    dirs: ['src', 'tests'],
+  },
   async rewrites() {
     return [
       {
