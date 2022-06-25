@@ -3,6 +3,7 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { interfaceActions, interfaceReducer } from './interface';
+import { parseBool } from '../helper/env';
 
 const actionMap = {
   ...interfaceActions,
@@ -49,8 +50,12 @@ export const applicationReducer = combineReducers({
 });
 
 export type AppState = ReturnType<typeof applicationReducer>;
-
-export const store = createStore(applicationReducer, undefined, composeWithDevTools(applyMiddleware(thunk)));
+const enableReduxTrace = parseBool(process.env.NEXT_PUBLIC_REDUX_TRACE);
+const composeEnhancers = composeWithDevTools({
+  trace: process.env.NODE_ENV === 'development' && enableReduxTrace,
+  traceLimit: 25,
+});
+export const store = createStore(applicationReducer, undefined, composeEnhancers(applyMiddleware(thunk)));
 export type AppDispatch = ThunkDispatch<AppState, unknown, Actions>;
 
 export const useAppDispatch = (): AppDispatch => {
