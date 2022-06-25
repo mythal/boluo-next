@@ -37,20 +37,12 @@ const useLoadMessages = (locale: Locale): IntlMessages => {
 
 export const LocaleProvider: React.FC<ChildrenProps> = ({ children }) => {
   const locale = useAppSelector((state) => state.interface.locale);
-  const isFirst = useRef<boolean>(true);
   const localeRef = useRef<typeof locale>(locale);
   useEffect(() => {
     localeRef.current = locale;
     const storageLocale = localStorage.getItem('LOCALE');
-    if (storageLocale !== locale) {
-      if (isFirst.current) {
-        if (storageLocale) {
-          changeLocale(storageLocale);
-        }
-        isFirst.current = false;
-      } else {
-        localStorage.setItem('LOCALE', locale);
-      }
+    if (storageLocale && storageLocale !== locale) {
+      changeLocale(storageLocale);
     }
   }, [locale]);
 

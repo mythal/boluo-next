@@ -6,11 +6,8 @@ import { Select } from './fundamental/Select';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
   const locale = useAppSelector((state) => state.interface.locale);
-  const [loadState, setLoadState] = useState<'loaded' | 'loading'>('loaded');
   const handler = async (value: string) => {
-    setLoadState('loading');
     changeLocale(value);
-    setLoadState('loaded');
   };
   const items = useMemo(
     () => [
@@ -29,7 +26,5 @@ export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
     ],
     []
   );
-  return (
-    <Select disabled={loadState === 'loading'} className={className} items={items} value={locale} onChange={handler} />
-  );
+  return <Select className={className} items={items} value={locale} onChange={handler} />;
 };

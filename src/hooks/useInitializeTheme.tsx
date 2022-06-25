@@ -2,34 +2,19 @@ import { darkTheme, defaultTheme, lightTheme, Theme } from '../styles/theme';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { startSchemeSwitching, stopSchemeSwitching } from '../helper/scheme';
 import { isDaytime } from '../helper/time';
-import { dispatchAction, useAppSelector } from '../state/store';
-
-export const changeScheme = (value: string) => {
-  if (value === 'dark' || value === 'light') {
-    dispatchAction('switchScheme', value);
-  } else {
-    dispatchAction('switchScheme', 'auto');
-  }
-};
+import { useAppSelector } from '../state/store';
+import { switchScheme } from '../state/interface';
 
 export const useInitializeTheme = (): Theme => {
   const scheme = useAppSelector((state) => state.interface.scheme);
   const [theme, setTheme] = useState(defaultTheme);
-  const isFirst = useRef<boolean>(true);
   const schemeRef = useRef<typeof scheme>(scheme);
 
   useEffect(() => {
     schemeRef.current = scheme;
     const storageScheme = localStorage.getItem('SCHEME');
-    if (storageScheme !== scheme) {
-      if (isFirst.current) {
-        if (storageScheme) {
-          changeScheme(storageScheme);
-        }
-        isFirst.current = false;
-      } else {
-        localStorage.setItem('SCHEME', scheme);
-      }
+    if (storageScheme && storageScheme !== scheme) {
+      switchScheme(storageScheme);
     }
   }, [scheme]);
 
@@ -37,7 +22,7 @@ export const useInitializeTheme = (): Theme => {
     const listenSchemeChange = (e: StorageEvent) => {
       if (e.key === 'SCHEME') {
         if (e.newValue !== schemeRef.current) {
-          changeScheme(e.newValue ?? 'auto');
+          switchScheme(e.newValue ?? 'auto');
         }
       }
     };

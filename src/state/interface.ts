@@ -1,5 +1,5 @@
 import { I, i } from '../helper/function';
-import { Action, AppDispatch, GenericHandle, makeAction, store } from './store';
+import { Action, dispatchAction, GenericHandle, makeAction, store } from './store';
 import { Reducer } from 'redux';
 import { IntlConfig } from 'react-intl';
 import type { ReactNode } from 'react';
@@ -66,8 +66,19 @@ export const interfaceReducer: Reducer<InterfaceState, InterfaceActions> = (stat
   }
 };
 
+export const switchScheme = (schemeString: string) => {
+  if (schemeString === 'dark' || schemeString === 'light') {
+    localStorage.setItem('SCHEME', schemeString);
+    dispatchAction('switchScheme', schemeString);
+  } else {
+    localStorage.setItem('SCHEME', 'auto');
+    dispatchAction('switchScheme', 'auto');
+  }
+};
+
 export const changeLocale = (localeString: string) => {
   let locale: Locale;
+  localStorage.setItem('LOCALE', localeString);
   if (localeString.startsWith('zh')) {
     locale = 'zh-CN';
   } else if (localeString.startsWith('ja')) {
@@ -75,14 +86,13 @@ export const changeLocale = (localeString: string) => {
   } else {
     locale = 'en';
   }
-  store.dispatch(makeAction('changeLocale', locale));
+  dispatchAction('changeLocale', locale);
 };
 
 export const notify = (node: ReactNode, level: Notification['level'] = 'default') => {
-  const action = makeAction('notify', node, level);
-  store.dispatch(action);
+  dispatchAction('notify', node, level);
 };
 
 export const dismissNotification = (id: Id) => {
-  store.dispatch(makeAction('dismissNotification', id));
+  dispatchAction('dismissNotification', id);
 };
