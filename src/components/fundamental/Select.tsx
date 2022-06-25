@@ -31,17 +31,6 @@ const selectMenuExpand = keyframes`
   }
 `;
 
-const selectMenuFold = keyframes`
-  0% {
-    opacity: 100%;
-    transform: scaleY(100%);
-  }
-  100% {
-    opacity: 0;
-    transform: scaleY(0%);
-  }
-`;
-
 const styles = {
   toggleButton: (theme: Theme) => css`
     --active-border: ${theme.select.activeBorder};
@@ -77,6 +66,7 @@ const styles = {
     transform-origin: top;
     padding: 0;
     opacity: 0;
+    transform: scaleY(0%);
     width: 100%;
     margin: ${unit(1)} 0 0 0;
     color: ${theme.select.text};
@@ -92,9 +82,6 @@ const styles = {
     &[data-stage='enter'] {
       animation: 60ms ease-in-out ${selectMenuExpand} forwards;
     }
-    &[data-stage='leave'] {
-      animation: 60ms ease-in-out ${selectMenuFold} forwards;
-    }
 
     & > li {
       --radius: ${unit(1)};
@@ -107,6 +94,7 @@ const styles = {
         border-radius: 0 0 var(--radius) var(--radius);
       }
 
+      &:hover,
       &[data-highlighted='true'] {
         background-color: ${theme.select.listHighlightBg};
         color: ${theme.select.listHighlightText};
