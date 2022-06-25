@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IntlProvider } from 'react-intl';
 import { IntlErrorCode, OnErrorFn } from '@formatjs/intl';
 import { useAppSelector } from '../../state/store';
-import type { IntlMessages, Locale } from '../../state/interface';
+import { changeLocale, IntlMessages, Locale } from '../../state/interface';
 import { notify } from '../../state/interface';
 import useSWRImmutable from 'swr/immutable';
 import { ChildrenProps } from '../../helper/props';
@@ -37,6 +37,35 @@ const useLoadMessages = (locale: Locale): IntlMessages => {
 
 export const LocaleProvider: React.FC<ChildrenProps> = ({ children }) => {
   const locale = useAppSelector((state) => state.interface.locale);
+  const isFirst = useRef<boolean>(true);
+  const localeRef = useRef<typeof locale>(locale);
+  useEffect(() => {
+    localeRef.current = locale;
+    const storageLocale = localStorage.getItem('LOCALE');
+    if (storageLocale !== locale) {
+      if (isFirst.current) {
+        if (storageLocale) {
+          changeLocale(storageLocale);
+        }
+        isFirst.current = false;
+      } else {
+        localStorage.setItem('LOCALE', locale);
+      }
+    }
+  }, [locale]);
+
+  useEffect(() => {
+    const listenLocaleChange = (e: StorageEvent) => {
+      if (e.key === 'LOCALE') {
+        if (e.newValue && e.newValue !== localeRef.current) {
+          changeLocale(e.newValue);
+        }
+      }
+    };
+    window.addEventListener('storage', listenLocaleChange);
+    return () => window.removeEventListener('storage', listenLocaleChange);
+  }, []);
+
   const messages = useLoadMessages(locale);
   return (
     <IntlProvider locale={locale} messages={messages} defaultLocale="en" onError={onError}>

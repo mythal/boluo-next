@@ -6,11 +6,10 @@ import { Select } from './fundamental/Select';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
   const locale = useAppSelector((state) => state.interface.locale);
-  const dispatch = useAppDispatch();
   const [loadState, setLoadState] = useState<'loaded' | 'loading'>('loaded');
   const handler = async (value: string) => {
     setLoadState('loading');
-    await dispatch(changeLocale(value));
+    changeLocale(value);
     setLoadState('loaded');
   };
   const items = useMemo(

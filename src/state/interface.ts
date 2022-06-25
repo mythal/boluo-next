@@ -66,7 +66,7 @@ export const interfaceReducer: Reducer<InterfaceState, InterfaceActions> = (stat
   }
 };
 
-export const changeLocale = (localeString: string) => async (dispatch: AppDispatch) => {
+export const changeLocale = (localeString: string) => {
   let locale: Locale;
   if (localeString.startsWith('zh')) {
     locale = 'zh-CN';
@@ -75,7 +75,7 @@ export const changeLocale = (localeString: string) => async (dispatch: AppDispat
   } else {
     locale = 'en';
   }
-  dispatch(makeAction('changeLocale', locale));
+  store.dispatch(makeAction('changeLocale', locale));
 };
 
 export const notify = (node: ReactNode, level: Notification['level'] = 'default') => {
