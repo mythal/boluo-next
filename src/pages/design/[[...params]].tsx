@@ -12,6 +12,7 @@ import Icon from '../../components/fundamental/Icon';
 import { Dialog } from '../../components/fundamental/Dialog';
 import { LocaleSwitch } from '../../components/LocaleSwitch';
 import { m } from '../../styles/utility/spacing';
+import { useRequestNotification } from '../../hooks/useRequestNotification';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
@@ -77,6 +78,7 @@ const Design: Page = () => {
       </li>
     );
   });
+  const { permission, request } = useRequestNotification();
   return (
     <div css={styles.container}>
       <div css={styles.sidebar}>
@@ -90,6 +92,13 @@ const Design: Page = () => {
             </div>
             <div css={m.t(2)}>
               <LocaleSwitch />
+            </div>
+            <div css={m.t(2)}>
+              <Button disabled={permission !== 'default'} onClick={request}>
+                {permission === 'denied' && 'Denied'}
+                {permission === 'default' && 'Turn On Notification'}
+                {permission === 'granted' && 'Notification ON'}
+              </Button>
             </div>
           </Dialog>
         </div>
