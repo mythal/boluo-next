@@ -1,7 +1,6 @@
-import { css, Theme } from '@emotion/react';
+import clsx from 'clsx';
 import React from 'react';
 import { DataAttr } from '../../helper/props';
-import { unit } from '../../styles/utility/sizing';
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   DataAttr<{
@@ -9,86 +8,32 @@ export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
     type?: 'primary' | 'default';
   }>;
 
-const styles = {
-  button: (theme: Theme) => css`
-    /* button cursor */
-    &:not(:disabled) {
-      cursor: pointer;
-    }
-    &:disabled {
-      cursor: not-allowed;
-    }
-
-    /* reset button style */
-    user-select: none;
-    appearance: none;
-    border: none;
-
-    /* button layout */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-
-    /* spacing */
-    gap: 0.25rem;
-    &:not([data-small='true']) {
-      padding: 0.125rem 1rem;
-      min-height: 2.5rem;
-    }
-    &[data-small='true'] {
-      padding: 0.125rem 0.75rem;
-      min-height: 2rem;
-    }
-
-    border-radius: 1px;
-    font-size: 1rem;
-
-    /* button color */
-    &[data-type='default'],
-    &:not([data-type]) {
-      --button-text-color: ${theme.button.default.text};
-      --button-bg-color: ${theme.button.default.bg};
-      --button-bg-hover-color: ${theme.button.default.bgHover};
-      --button-bg-active-color: ${theme.button.default.bgActive};
-    }
-    &[data-type='primary'] {
-      --button-text-color: ${theme.button.primary.text};
-      --button-bg-color: ${theme.button.primary.bg};
-      --button-bg-hover-color: ${theme.button.primary.bgHover};
-      --button-bg-active-color: ${theme.button.primary.bgActive};
-    }
-    color: var(--button-text-color);
-    background-color: var(--button-bg-color);
-    &:not(:disabled):hover {
-      background-color: var(--button-bg-hover-color);
-    }
-    &:not(:disabled):active {
-      background-color: var(--button-bg-active-color);
-    }
-
-    /* button focus ring */
-    position: relative;
-    &:focus {
-      z-index: 1;
-    }
-    --focus-ring: 0 0 0 0 #00000000;
-    &:focus {
-      outline: none;
-      --focus-ring: 0 0 0 ${unit(1)} ${theme.focusRing};
-    }
-    box-shadow: var(--focus-ring);
-
-    /* filter */
-    &:disabled {
-      filter: brightness(75%);
-    }
-  `,
-};
-
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ children, ...props }, ref) => {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ children, className, ...props }, ref) => {
+  const isSmall = props['data-small'] ?? false;
+  const type = props['data-type'] ?? 'default';
   return (
-    <button css={styles.button} ref={ref} {...props}>
+    <button
+      className={clsx(
+        'enabled:cursor-pointer disabled:cursor-not-allowed',
+        'select-none appearance-none border-none',
+        'inline-flex items-center justify-center focus:ring disabled:brightness-75',
+        'm-0 gap-1 px-4 py-2 rounded-sm text-base',
+
+        isSmall && 'py-0.5 px-3 min-h-[2rem]',
+
+        type === 'default' &&
+          'text-black dark:text-white bg-gray-300 \
+           active-enabled:bg-gray-400 hover-enabled:bg-gray-200 \
+           dark:bg-gray-800 dark:hover-enabled:bg-gray-700 dark:active-enabled:bg-gray-600',
+
+        type === 'primary' &&
+          'text-white bg-green-600 hover-enabled:bg-green-500 active-enabled:bg-green-700 \
+           dark:bg-blue-600 dark:hover-enabled:bg-blue-500 dark:active-enabled:bg-blue-700',
+        className
+      )}
+      ref={ref}
+      {...props}
+    >
       {children}
     </button>
   );

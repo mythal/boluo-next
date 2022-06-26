@@ -2,28 +2,19 @@ import React, { FC, useRef } from 'react';
 import { Portal } from './Portal';
 import { useOutside } from '../../hooks/useOutside';
 import { useOnEsc } from '../../hooks/useOnEsc';
-import { css } from '@emotion/react';
-
-const styles = {
-  container: css`
-    position: absolute;
-    z-index: 99;
-    left: 0;
-    top: 0;
-  `,
-};
+import clsx from 'clsx';
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   dismiss?: () => void;
 };
 
-export const Overlay: FC<Props> = ({ children, dismiss, ...props }) => {
+export const Overlay: FC<Props> = ({ children, dismiss, className, ...props }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   useOutside(dismiss, containerRef);
   useOnEsc(dismiss);
   return (
     <Portal>
-      <div ref={containerRef} css={styles.container} {...props}>
+      <div ref={containerRef} className={clsx('absolute z-50', className)} {...props}>
         {children}
       </div>
     </Portal>

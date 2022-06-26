@@ -1,14 +1,10 @@
 import { FC } from 'react';
 import { Overlay } from './Overlay';
-import { css, keyframes } from '@emotion/react';
 import { Button } from './Button';
 import { useIntl } from 'react-intl';
-import { m } from '../../styles/utility/spacing';
-import { text } from '../../styles/utility/typography';
-import { Theme } from '../../styles/theme';
 import { useTransition } from 'transition-hook';
 import { ChildrenProps, StyleProps } from '../../helper/props';
-import { unit } from '../../styles/utility/sizing';
+import clsx from 'clsx';
 
 interface Props extends StyleProps, ChildrenProps {
   title?: string;
@@ -19,55 +15,6 @@ interface Props extends StyleProps, ChildrenProps {
   onSubmit?: () => void;
   submitText?: string;
 }
-
-const dialogIn = keyframes`
-  0% {
-    transform: translateX(-50%) translateY(-30em);
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-`;
-
-const dialogOut = keyframes`
-  0% {
-    transform: translateX(-50%) translateY(-50%);
-    opacity: 100%;
-  }
-  100% {
-    transform: translateX(-50%) translateY(30em);
-    opacity: 0;
-  }
-`;
-
-const styles = {
-  container: (theme: Theme) => css`
-    background-color: ${theme.dialog.bg};
-    top: 50%;
-    left: 50%;
-    padding: 1em;
-    min-width: 14em;
-    transform: translateX(-50%) translateY(-50%);
-    border: ${unit(0.5)} solid ${theme.dialog.border};
-    border-radius: 0.25em;
-    opacity: 0;
-    box-shadow: ${unit(1)} ${unit(1)} 0 ${theme.dialog.shadow};
-
-    &[data-stage='enter'] {
-      animation: 300ms ease-in-out ${dialogIn} forwards;
-    }
-    &[data-stage='leave'] {
-      animation: 320ms ease-in-out ${dialogOut} forwards;
-    }
-  `,
-  title: css`
-    ${text.xl};
-    margin-bottom: 0.5em;
-    padding-bottom: 0.25em;
-  `,
-};
 
 export const Dialog: FC<Props> = ({
   children,
@@ -94,14 +41,26 @@ export const Dialog: FC<Props> = ({
   }
 
   return (
-    <Overlay css={styles.container} dismiss={dismiss} className={className} data-stage={stage}>
-      {title && <div css={styles.title}>{title}</div>}
+    <Overlay
+      dismiss={dismiss}
+      data-stage={stage}
+      className={clsx(
+        'border-solid border-[0.125rem] border-gray-300 dark:border-gray-900 rounded',
+        'bg-gray-50 dark:bg-gray-800  opacity-0 p-4 min-w-[14em]',
+        'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+        'shadow-1 shadow-[rgba(0,0,0,0.03)] dark:shadow-[rgba(0, 0, 0, 0.25)]',
+        stage === 'enter' && 'transition-all duration-200 opacity-100',
+        stage === 'leave' && ['transition-all duration-200 opacity-0', '-translate-x-1/2 translate-y-[30em]'],
+        className
+      )}
+    >
+      {title && <div className="text-xl mb-2 pb-1">{title}</div>}
       <div>{children}</div>
       {(onSubmit || showDismissButton) && (
-        <div css={[m.t(8), text.textRight]}>
+        <div className="mt-8 text-right">
           {showDismissButton && <Button onClick={() => dismiss()}>{dismissText}</Button>}
           {onSubmit && (
-            <Button data-type="primary" onClick={() => onSubmit()} css={[m.l(1)]} type="submit">
+            <Button data-type="primary" onClick={() => onSubmit()} className="ml-1" type="submit">
               {submitText}
             </Button>
           )}

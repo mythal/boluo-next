@@ -1,11 +1,9 @@
 import React from 'react';
 import { useSelect } from 'downshift';
-import { display, position } from '../../styles/utility/layout';
-import { css, keyframes, Theme } from '@emotion/react';
-import { unit } from '../../styles/utility/sizing';
 import { StyleProps } from '../../helper/props';
 import Icon from './Icon';
 import { useTransition } from 'transition-hook';
+import clsx from 'clsx';
 
 export interface SelectItem {
   label: string;
@@ -19,102 +17,6 @@ interface Props extends StyleProps {
   label?: string;
   disabled?: boolean;
 }
-
-const selectMenuExpand = keyframes`
-  0% {
-    opacity: 0;
-    transform: scaleY(0%);
-  }
-  100% {
-    opacity: 100%;
-    transform: scaleY(100%);
-  }
-`;
-
-const styles = {
-  toggleButton: (theme: Theme) => css`
-    --active-border: ${theme.select.activeBorder};
-    --active-bg: ${theme.select.activeBg};
-    display: flex;
-    color: ${theme.select.text};
-    gap: ${unit(1)};
-    width: 100%;
-    justify-content: space-between;
-    padding: ${unit(2)};
-    border: ${unit(0.5)} solid ${theme.select.border};
-    border-radius: ${unit(1)};
-    background-color: ${theme.select.bg};
-    cursor: pointer;
-
-    &:disabled {
-      cursor: not-allowed;
-      background-color: ${theme.select.disableBg};
-      color: ${theme.select.disableText};
-    }
-
-    &:not(:disabled):hover {
-      background-color: var(--active-bg);
-      border-color: var(--active-border);
-    }
-
-    &[data-open='true'] {
-      background-color: var(--active-bg);
-      border-color: var(--active-border);
-    }
-  `,
-  itemList: (theme: Theme) => css`
-    transform-origin: top;
-    padding: 0;
-    opacity: 0;
-    transform: scaleY(0%);
-    width: 100%;
-    margin: ${unit(1)} 0 0 0;
-    color: ${theme.select.text};
-    list-style: none;
-    position: absolute;
-    z-index: 10;
-    box-shadow: ${unit(1)} ${unit(1)} 0 rgba(0, 0, 0, 0.1);
-    border: 1px solid ${theme.select.listBorder};
-    --radius: ${unit(1)};
-    border-radius: var(--radius);
-    user-select: none;
-
-    &[data-stage='enter'] {
-      animation: 60ms ease-in-out ${selectMenuExpand} forwards;
-    }
-
-    & > li {
-      --radius: ${unit(1)};
-
-      &:first-of-type {
-        border-radius: var(--radius) var(--radius) 0 0;
-      }
-
-      &:last-of-type {
-        border-radius: 0 0 var(--radius) var(--radius);
-      }
-
-      &:hover,
-      &[data-highlighted='true'] {
-        background-color: ${theme.select.listHighlightBg};
-        color: ${theme.select.listHighlightText};
-      }
-
-      &[data-selected='true'] {
-        background-color: ${theme.select.listSelectedBg};
-        color: ${theme.select.listSelectedText};
-        &:hover,
-        &[data-highlighted='true'] {
-          background-color: ${theme.select.listSelectedHighlightBg};
-        }
-      }
-
-      padding: ${unit(3)} ${unit(4)};
-      background-color: ${theme.select.listBg};
-      cursor: pointer;
-    }
-  `,
-};
 
 export const Select: React.FC<Props> = ({ items, value, onChange, label, className, disabled = false }) => {
   function itemToString(item: SelectItem | null) {
@@ -132,18 +34,29 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
     },
   });
   const transitionTimeMs = 60;
-  const { stage, shouldMount } = useTransition(isOpen, transitionTimeMs);
+  const { stage } = useTransition(isOpen, transitionTimeMs);
 
   return (
-    <div css={[position.relative]} className={className}>
+    <div className={clsx('relative', className)}>
       <div>
         {label && (
-          <label css={[display.block]} {...getLabelProps()}>
+          <label className="block" {...getLabelProps()}>
             {label}
           </label>
         )}
         <button
-          css={styles.toggleButton}
+          className={clsx(
+            'flex justify-between gap-1 w-full p-2',
+            'rounded cursor-pointer',
+            'disabled:cursor-not-allowed',
+            'text-black bg-white border-1/2 border-gray-300',
+            'dark:text-white dark:bg-gray-900 dark:border-gray-600',
+            'disabled:bg-gray-100 disabled:text-gray-500',
+            'dark:disabled:bg-black dark:disabled:text-gray-500',
+            'hover-enabled:bg-gray-200 hover-enabled:border-gray-500',
+            'dark:hover-enabled:bg-gray-800 dark:hover-enabled:border-gray-500',
+            isOpen && 'bg-gray-200 border-gray-500 dark:bg-black dark:border-gray-500'
+          )}
           aria-label="toggle menu"
           type="button"
           {...getToggleButtonProps()}
@@ -155,17 +68,45 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
           <span>{isOpen ? <Icon icon="chevrons-up" /> : <Icon icon="chevrons-down" />}</span>
         </button>
       </div>
-      <ul css={styles.itemList} {...getMenuProps()} data-open={isOpen} data-stage={stage} aria-hidden={!isOpen}>
-        {items.map((item, index) => (
-          <li
-            key={item.value}
-            {...getItemProps({ item, index })}
-            data-highlighted={index === highlightedIndex}
-            data-selected={selectedItem?.value === item.value}
-          >
-            {item.label}
-          </li>
-        ))}
+      <ul
+        {...getMenuProps()}
+        data-open={isOpen}
+        data-stage={stage}
+        aria-hidden={!isOpen}
+        className={clsx(
+          'p-0 w-full m-0 mt-1 list-none absolute z-10 border rounded select-none',
+          'origin-top scale-y-0 transition-all duration-100',
+          'shadow-menu border border-black dark:border-gray-600',
+          'text-black dark:text-white',
+          stage === 'enter' && 'scale-y-100'
+        )}
+      >
+        {items.map((item, index) => {
+          const highlighted = index === highlightedIndex;
+          const selected = selectedItem?.value === item.value;
+          return (
+            <li
+              key={item.value}
+              {...getItemProps({ item, index })}
+              className={clsx(
+                'cursor-pointer px-4 py-3',
+                'first-of-type:rounded-t last-of-type:rounded-b',
+                !highlighted && !selected && ['text-black bg-gray-100', 'dark:text-white dark:bg-black'],
+                'hover:bg-gray-50',
+                'dark:hover:bg-gray-600',
+                highlighted && !selected && 'bg-gray-50 dark:bg-gray-600',
+                selected && [
+                  'text-white',
+                  'hover:bg-green-600',
+                  'dark:hover:bg-blue-600',
+                  highlighted ? 'bg-green-600 dark:bg-blue-600' : 'bg-green-700 dark:bg-blue-800',
+                ]
+              )}
+            >
+              {item.label}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

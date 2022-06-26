@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ColorPicker } from '../components/ColorPicker';
 
-export const ColorDesign: React.VFC = () => {
+export const ColorDesign: React.FC = () => {
   const [color, setColor] = useState('#000000');
   return (
     <div>

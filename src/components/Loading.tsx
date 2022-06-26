@@ -1,32 +1,7 @@
 import { FC, useRef } from 'react';
-import { css } from '@emotion/react';
 import { SpinnerIcon } from './SpinnerIcon';
 import { useContainerQuery } from '../hooks/useContainerQuery';
-
-const styles = {
-  container: css`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &[data-width='lg']&[data-height='lg'] {
-      font-size: 3rem;
-    }
-    &[data-width='md'],
-    &[data-height='md'] {
-      font-size: 1.5rem;
-    }
-    &[data-width='sm'],
-    &[data-height='sm'] {
-      font-size: 1rem;
-    }
-    &[data-width='xs'],
-    &[data-height='xs'] {
-      font-size: 0.75rem;
-    }
-  `,
-};
+import clsx from 'clsx';
 
 const config = {
   width: {
@@ -46,8 +21,24 @@ const config = {
 export const Loading: FC = () => {
   const container = useRef<HTMLDivElement>(null);
   const [width, height] = useContainerQuery(container, config);
+  const xs = width === 'xs' || height === 'xs';
+  const sm = !xs && (width === 'sm' || height === 'sm');
+  const md = !(sm || xs) && (width === 'md' || height === 'md');
+  const lg = !(sm || xs || md);
   return (
-    <div css={styles.container} ref={container} data-width={width} data-height={height}>
+    <div
+      ref={container}
+      data-width={width}
+      data-height={height}
+      className={clsx(
+        'w-full h-full',
+        'flex items-center justify-center',
+        lg && 'text-[3rem]',
+        md && 'text-2xl',
+        sm && 'text-base',
+        xs && 'text-sm'
+      )}
+    >
       <SpinnerIcon label="loading..." />
     </div>
   );

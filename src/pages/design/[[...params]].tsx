@@ -3,21 +3,19 @@ import { FC, useState } from 'react';
 import Link from 'next/link';
 import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
 import Home from '../../design/Home.mdx';
-import { css, Theme } from '@emotion/react';
-import { gray } from '../../styles/utility/color';
 import { SchemeSwitch } from '../../components/SchemeSwitch';
 import Head from 'next/head';
 import { Button } from '../../components/fundamental/Button';
 import Icon from '../../components/fundamental/Icon';
 import { Dialog } from '../../components/fundamental/Dialog';
 import { LocaleSwitch } from '../../components/LocaleSwitch';
-import { m } from '../../styles/utility/spacing';
 import { useRequestNotification } from '../../hooks/useRequestNotification';
+import clsx from 'clsx';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
     return (
-      <div css={styles.content}>
+      <div className="py-4 px-8">
         <Head>
           <title>{'Design :: ' + tabRouteTable[tab].title}</title>
         </Head>
@@ -26,7 +24,7 @@ const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
     );
   } else {
     return (
-      <div css={styles.content}>
+      <div className="py-4 px-8">
         <Head>
           <title>Design</title>
         </Head>
@@ -36,36 +34,6 @@ const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   }
 };
 
-const styles = {
-  container: css`
-    display: flex;
-  `,
-  sidebar: (theme: Theme) => css`
-    background: ${theme.mode === 'light' ? gray['100'] : gray['900']};
-    padding: 1em 2.5em;
-    height: 100vh;
-    ul {
-      padding: 0;
-      list-style: none;
-      a {
-        display: block;
-        padding: 0.25rem 0;
-
-        &[data-active='true'] {
-          text-decoration: underline;
-        }
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  `,
-  content: css`
-    padding: 1em 2em;
-  `,
-};
-
 const Design: Page = () => {
   const tab = useDesignRoute();
   const [settingDialog, setSettingDialog] = useState(false);
@@ -73,15 +41,15 @@ const Design: Page = () => {
     return (
       <li key={path}>
         <Link href={`/design/${path}`}>
-          <a data-active={path === tab}>{item.title}</a>
+          <a className={clsx('link block py-1 px-0 hover:underline', path === tab && 'underline')}>{item.title}</a>
         </Link>
       </li>
     );
   });
   const { permission, request } = useRequestNotification();
   return (
-    <div css={styles.container}>
-      <div css={styles.sidebar}>
+    <div className="flex">
+      <div className="bg-gray-100 dark:bg-gray-900 py-4 px-9 h-screen">
         <div>
           <Button onClick={() => setSettingDialog(true)}>
             <Icon icon="settings" />
@@ -90,10 +58,10 @@ const Design: Page = () => {
             <div>
               <SchemeSwitch />
             </div>
-            <div css={m.t(2)}>
+            <div className="mt-2">
               <LocaleSwitch />
             </div>
-            <div css={m.t(2)}>
+            <div className="mt-2">
               <Button disabled={permission !== 'default'} onClick={request}>
                 {permission === 'denied' && 'Denied'}
                 {permission === 'default' && 'Turn On Notification'}
@@ -102,7 +70,7 @@ const Design: Page = () => {
             </div>
           </Dialog>
         </div>
-        <ul>{sidebarItems}</ul>
+        <ul className="p-0 list-none">{sidebarItems}</ul>
       </div>
       <DesignRoute tab={tab} />
     </div>

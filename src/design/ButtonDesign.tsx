@@ -1,16 +1,12 @@
+import { FC } from 'react';
 import { Button } from '../components/fundamental/Button';
 import Icon from '../components/fundamental/Icon';
-import { gap } from '../styles/utility/grid';
-import { display } from '../styles/utility/layout';
-import { m } from '../styles/utility/spacing';
 import { SpinnerIcon } from '../components/SpinnerIcon';
 
-export const ButtonDesign = () => {
-  const line = [display.flex, gap(2), m.y(2)];
-
+export const ButtonDesign: FC = () => {
   return (
     <div>
-      <div css={line}>
+      <div className="flex gap-2 my-2">
         <Button>Button</Button>
         <Button data-icon>
           <Icon icon="fairy" />
@@ -20,7 +16,7 @@ export const ButtonDesign = () => {
         </Button>
         <Button disabled>Disabled</Button>
       </div>
-      <div css={line}>
+      <div className="flex gap-2 my-2">
         <Button data-small>small</Button>
         <Button data-small>
           <Icon icon="archive" /> small
@@ -29,7 +25,7 @@ export const ButtonDesign = () => {
           <SpinnerIcon /> small
         </Button>
       </div>
-      <div css={line}>
+      <div className="flex gap-2 my-2">
         <Button data-type="primary">Primary</Button>
       </div>
     </div>

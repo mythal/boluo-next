@@ -1,23 +1,24 @@
-import { darkTheme, defaultTheme, lightTheme, Theme } from '../styles/theme';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { startSchemeSwitching, stopSchemeSwitching } from '../helper/scheme';
 import { isDaytime } from '../helper/time';
 import { useAppSelector } from '../state/store';
 import { switchScheme } from '../state/interface';
 
-export const useInitializeTheme = (): Theme => {
+export const useInitializeTheme = () => {
   const scheme = useAppSelector((state) => state.interface.scheme);
-  const [theme, setTheme] = useState(defaultTheme);
   const schemeRef = useRef<typeof scheme>(scheme);
 
   useEffect(() => {
+    // update scheme ref
     schemeRef.current = scheme;
+    // sync scheme state from localStorage
     const storageScheme = localStorage.getItem('SCHEME');
     if (storageScheme && storageScheme !== scheme) {
       switchScheme(storageScheme);
     }
   }, [scheme]);
 
+  // watch the scheme change in other pages
   useEffect(() => {
     const listenSchemeChange = (e: StorageEvent) => {
       if (e.key === 'SCHEME') {
@@ -30,6 +31,7 @@ export const useInitializeTheme = (): Theme => {
     return () => window.removeEventListener('storage', listenSchemeChange);
   }, []);
 
+  // set <meta name="color-scheme"/>
   useEffect(() => {
     if (process.env.NODE_ENV === 'test') {
       return;
@@ -47,10 +49,10 @@ export const useInitializeTheme = (): Theme => {
   }, [scheme]);
 
   const switchDark = useCallback(() => {
-    setTheme(darkTheme);
+    document.documentElement.classList.add('dark');
   }, []);
   const switchLight = useCallback(() => {
-    setTheme(lightTheme);
+    document.documentElement.classList.remove('dark');
   }, []);
 
   // Set theme
@@ -86,6 +88,4 @@ export const useInitializeTheme = (): Theme => {
     }
     return () => window.clearTimeout(schemeSwitchHandle);
   }, [scheme, switchDark, switchLight]);
-
-  return theme;
 };

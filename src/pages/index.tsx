@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Logo from '../../public/logo.svg';
 import { FormattedMessage } from 'react-intl';
 import Link from 'next/link';
-import { p } from '../styles/utility/spacing';
 
 const Home: NextPage = () => {
   return (
@@ -11,17 +10,21 @@ const Home: NextPage = () => {
       <Head>
         <title>Playground</title>
       </Head>
-      <main css={p(4)}>
+      <main className="p-4">
         <Logo />
-        <h1>
+        <h1 className=" text-3xl">
           <FormattedMessage defaultMessage="Boluo" id="boluo" description="Project name" />
         </h1>
         <div>
           <div>
-            <Link href="/messenger">Messenger</Link>
+            <Link href="/messenger">
+              <a className="link">Messenger</a>
+            </Link>
           </div>
           <div>
-            <Link href="/design">Design</Link>
+            <Link className="link" href="/design">
+              <a className="link">Design</a>
+            </Link>
           </div>
         </div>
       </main>

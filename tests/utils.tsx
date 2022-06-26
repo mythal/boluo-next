@@ -1,7 +1,6 @@
 import { render as jestRender, RenderOptions } from '@testing-library/react';
 import { FC, ReactElement } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
-import { StyleProvider } from '../src/components/global/StyleProvider';
 import { IntlProvider } from 'react-intl';
 import { store } from '../src/state/store';
 
@@ -9,9 +8,7 @@ import { store } from '../src/state/store';
 const AllTheProviders: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ReduxProvider store={store}>
-      <StyleProvider>
-        <IntlProvider locale="en">{children}</IntlProvider>
-      </StyleProvider>
+      <IntlProvider locale="en">{children}</IntlProvider>
     </ReduxProvider>
   );
 };

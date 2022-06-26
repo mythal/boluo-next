@@ -1,8 +1,6 @@
 import { selectRandom } from '../helper/random';
 import { useEffect, useRef, useState } from 'react';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
-import { css } from '@emotion/react';
-import { gray } from '../styles/utility/color';
 import { useVirtualListBottomLock } from '../hooks/useVirtualListBottomLock';
 import { useDetectUpScroll } from '../hooks/useDetectUpScroll';
 
@@ -10,19 +8,6 @@ interface Item {
   name: string;
   text: string;
 }
-
-const styles = {
-  chatBox: css`
-    height: 20rem;
-    width: 100%;
-  `,
-  item: css`
-    padding: 1rem 0;
-    &:nth-of-type(2n + 0) {
-      background-color: ${gray['200']};
-    }
-  `,
-};
 const nameList: string[] = ['DM', 'Wizard', 'Ranger'];
 
 const fakeTextList: string[] = [
@@ -72,7 +57,7 @@ export const VirtualListDesign = () => {
   useDetectUpScroll(scroller, bottomLock);
 
   return (
-    <div css={styles.chatBox}>
+    <div className="h-[20rem] w-full">
       <a href="https://virtuoso.dev/">Virtuoso Documentation</a>
       <Virtuoso
         ref={virtualListRef}
@@ -84,7 +69,7 @@ export const VirtualListDesign = () => {
         endReached={() => (bottomLock.current = true)}
         itemContent={(index: number, item: Item) => {
           return (
-            <div key={index} css={styles.item}>
+            <div key={index} className="py-4 px-0 even:bg-gray-200">
               <span>{item.name}</span>: {item.text}
             </div>
           );

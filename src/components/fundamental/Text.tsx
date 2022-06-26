@@ -1,23 +1,16 @@
-import { css } from '@emotion/react';
+import clsx from 'clsx';
 import { FC } from 'react';
 import { ChildrenProps, StyleProps } from '../../helper/props';
-import { text } from '../../styles/utility/typography';
-
-const style = css`
-  margin: 0.5em 0;
-
-  &[data-size='small'] {
-    ${text.sm};
-    margin: 0.25em 0;
-  }
-`;
 
 interface Props extends StyleProps, ChildrenProps {
   size?: 'small' | 'normal';
 }
 
 export const Text: FC<Props> = ({ children, size = 'normal', className }) => (
-  <p className={className} css={style} data-size={size}>
+  <p
+    className={clsx(size === 'normal' && 'my-2 mx-0', size === 'small' && 'text-sm my-1 mx-0', className)}
+    data-size={size}
+  >
     {children}
   </p>
 );

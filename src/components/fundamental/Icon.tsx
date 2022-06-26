@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import { icons } from '../../icons/icons';
 import React from 'react';
 
@@ -9,19 +8,7 @@ interface Props {
   label?: string | undefined;
 }
 
-const strutStyle = css`
-  &::before {
-    /*
-    * https://juejin.cn/post/6844903693406437384 https://archive.ph/Qik5h
-    * https://codepen.io/airen/pen/pZVvyL
-    */
-    content: '\u200b';
-  }
-  display: inline-flex;
-  align-items: center;
-  font-size: 1em;
-`;
-const Icon: React.FC<Props> = ({ icon, noStrut, className, label }: Props) => {
+const Icon: React.FC<Props> = ({ icon, noStrut = false, className, label }: Props) => {
   const DynamicIcon = icons[icon];
   const loaded = (
     <DynamicIcon aria-hidden role="img" width="1em" height="1em" className={className} aria-label={label} />
@@ -29,7 +16,7 @@ const Icon: React.FC<Props> = ({ icon, noStrut, className, label }: Props) => {
   if (noStrut) {
     return loaded;
   } else {
-    return <span css={strutStyle}>{loaded}</span>;
+    return <span className="before:content-['\200b'] inline-flex items-center">{loaded}</span>;
   }
 };
 Icon.displayName = 'Icon';

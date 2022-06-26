@@ -1,79 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { css, keyframes, Theme } from '@emotion/react';
 import { ToastCloseButton } from './ToastCloseButton';
 import type { Notification } from '../../state/interface';
 import { useTransition } from 'transition-hook';
 import { ChildrenProps, StyleProps } from '../../helper/props';
-import { unit } from '../../styles/utility/sizing';
-import { shadow } from '../../styles/utility/effect';
+import clsx from 'clsx';
 
 interface Props extends StyleProps, ChildrenProps {
   level?: Notification['level'];
   timeout?: number;
+  global?: boolean;
   onClose?: () => void;
 }
 
-const styles = {
-  shadowInitial: shadow.xl,
-  shadowFinal: css`
-    box-shadow: ${unit(0.5)} ${unit(0.5)} 0 rgba(0, 0, 0, 0.25);
-  `,
-  darkOutline: css`
-    border-color: rgba(128, 128, 128, 0.5);
-  `,
-  closeButtonContainer: css`
-    margin-left: 0.5rem;
-  `,
-  container: (theme: Theme) => css`
-    display: flex;
-    justify-content: space-between;
-    width: max(15vw, 10em);
-    padding: 1rem;
-    border-radius: ${unit(1)};
-    color: #fff;
-    ${styles.shadowFinal};
-    animation: ${place} 0.5s cubic-bezier(0, 0, 0.2, 1);
-
-    --toast-bg-color: ${theme.toast.default};
-    &[data-level='warn'] {
-      --toast-bg-color: ${theme.toast.warning};
-    }
-    &[data-level='error'] {
-      --toast-bg-color: ${theme.toast.error};
-    }
-    background-color: var(--toast-bg-color);
-    border: ${unit(0.5)} solid ${theme.toast.outline};
-
-    &[data-stage='leave'] {
-      animation: ${leave} 210ms;
-    }
-  `,
-};
-
-export const place = keyframes`
-  0% {
-    transform: scale(2);
-    opacity: 0;
-    ${styles.shadowInitial};
-  }
-  75%, 100% {
-    transform: scale(1);
-    opacity: 1;
-    ${styles.shadowFinal};
-  }
-`;
-
-export const leave = keyframes`
-  0% {
-
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-`;
-
-export const Toast: React.FC<Props> = ({ level = 'default', onClose, timeout, children, className }) => {
+export const Toast: React.FC<Props> = ({
+  level = 'default',
+  onClose,
+  timeout,
+  children,
+  className,
+  global = false,
+}) => {
   const [show, setShow] = useState(true);
   const { stage, shouldMount } = useTransition(show, 200);
 
@@ -95,10 +41,28 @@ export const Toast: React.FC<Props> = ({ level = 'default', onClose, timeout, ch
     return null;
   }
   return (
-    <div role="alert" css={styles.container} data-level={level} className={className} data-stage={stage}>
+    <div
+      role="alert"
+      data-level={level}
+      className={clsx(
+        'flex justify-between p-4 rounded text-white shadow-toast',
+        'border-1/2 border-black/10 dark:border-white/10',
+        'w-[max(15vw,10em)]',
+        level === 'default' && 'bg-gray-700 dark:bg-gray-900',
+        level === 'warn' && 'bg-warning-600 dark:bg-warning-700',
+        level === 'error' && 'bg-error-700 dark:bg-error-800',
+        global && [
+          'opacity-0 translate-y-64',
+          stage === 'enter' && 'transition-all duration-300 opacity-100 translate-y-0',
+          stage === 'leave' && 'transition-all duration-200 opacity-0 translate-x-full translate-y-0',
+        ],
+        className
+      )}
+      data-stage={stage}
+    >
       <div>{children}</div>
       {onClose && (
-        <div css={styles.closeButtonContainer}>
+        <div className="ml-2">
           <ToastCloseButton onClose={() => setShow(false)} />
         </div>
       )}

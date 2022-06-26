@@ -1,28 +1,23 @@
-import { display } from '../styles/utility/layout';
-import { gap } from '../styles/utility/grid';
-import { m } from '../styles/utility/spacing';
 import { Toast } from '../components/fundamental/Toast';
 import { useState } from 'react';
-import { itemsStart } from '../styles/utility/box-alignment';
 import { empty } from '../helper/function';
 import { Button } from '../components/fundamental/Button';
 import { notify } from '../state/interface';
 
 export const NotificationDesign = () => {
-  const line = [display.flex, gap(4), m.y(4), itemsStart];
   const [open, setOpen] = useState(true);
 
   return (
     <div>
       <h2>Static toasts</h2>
-      <div css={line}>
+      <div className="flex gap-4 my-4 items-start">
         <Toast>Hello, world</Toast>
         {open && <Toast onClose={() => setOpen(false)}>I can be closed</Toast>}
         <Toast onClose={() => console.log('on close')} timeout={10000}>
           UwU
         </Toast>
       </div>
-      <div css={line}>
+      <div className="flex gap-4 my-4 items-start">
         <Toast level="default">Default</Toast>
         <Toast level="error" onClose={empty}>
           Error
@@ -33,7 +28,7 @@ export const NotificationDesign = () => {
       </div>
 
       <h2>Notifications</h2>
-      <div css={line}>
+      <div className="flex gap-4 my-4 items-start">
         <Button
           onClick={() => {
             notify(`hello, world ${new Date()}`);

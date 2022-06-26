@@ -4,10 +4,8 @@ import { selectRandom } from '../helper/random';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
 import { useVirtualListBottomLock } from '../hooks/useVirtualListBottomLock';
 import { useDetectUpScroll } from '../hooks/useDetectUpScroll';
-import { css } from '@emotion/react';
 import { Button } from '../components/fundamental/Button';
 import Icon from '../components/fundamental/Icon';
-import { blue } from '../styles/utility/color';
 
 interface Item {
   name: string;
@@ -58,24 +56,6 @@ const useItemList = (pause: boolean): { itemList: Item[]; setItemList: (old: Ite
   return { itemList, setItemList };
 };
 
-const styles = {
-  chatBox: css`
-    height: 30em;
-    width: 100%;
-  `,
-  item: css`
-    font-size: 18px;
-    margin: 0.25em 0.5em;
-    padding: 0.5em 0.5em;
-    background-color: ${blue['50']};
-    border: 1px solid ${blue['100']};
-    &:hover {
-      border-color: ${blue['200']};
-    }
-    border-radius: 0.25em;
-  `,
-};
-
 const Messenger: NextPage = () => {
   const [pause, setPause] = useState(false);
   const togglePause = useCallback(() => setPause((pause) => !pause), []);
@@ -86,7 +66,7 @@ const Messenger: NextPage = () => {
   useDetectUpScroll(scroller, bottomLock);
 
   return (
-    <div css={styles.chatBox}>
+    <div className="h-[30em] w-full">
       <Virtuoso
         ref={virtualListRef}
         totalCount={itemList.length}
@@ -97,7 +77,10 @@ const Messenger: NextPage = () => {
         endReached={() => (bottomLock.current = true)}
         itemContent={(index: number, item: Item) => {
           return (
-            <div key={index} css={styles.item}>
+            <div
+              key={index}
+              className="text-lg my-1 mx-2 p-2 bg-blue-50 border border-blue-100 hover:border-blue-200 rounded"
+            >
               <span>{item.name}</span>: {item.text}
             </div>
           );

@@ -19,28 +19,16 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { css } from '@emotion/react';
+import clsx from 'clsx';
 
 interface SortableItemProps {
   id: UniqueIdentifier;
 }
-const styles = {
-  item: css`
-    color: black;
-    width: 100%;
-    padding: 1rem 1rem;
-    cursor: move;
-    background-color: antiquewhite;
-    border: 1px solid antiquewhite;
+const item = clsx(
+  'text-black w-full p-4 cursor-move bg-green-200 border border-green-300 hover:border-black',
+  'dark:text-white dark:bg-green-700'
+);
 
-    &:hover {
-      border: 1px solid black;
-    }
-    &[data-dragging='true'] {
-      opacity: 40%;
-    }
-  `,
-};
 export function SortableItem({ id }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
 
@@ -50,14 +38,21 @@ export function SortableItem({ id }: SortableItemProps) {
   };
 
   return (
-    <div ref={setNodeRef} css={styles.item} data-dragging={isDragging} style={style} {...attributes} {...listeners}>
+    <div
+      ref={setNodeRef}
+      data-dragging={isDragging}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className={clsx(item, isDragging && 'opacity-40')}
+    >
       {id}
     </div>
   );
 }
 export const Item = forwardRef<HTMLDivElement, { id: UniqueIdentifier }>(({ id, ...props }, ref) => {
   return (
-    <div css={styles.item} {...props} ref={ref}>
+    <div {...props} className={clsx(item)} ref={ref}>
       {id}
     </div>
   );

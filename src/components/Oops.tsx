@@ -1,23 +1,10 @@
 import { FormattedMessage } from 'react-intl';
 import React, { useRef } from 'react';
-import { css } from '@emotion/react';
 import { useContainerQuery } from '../hooks/useContainerQuery';
 import { Text } from './fundamental/Text';
-import { text } from '../styles/utility/typography';
-import { float } from '../styles/utility/layout';
 import { RefreshButton } from './RefreshButton';
-import { m } from '../styles/utility/spacing';
-import { w } from '../styles/utility/sizing';
 import Icon from './fundamental/Icon';
-
-const styles = {
-  container: css`
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  `,
-};
+import clsx from 'clsx';
 
 export interface Props {
   error: unknown;
@@ -39,11 +26,11 @@ const config = {
 
 function OopsXs({}: Props) {
   return (
-    <div css={w.full}>
+    <div className="w-full">
       <Text>
         <FormattedMessage defaultMessage="Something going wrong." />{' '}
         <a href="#" onClick={() => window.location.reload()}>
-          <Icon icon="refresh" css={m.r(1)} />
+          <Icon icon="refresh" className="mr-1" />
           <FormattedMessage defaultMessage="refresh" />
         </a>
       </Text>
@@ -54,8 +41,8 @@ function OopsXs({}: Props) {
 function OopsMd({}: Props) {
   return (
     <>
-      <RefreshButton css={[float.right, m.b(2), m.l(2)]} text={false} small />
-      <Text css={[text.lg]}>
+      <RefreshButton className="float-right mb-2 ml-2" text={false} small />
+      <Text className="text-lg">
         <FormattedMessage defaultMessage="Oops" />
       </Text>
       <Text size="small">
@@ -67,8 +54,8 @@ function OopsMd({}: Props) {
 function OopsLg({}: Props) {
   return (
     <>
-      <RefreshButton css={[float.right, m.b(2), m.l(2)]} text />
-      <Text css={[text.xl]}>
+      <RefreshButton className="float-right mb-2 ml-2" text />
+      <Text className="text-xl">
         <FormattedMessage defaultMessage="Oops" />
       </Text>
       <Text>
@@ -95,7 +82,12 @@ function Oops({ error, className }: Props) {
   }
 
   return (
-    <div css={styles.container} data-width={width} data-height={height} className={className} ref={ref}>
+    <div
+      data-width={width}
+      data-height={height}
+      className={clsx('p-4 w-full h-full overflow-hidden', className)}
+      ref={ref}
+    >
       {oops}
     </div>
   );
