@@ -56,7 +56,7 @@ const Design: Page = () => {
     <div className="flex">
       <div className="h-screen bg-gray-100 py-4 px-9 dark:bg-gray-900">
         <div>
-          <Button onClick={() => setSettingDialog(true)}>
+          <Button aria-label="Settings" onClick={() => setSettingDialog(true)}>
             <Icon icon="settings" />
           </Button>
           <Dialog dismiss={() => setSettingDialog(false)} show={settingDialog}>
