@@ -8,7 +8,7 @@ module.exports = withMDX({
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: true,
-  swcMinify: true,
+  swcMinify: false,
   eslint: {
     dirs: ['src', 'tests'],
   },
