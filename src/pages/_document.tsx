@@ -7,7 +7,7 @@ import { Favicon } from '../components/global/Favicon';
 function Document() {
   // noinspection HtmlRequiredTitleElement
   return (
-    <Html className=" w-full h-full">
+    <Html className=" h-full w-full">
       <Head>
         <meta name="description" content="RPG tool, next generation" />
         <meta name="color-scheme" content="dark light" />
@@ -17,7 +17,7 @@ function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body className="w-full h-full dark:text-gray-50 dark:bg-bgDark">
+      <body className="h-full w-full dark:bg-bgDark dark:text-gray-50">
         <Main />
         <div id="portal" />
         <NextScript />

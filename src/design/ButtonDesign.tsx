@@ -6,7 +6,7 @@ import { SpinnerIcon } from '../components/SpinnerIcon';
 export const ButtonDesign: FC = () => {
   return (
     <div>
-      <div className="flex gap-2 my-2">
+      <div className="my-2 flex gap-2">
         <Button>Button</Button>
         <Button data-icon>
           <Icon icon="fairy" />
@@ -16,7 +16,7 @@ export const ButtonDesign: FC = () => {
         </Button>
         <Button disabled>Disabled</Button>
       </div>
-      <div className="flex gap-2 my-2">
+      <div className="my-2 flex gap-2">
         <Button data-small>small</Button>
         <Button data-small>
           <Icon icon="archive" /> small
@@ -25,7 +25,7 @@ export const ButtonDesign: FC = () => {
           <SpinnerIcon /> small
         </Button>
       </div>
-      <div className="flex gap-2 my-2">
+      <div className="my-2 flex gap-2">
         <Button data-type="primary">Primary</Button>
       </div>
     </div>

@@ -8,7 +8,7 @@ interface Props extends StyleProps, ChildrenProps {
 
 export const Text: FC<Props> = ({ children, size = 'normal', className }) => (
   <p
-    className={clsx(size === 'normal' && 'my-2 mx-0', size === 'small' && 'text-sm my-1 mx-0', className)}
+    className={clsx(size === 'normal' && 'my-2 mx-0', size === 'small' && 'my-1 mx-0 text-sm', className)}
     data-size={size}
   >
     {children}

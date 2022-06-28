@@ -45,16 +45,16 @@ export const Toast: React.FC<Props> = ({
       role="alert"
       data-level={level}
       className={clsx(
-        'flex justify-between p-4 rounded text-white shadow-toast',
+        'flex justify-between rounded p-4 text-white shadow-toast',
         'border-1/2 border-black/10 dark:border-white/10',
         'w-[max(15vw,10em)]',
         level === 'default' && 'bg-gray-700 dark:bg-gray-900',
         level === 'warn' && 'bg-warning-600 dark:bg-warning-700',
         level === 'error' && 'bg-error-700 dark:bg-error-800',
         global && [
-          'opacity-0 translate-y-64',
-          stage === 'enter' && 'transition-all duration-300 opacity-100 translate-y-0',
-          stage === 'leave' && 'transition-all duration-200 opacity-0 translate-x-full translate-y-0',
+          'translate-y-64 opacity-0',
+          stage === 'enter' && 'translate-y-0 opacity-100 transition-all duration-300',
+          stage === 'leave' && 'translate-x-full translate-y-0 opacity-0 transition-all duration-200',
         ],
         className
       )}

@@ -51,9 +51,9 @@ export const PopoverDesign = () => {
         </p>
         <div
           ref={boxRef}
-          className="w-[30em] h-[20em] relative overflow-scroll border border-black overscroll-contain resize bg-gray-100 dark:bg-gray-900"
+          className="relative h-[20em] w-[30em] resize overflow-scroll overscroll-contain border border-black bg-gray-100 dark:bg-gray-900"
         >
-          <div className="inner w-[2000px] h-[2000px] flex justify-center items-center">
+          <div className="inner flex h-[2000px] w-[2000px] items-center justify-center">
             <Button ref={reference}>I am a useless button</Button>
             <div
               ref={floating}
@@ -64,7 +64,7 @@ export const PopoverDesign = () => {
               }}
               className={clsx(
                 styles.tooltip,
-                'tooltip rounded-sm p-4 inline-block min-w-[8em] max-w-[10em]',
+                'tooltip inline-block min-w-[8em] max-w-[10em] rounded-sm p-4',
                 'bg-tooltip text-black'
               )}
               role="tooltip"
@@ -74,7 +74,7 @@ export const PopoverDesign = () => {
                 style={arrowStyle}
                 ref={arrowRef}
                 data-placement={placement}
-                className={clsx(styles.arrow, 'arrow -z-10 absolute w-4 h-4 bg-tooltip')}
+                className={clsx(styles.arrow, 'arrow absolute -z-10 h-4 w-4 bg-tooltip')}
               />
             </div>
           </div>

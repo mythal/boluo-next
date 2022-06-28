@@ -16,7 +16,7 @@ const Icon: React.FC<Props> = ({ icon, noStrut = false, className, label }: Prop
   if (noStrut) {
     return loaded;
   } else {
-    return <span className="before:content-['\200b'] inline-flex items-center">{loaded}</span>;
+    return <span className="inline-flex items-center before:content-['\200b']">{loaded}</span>;
   }
 };
 Icon.displayName = 'Icon';

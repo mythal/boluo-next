@@ -49,7 +49,7 @@ const Design: Page = () => {
   const { permission, request } = useRequestNotification();
   return (
     <div className="flex">
-      <div className="bg-gray-100 dark:bg-gray-900 py-4 px-9 h-screen">
+      <div className="h-screen bg-gray-100 py-4 px-9 dark:bg-gray-900">
         <div>
           <Button onClick={() => setSettingDialog(true)}>
             <Icon icon="settings" />
@@ -70,7 +70,7 @@ const Design: Page = () => {
             </div>
           </Dialog>
         </div>
-        <ul className="p-0 list-none">{sidebarItems}</ul>
+        <ul className="list-none p-0">{sidebarItems}</ul>
       </div>
       <DesignRoute tab={tab} />
     </div>

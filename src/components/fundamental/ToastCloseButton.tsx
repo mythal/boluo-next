@@ -13,8 +13,8 @@ export const ToastCloseButton: React.FC<Props> = ({ onClose }) => {
       onClick={() => onClose()}
       className={clsx(
         'cursor-pointer appearance-none border-none',
-        'w-7 h-7 text-xl flex items-center justify-center rounded text-[inherit]',
-        'bg-white/20 hover:bg-white/50 active:bg-white/75 focus:ring'
+        'text-[inherit] flex h-7 w-7 items-center justify-center rounded text-xl',
+        'bg-white/20 hover:bg-white/50 focus:ring active:bg-white/75'
       )}
     >
       <Icon icon="x" />

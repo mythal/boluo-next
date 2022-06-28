@@ -17,7 +17,7 @@ NotificationCard.displayName = 'NotificationCard';
 export const NotificationList: FC = () => {
   const notifications = useAppSelector((state) => state.interface.notifications);
   return (
-    <div className="z-40 fixed -bottom-2 -right-2 flex flex-col-reverse">
+    <div className="fixed -bottom-2 -right-2 z-40 flex flex-col-reverse">
       {notifications.map((notification) => (
         <NotificationCard key={notification.id} {...notification} />
       ))}

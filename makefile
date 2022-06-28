@@ -23,7 +23,7 @@ start: build
 
 format:
 	@echo "Formatting code..."
-	yarn run prettier --write --config ./.prettierrc .
+	yarn run prettier --write --config ./prettier.config.js .
 
 lint:
 	@echo "Linting code..."

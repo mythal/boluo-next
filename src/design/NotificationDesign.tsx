@@ -10,14 +10,14 @@ export const NotificationDesign = () => {
   return (
     <div>
       <h2>Static toasts</h2>
-      <div className="flex gap-4 my-4 items-start">
+      <div className="my-4 flex items-start gap-4">
         <Toast>Hello, world</Toast>
         {open && <Toast onClose={() => setOpen(false)}>I can be closed</Toast>}
         <Toast onClose={() => console.log('on close')} timeout={10000}>
           UwU
         </Toast>
       </div>
-      <div className="flex gap-4 my-4 items-start">
+      <div className="my-4 flex items-start gap-4">
         <Toast level="default">Default</Toast>
         <Toast level="error" onClose={empty}>
           Error
@@ -28,7 +28,7 @@ export const NotificationDesign = () => {
       </div>
 
       <h2>Notifications</h2>
-      <div className="flex gap-4 my-4 items-start">
+      <div className="my-4 flex items-start gap-4">
         <Button
           onClick={() => {
             notify(`hello, world ${new Date()}`);

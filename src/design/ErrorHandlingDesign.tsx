@@ -11,7 +11,7 @@ export const ErrorHandlingDesign = () => {
           resize <input type="checkbox" onChange={(e) => setResize(e.target.checked)} checked={resize} />
         </label>
       </p>
-      <div className={clsx(resize && 'resize overflow-scroll', 'w-[50vw] h-[50vh] border')}>
+      <div className={clsx(resize && 'resize overflow-scroll', 'h-[50vh] w-[50vw] border')}>
         <Oops error={'Something'} />
       </div>
     </div>

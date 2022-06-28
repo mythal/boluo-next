@@ -79,7 +79,7 @@ const Messenger: NextPage = () => {
           return (
             <div
               key={index}
-              className="text-lg my-1 mx-2 p-2 bg-blue-50 border border-blue-100 hover:border-blue-200 rounded"
+              className="my-1 mx-2 rounded border border-blue-100 bg-blue-50 p-2 text-lg hover:border-blue-200"
             >
               <span>{item.name}</span>: {item.text}
             </div>

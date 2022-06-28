@@ -85,7 +85,7 @@ function Oops({ error, className }: Props) {
     <div
       data-width={width}
       data-height={height}
-      className={clsx('p-4 w-full h-full overflow-hidden', className)}
+      className={clsx('h-full w-full overflow-hidden p-4', className)}
       ref={ref}
     >
       {oops}

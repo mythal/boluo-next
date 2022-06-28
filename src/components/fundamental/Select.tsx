@@ -46,16 +46,16 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
         )}
         <button
           className={clsx(
-            'flex justify-between gap-1 w-full p-2',
-            'rounded cursor-pointer',
+            'flex w-full justify-between gap-1 p-2',
+            'cursor-pointer rounded',
             'disabled:cursor-not-allowed',
-            'text-black bg-white border-1/2 border-gray-300',
-            'dark:text-white dark:bg-gray-900 dark:border-gray-600',
+            'border-1/2 border-gray-300 bg-white text-black',
+            'dark:border-gray-600 dark:bg-gray-900 dark:text-white',
             'disabled:bg-gray-100 disabled:text-gray-500',
             'dark:disabled:bg-black dark:disabled:text-gray-500',
-            'hover-enabled:bg-gray-200 hover-enabled:border-gray-500',
-            'dark:hover-enabled:bg-gray-800 dark:hover-enabled:border-gray-500',
-            isOpen && 'bg-gray-200 border-gray-500 dark:bg-black dark:border-gray-500'
+            'hover-enabled:border-gray-500 hover-enabled:bg-gray-200',
+            'dark:hover-enabled:border-gray-500 dark:hover-enabled:bg-gray-800',
+            isOpen && 'border-gray-500 bg-gray-200 dark:border-gray-500 dark:bg-black'
           )}
           aria-label="toggle menu"
           type="button"
@@ -74,9 +74,9 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
         data-stage={stage}
         aria-hidden={!isOpen}
         className={clsx(
-          'p-0 w-full m-0 mt-1 list-none absolute z-10 border rounded select-none',
+          'absolute z-10 m-0 mt-1 w-full select-none list-none rounded border p-0',
           'origin-top scale-y-0 transition-all duration-100',
-          'shadow-menu border border-black dark:border-gray-600',
+          'border border-black shadow-menu dark:border-gray-600',
           'text-black dark:text-white',
           stage === 'enter' && 'scale-y-100'
         )}
@@ -91,7 +91,7 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
               className={clsx(
                 'cursor-pointer px-4 py-3',
                 'first-of-type:rounded-t last-of-type:rounded-b',
-                !highlighted && !selected && ['text-black bg-gray-100', 'dark:text-white dark:bg-black'],
+                !highlighted && !selected && ['bg-gray-100 text-black', 'dark:bg-black dark:text-white'],
                 'hover:bg-gray-50',
                 'dark:hover:bg-gray-600',
                 highlighted && !selected && 'bg-gray-50 dark:bg-gray-600',

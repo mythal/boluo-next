@@ -31,7 +31,7 @@ export const Loading: FC = () => {
       data-width={width}
       data-height={height}
       className={clsx(
-        'w-full h-full',
+        'h-full w-full',
         'flex items-center justify-center',
         lg && 'text-[3rem]',
         md && 'text-2xl',

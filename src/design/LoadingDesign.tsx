@@ -11,7 +11,7 @@ export const LoadingDesign: FC = () => {
           resize <input type="checkbox" checked={resize} onChange={(e) => setResize(e.target.checked)} />
         </label>
       </p>
-      <div className={clsx('w-[20em] h-[20em]', resize && 'overflow-scroll resize')}>
+      <div className={clsx('h-[20em] w-[20em]', resize && 'resize overflow-scroll')}>
         <Loading />
       </div>
     </div>

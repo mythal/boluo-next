@@ -12,12 +12,12 @@ export const FormDesign = () => {
 
   return (
     <div>
-      <div className="flex gap-2 my-2">
+      <div className="my-2 flex gap-2">
         <TextInput placeholder="Default" />
         <TextInput placeholder="Error" data-state="error" />
         <TextInput placeholder="Warning" data-state="warning" />
       </div>
-      <div className="flex gap-2 my-2">
+      <div className="my-2 flex gap-2">
         <TextInput disabled placeholder="Default" />
         <TextInput disabled placeholder="Error" data-state="error" />
         <TextInput disabled placeholder="Warning" data-state="warning" />
@@ -26,7 +26,7 @@ export const FormDesign = () => {
         <TextArea />
       </div>
       <div className="mt-2">
-        <div className="w-[16rem] flex flex-col gap-2">
+        <div className="flex w-[16rem] flex-col gap-2">
           <Select items={selectItems} value={selected} onChange={setSelected} />
           <Select items={selectItems} value={selected} onChange={setSelected} />
           <Select items={selectItems} value={selected} onChange={setSelected} disabled />
