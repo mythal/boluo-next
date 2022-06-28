@@ -45,7 +45,7 @@ const Design: Page = () => {
   const sidebarItems = Object.entries(tabRouteTable).map(([path, item]) => {
     return (
       <li key={path}>
-        <Link href={`/design/${path}`}>
+        <Link href={`/design/${path}`} shallow>
           <a className={clsx('link block py-1 px-0 hover:underline', path === tab && 'underline')}>{item.title}</a>
         </Link>
       </li>
