@@ -4,6 +4,7 @@ import { StyleProps } from '../../helper/props';
 import Icon from './Icon';
 import { useTransition } from 'transition-hook';
 import clsx from 'clsx';
+import { useId } from 'react';
 
 export interface SelectItem {
   label: string;
@@ -19,6 +20,7 @@ interface Props extends StyleProps {
 }
 
 export const Select: React.FC<Props> = ({ items, value, onChange, label, className, disabled = false }) => {
+  const id = useId();
   function itemToString(item: SelectItem | null) {
     return item ? item.value : '';
   }
@@ -27,6 +29,7 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
     items,
     itemToString,
     selectedItem,
+    id,
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         onChange(selectedItem.value);
