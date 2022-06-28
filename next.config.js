@@ -39,6 +39,9 @@ module.exports = withMDX({
     // https://formatjs.io/docs/guides/advanced-usage#react-intl-without-parser-40-smaller
     // https://github.com/vercel/next.js/issues/30434
     config.resolve.alias['@formatjs/icu-messageformat-parser'] = '@formatjs/icu-messageformat-parser/no-parser';
+
+    // avoid extra bundle cost, see https://github.com/reduxjs/react-redux/releases/tag/v8.0.0
+    config.resolve.alias['react-redux'] = 'react-redux/es/next';
     return config;
   },
 });
