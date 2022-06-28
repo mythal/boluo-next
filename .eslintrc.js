@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ['@typescript-eslint', '@emotion', 'formatjs'],
+  plugins: ['@typescript-eslint', 'formatjs'],
   extends: [
     'next/core-web-vitals',
     'plugin:@typescript-eslint/eslint-recommended',
