@@ -49,7 +49,7 @@ const useItemList = () => {
   return itemList;
 };
 
-export const VirtualListDesign = () => {
+const VirtualListDesign = () => {
   const itemList = useItemList();
   const virtualListRef = useRef<VirtuosoHandle>(null);
   const [scroller, setScroller] = useState<HTMLDivElement | null>(null);
@@ -84,3 +84,5 @@ export const VirtualListDesign = () => {
     </div>
   );
 };
+
+export default VirtualListDesign;

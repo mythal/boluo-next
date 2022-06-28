@@ -3,7 +3,7 @@ import { Button } from '../components/fundamental/Button';
 import Icon from '../components/fundamental/Icon';
 import { SpinnerIcon } from '../components/SpinnerIcon';
 
-export const ButtonDesign: FC = () => {
+const ButtonDesign: FC = () => {
   return (
     <div>
       <div className="my-2 flex gap-2">
@@ -31,3 +31,5 @@ export const ButtonDesign: FC = () => {
     </div>
   );
 };
+
+export default ButtonDesign;

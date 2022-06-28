@@ -2,7 +2,7 @@ import Oops from '../components/Oops';
 import { useState } from 'react';
 import clsx from 'clsx';
 
-export const ErrorHandlingDesign = () => {
+const ErrorHandlingDesign = () => {
   const [resize, setResize] = useState(true);
   return (
     <div>
@@ -17,3 +17,5 @@ export const ErrorHandlingDesign = () => {
     </div>
   );
 };
+
+export default ErrorHandlingDesign;

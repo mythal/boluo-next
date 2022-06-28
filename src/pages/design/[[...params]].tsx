@@ -1,5 +1,5 @@
 import { Page } from '../../helper/layout';
-import { FC, useState } from 'react';
+import React, { FC, Suspense, useState } from 'react';
 import Link from 'next/link';
 import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
 import Home from '../../design/Home.mdx';
@@ -11,15 +11,20 @@ import { Dialog } from '../../components/fundamental/Dialog';
 import { LocaleSwitch } from '../../components/LocaleSwitch';
 import { useRequestNotification } from '../../hooks/useRequestNotification';
 import clsx from 'clsx';
+import { Loading } from '../../components/Loading';
+import { GetServerSideProps } from 'next';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
+    const Page = tabRouteTable[tab].component;
     return (
       <div className="py-4 px-8">
         <Head>
           <title>{'Design :: ' + tabRouteTable[tab].title}</title>
         </Head>
-        {tabRouteTable[tab].component}
+        <Suspense fallback={<Loading />}>
+          <Page />
+        </Suspense>
       </div>
     );
   } else {
@@ -72,9 +77,16 @@ const Design: Page = () => {
         </div>
         <ul className="list-none p-0">{sidebarItems}</ul>
       </div>
-      <DesignRoute tab={tab} />
+      <Suspense fallback={<Loading />}>
+        <DesignRoute tab={tab} />
+      </Suspense>
     </div>
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {},
+  };
+};
 export default Design;

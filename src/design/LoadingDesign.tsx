@@ -17,3 +17,5 @@ export const LoadingDesign: FC = () => {
     </div>
   );
 };
+
+export default LoadingDesign;

@@ -4,7 +4,7 @@ import { empty } from '../helper/function';
 import { Button } from '../components/fundamental/Button';
 import { notify } from '../state/interface';
 
-export const NotificationDesign = () => {
+const NotificationDesign = () => {
   const [open, setOpen] = useState(true);
 
   return (
@@ -56,3 +56,5 @@ export const NotificationDesign = () => {
     </div>
   );
 };
+
+export default NotificationDesign;

@@ -2,7 +2,7 @@ import { TextArea, TextInput } from '../components/fundamental/TextInput';
 import { Select, SelectItem } from '../components/fundamental/Select';
 import { useState } from 'react';
 
-export const FormDesign = () => {
+const FormDesign = () => {
   const selectItems = [
     { label: 'Hello, world', value: 'en' },
     { label: '你好，世界', value: 'zh' },
@@ -35,3 +35,5 @@ export const FormDesign = () => {
     </div>
   );
 };
+
+export default FormDesign;

@@ -3,7 +3,7 @@ import { Button } from '../components/fundamental/Button';
 import { Dialog } from '../components/fundamental/Dialog';
 import { empty } from '../helper/function';
 
-export const DialogDesign: FC = () => {
+const DialogDesign: FC = () => {
   const [open1, setOpen1] = useState<boolean>(false);
   const dismiss1 = useCallback(() => setOpen1(false), []);
 
@@ -24,3 +24,5 @@ export const DialogDesign: FC = () => {
     </div>
   );
 };
+
+export default DialogDesign;

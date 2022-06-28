@@ -20,6 +20,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import clsx from 'clsx';
+import { useId } from 'react';
 
 interface SortableItemProps {
   id: UniqueIdentifier;
@@ -29,7 +30,7 @@ const item = clsx(
   'dark:text-white dark:bg-green-700'
 );
 
-export function SortableItem({ id }: SortableItemProps) {
+function SortableItem({ id }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
 
   const style = {
@@ -58,6 +59,7 @@ export const Item = forwardRef<HTMLDivElement, { id: UniqueIdentifier }>(({ id, 
   );
 });
 export function SortableDesign() {
+  const id = useId();
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [items, setItems] = useState<UniqueIdentifier[]>(['1', '2', '3']);
   const sensors = useSensors(
@@ -69,6 +71,7 @@ export function SortableDesign() {
 
   return (
     <DndContext
+      id={id}
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
@@ -101,3 +104,5 @@ export function SortableDesign() {
     setActiveId(null);
   }
 }
+
+export default SortableDesign;
