@@ -1,12 +1,6 @@
-import { Provider as ReduxProvider } from 'react-redux';
-import { ErrorBoundary } from '../components/ErrorBoundary';
-import { LocaleProvider } from '../components/global/LocaleProvider';
 import { AppPropsWithLayout } from '../helper/layout';
-import { store } from '../state/store';
-import { NotificationList } from '../components/global/NotificationList';
 import { usePreventScroll } from '@react-aria/overlays';
 import '../styles/globals.tailwind.css';
-import { SchemeProvider } from '../components/global/SchemeProvider';
 
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
@@ -31,16 +25,6 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
   const title = Component.title;
   usePreventScroll();
-
-  return (
-    <ReduxProvider store={store}>
-      <SchemeProvider>
-        <ErrorBoundary>
-          <LocaleProvider>{getLayout(<Component {...pageProps} />, title)}</LocaleProvider>
-          <NotificationList />
-        </ErrorBoundary>
-      </SchemeProvider>
-    </ReduxProvider>
-  );
+  return getLayout(<Component {...pageProps} />, title);
 }
 export default App;

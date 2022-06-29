@@ -3,8 +3,8 @@
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import { AppProps } from 'next/app';
-
-export type Page = NextPage & {
+import { SwrFallbackProps } from './SwrProps';
+export type Page = NextPage<SwrFallbackProps> & {
   getLayout?: (page: ReactElement, title?: string) => ReactNode;
   title?: string;
 };

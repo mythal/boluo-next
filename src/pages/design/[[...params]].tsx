@@ -1,6 +1,7 @@
 import { Page } from '../../helper/layout';
 import React, { FC, Suspense, useState } from 'react';
 import Link from 'next/link';
+import { Providers } from '../../components/global/Providers';
 import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
 import Home from '../../design/Home.mdx';
 import { SchemeSwitch } from '../../components/SchemeSwitch';
@@ -12,7 +13,8 @@ import { LocaleSwitch } from '../../components/LocaleSwitch';
 import { useRequestNotification } from '../../hooks/useRequestNotification';
 import clsx from 'clsx';
 import { Loading } from '../../components/Loading';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
+import { loadSwrProps } from '../../helper/SwrProps';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   if (tabRouteTable.hasOwnProperty(tab)) {
@@ -39,7 +41,7 @@ const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
   }
 };
 
-const Design: Page = () => {
+const Design: Page = ({ swrFallback }) => {
   const tab = useDesignRoute();
   const [settingDialog, setSettingDialog] = useState(false);
   const sidebarItems = Object.entries(tabRouteTable).map(([path, item]) => {
@@ -53,40 +55,45 @@ const Design: Page = () => {
   });
   const { permission, request } = useRequestNotification();
   return (
-    <div className="flex">
-      <div className="h-screen bg-gray-100 py-4 px-9 dark:bg-gray-900">
-        <div>
-          <Button aria-label="Settings" onClick={() => setSettingDialog(true)}>
-            <Icon icon="settings" />
-          </Button>
-          <Dialog dismiss={() => setSettingDialog(false)} show={settingDialog}>
-            <div>
-              <SchemeSwitch />
-            </div>
-            <div className="mt-2">
-              <LocaleSwitch />
-            </div>
-            <div className="mt-2">
-              <Button disabled={permission !== 'default'} onClick={request}>
-                {permission === 'denied' && 'Denied'}
-                {permission === 'default' && 'Turn On Notification'}
-                {permission === 'granted' && 'Notification ON'}
-              </Button>
-            </div>
-          </Dialog>
+    <Providers swrFallback={swrFallback}>
+      <div className="flex">
+        <div className="h-screen bg-gray-100 py-4 px-9 dark:bg-gray-900">
+          <div>
+            <Button aria-label="Settings" onClick={() => setSettingDialog(true)}>
+              <Icon icon="settings" />
+            </Button>
+            <Dialog dismiss={() => setSettingDialog(false)} show={settingDialog}>
+              <div>
+                <SchemeSwitch />
+              </div>
+              <div className="mt-2">
+                <LocaleSwitch />
+              </div>
+              <div className="mt-2">
+                <Button disabled={permission !== 'default'} onClick={request}>
+                  {permission === 'denied' && 'Denied'}
+                  {permission === 'default' && 'Turn On Notification'}
+                  {permission === 'granted' && 'Notification ON'}
+                </Button>
+              </div>
+            </Dialog>
+          </div>
+          <ul className="list-none p-0">{sidebarItems}</ul>
         </div>
-        <ul className="list-none p-0">{sidebarItems}</ul>
+        <Suspense fallback={<Loading />}>
+          <DesignRoute tab={tab} />
+        </Suspense>
       </div>
-      <Suspense fallback={<Loading />}>
-        <DesignRoute tab={tab} />
-      </Suspense>
-    </div>
+    </Providers>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
-    props: {},
+    props: {
+      ...(await loadSwrProps(context.locale)),
+    },
   };
 };
+
 export default Design;

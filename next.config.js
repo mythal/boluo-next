@@ -10,6 +10,10 @@ module.exports = withMDX(
     poweredByHeader: false,
     trailingSlash: true,
     swcMinify: false,
+    i18n: {
+      locales: ['en', 'ja', 'zh-CN'],
+      defaultLocale: 'en',
+    },
     eslint: {
       dirs: ['src', 'tests'],
     },

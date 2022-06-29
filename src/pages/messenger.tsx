@@ -6,6 +6,7 @@ import { useVirtualListBottomLock } from '../hooks/useVirtualListBottomLock';
 import { useDetectUpScroll } from '../hooks/useDetectUpScroll';
 import { Button } from '../components/fundamental/Button';
 import Icon from '../components/fundamental/Icon';
+import { Providers } from '../components/global/Providers';
 
 interface Item {
   name: string;
@@ -66,36 +67,38 @@ const Messenger: NextPage = () => {
   useDetectUpScroll(scroller, bottomLock);
 
   return (
-    <div className="h-[30em] w-full">
-      <Virtuoso
-        ref={virtualListRef}
-        totalCount={itemList.length}
-        initialTopMostItemIndex={999}
-        alignToBottom
-        data={itemList}
-        overscan={100}
-        endReached={() => (bottomLock.current = true)}
-        itemContent={(index: number, item: Item) => {
-          return (
-            <div
-              key={index}
-              className="my-1 mx-2 rounded border border-blue-100 bg-blue-50 p-2 text-lg hover:border-blue-200"
-            >
-              <span>{item.name}</span>: {item.text}
-            </div>
-          );
-        }}
-        scrollerRef={(ref) => {
-          if (ref instanceof HTMLDivElement) {
-            setScroller(ref);
-          }
-        }}
-        followOutput="smooth"
-      />
-      <div>
-        <Button onClick={togglePause}>{pause ? <Icon icon="play" /> : <Icon icon="pause" />}</Button>
+    <Providers>
+      <div className="h-[30em] w-full">
+        <Virtuoso
+          ref={virtualListRef}
+          totalCount={itemList.length}
+          initialTopMostItemIndex={999}
+          alignToBottom
+          data={itemList}
+          overscan={100}
+          endReached={() => (bottomLock.current = true)}
+          itemContent={(index: number, item: Item) => {
+            return (
+              <div
+                key={index}
+                className="my-1 mx-2 rounded border border-blue-100 bg-blue-50 p-2 text-lg hover:border-blue-200"
+              >
+                <span>{item.name}</span>: {item.text}
+              </div>
+            );
+          }}
+          scrollerRef={(ref) => {
+            if (ref instanceof HTMLDivElement) {
+              setScroller(ref);
+            }
+          }}
+          followOutput="smooth"
+        />
+        <div>
+          <Button onClick={togglePause}>{pause ? <Icon icon="play" /> : <Icon icon="pause" />}</Button>
+        </div>
       </div>
-    </div>
+    </Providers>
   );
 };
 
