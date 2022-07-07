@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { startSchemeSwitching, stopSchemeSwitching } from '../helper/scheme';
 import { isDaytime } from '../helper/time';
 import { useAppSelector } from '../state/store';
-import { switchScheme } from '../state/interface';
+import { switchScheme } from '../state/user-interface';
 
 export const useInitializeTheme = () => {
   const scheme = useAppSelector((state) => state.interface.scheme);

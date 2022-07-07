@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 import React, { useCallback } from 'react';
-import { useAppSelector } from '../../state/store';
+import { perform, useAppSelector } from '../../state/store';
 import { Toast } from '../fundamental/Toast';
-import { dismissNotification, Notification } from '../../state/interface';
+import type { UiNotification } from '../../state/user-interface';
 
-const NotificationCard: FC<Notification> = React.memo(({ id, level, child }) => {
-  const onClose = useCallback(() => dismissNotification(id), [id]);
+const NotificationCard: FC<UiNotification> = React.memo(({ id, level, child }) => {
+  const onClose = useCallback(() => perform('dismissNotification', id), [id]);
   return (
     <Toast className="mt-4" key={id} global level={level} onClose={onClose}>
       {child}

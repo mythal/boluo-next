@@ -2,7 +2,7 @@ import { Toast } from '../components/fundamental/Toast';
 import { useState } from 'react';
 import { empty } from '../helper/function';
 import { Button } from '../components/fundamental/Button';
-import { notify } from '../state/interface';
+import { notify } from '../state/user-interface';
 
 const NotificationDesign = () => {
   const [open, setOpen] = useState(true);

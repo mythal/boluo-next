@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { IntlProvider } from 'react-intl';
 import { IntlErrorCode, OnErrorFn } from '@formatjs/intl';
 import { useAppSelector } from '../../state/store';
-import { changeLocale, IntlMessages, Locale } from '../../state/interface';
-import { notify } from '../../state/interface';
+import { changeLocale, IntlMessages, Locale } from '../../state/user-interface';
+import { notify } from '../../state/user-interface';
 import useSWRImmutable from 'swr/immutable';
 import { ChildrenProps } from '../../helper/props';
 

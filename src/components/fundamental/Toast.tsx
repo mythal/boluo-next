@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ToastCloseButton } from './ToastCloseButton';
-import type { Notification } from '../../state/interface';
+import type { UiNotification } from '../../state/user-interface';
 import { useTransition } from 'transition-hook';
 import { ChildrenProps, StyleProps } from '../../helper/props';
 import clsx from 'clsx';
 
 interface Props extends StyleProps, ChildrenProps {
-  level?: Notification['level'];
+  level?: UiNotification['level'];
   timeout?: number;
   global?: boolean;
   onClose?: () => void;

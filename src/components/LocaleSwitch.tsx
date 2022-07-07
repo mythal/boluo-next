@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { StyleProps } from '../helper/props';
 import { useAppDispatch, useAppSelector } from '../state/store';
-import { changeLocale } from '../state/interface';
+import { changeLocale } from '../state/user-interface';
 import { Select } from './fundamental/Select';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
