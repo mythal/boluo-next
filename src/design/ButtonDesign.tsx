@@ -27,6 +27,9 @@ const ButtonDesign: FC = () => {
       </div>
       <div className="my-2 flex gap-2">
         <Button data-type="primary">Primary</Button>
+        <Button disabled data-type="primary">
+          Disabled
+        </Button>
       </div>
     </div>
   );

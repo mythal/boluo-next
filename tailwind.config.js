@@ -13,10 +13,11 @@ module.exports = {
       green: colors.green,
       // Primary colors in dark mode
       blue: colors.blue,
+      slate: colors.slate,
       gray: colors.gray,
       error: colors.red,
       warning: colors.yellow,
-      bgDark: 'rgb(46, 59, 79)',
+      bgDark: colors.slate['700'],
       black: '#000',
       white: '#FFF',
       tooltip: colors.yellow[100],

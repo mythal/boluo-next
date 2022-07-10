@@ -13,7 +13,7 @@ import { LocaleSwitch } from '../../components/LocaleSwitch';
 import { useRequestNotification } from '../../hooks/useRequestNotification';
 import clsx from 'clsx';
 import { Loading } from '../../components/Loading';
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { loadSwrProps } from '../../helper/SwrProps';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {
@@ -57,7 +57,7 @@ const Design: Page = ({ swrFallback }) => {
   return (
     <Providers swrFallback={swrFallback}>
       <div className="flex">
-        <div className="h-screen bg-gray-100 py-4 px-9 dark:bg-gray-900">
+        <div className="h-screen bg-gray-100 py-4 px-9 dark:bg-slate-800">
           <div>
             <Button aria-label="Settings" onClick={() => setSettingDialog(true)}>
               <Icon icon="settings" />
