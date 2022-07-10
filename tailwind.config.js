@@ -34,6 +34,9 @@ module.exports = {
         toast: '0.125rem 0.125rem 0 rgba(0, 0, 0, 0.25)',
         menu: '0.25rem 0.25rem 0 rgba(0, 0, 0, 0.1)',
       },
+      fontFamily: {
+        pixel: ['Fusion-Pixel-12', 'monospace'],
+      },
     },
   },
   plugins: [

@@ -1,4 +1,4 @@
-import { ReactElement, lazy, ComponentType } from 'react';
+import { lazy } from 'react';
 import { useRouter } from 'next/router';
 
 interface RouteItem {
@@ -52,6 +52,10 @@ export const tabRouteTable = createRouteTable({
   dialogs: {
     title: 'Dialog',
     component: lazy(() => import('./DialogDesign')),
+  },
+  font: {
+    title: 'Font',
+    component: lazy(() => import('./FontDesign')),
   },
 });
 
