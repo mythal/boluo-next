@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-page-custom-font */
-// the warning is false positive
-
 import { Head, Html, Main, NextScript } from 'next/document';
 import { Favicon } from '../components/global/Favicon';
 
