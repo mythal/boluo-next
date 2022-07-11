@@ -18,7 +18,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, InputProps>((props, 
         'input',
         state === 'default' && 'input-default',
         state === 'error' && 'input-error',
-        state === 'warning' && 'input-warning'
+        state === 'warning' && 'input-warning',
+        props.className
       )}
     />
   );
@@ -33,7 +34,8 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>((pr
         'input',
         state === 'default' && 'input-default',
         state === 'error' && 'input-error',
-        state === 'warning' && 'input-warning'
+        state === 'warning' && 'input-warning',
+        props.className
       )}
       ref={ref}
       {...props}

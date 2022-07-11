@@ -5,6 +5,15 @@
   "47FYwb": {
     "message": "Cancel"
   },
+  "5sg7KC": {
+    "message": "Password"
+  },
+  "AyGauy": {
+    "message": "Login"
+  },
+  "CoEsov": {
+    "message": "Username or Email"
+  },
   "FcwBEE": {
     "message": "refresh"
   },
@@ -17,6 +26,9 @@
   "Rffb/Y": {
     "description": "Project name",
     "message": "Boluo"
+  },
+  "nmSKJK": {
+    "message": "Can't be empty."
   },
   "pULdOq": {
     "message": "This may be caused by a network problem. If the error persists after refreshing the page, please contact the admin."
