@@ -3,7 +3,7 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { parseBool } from '../helper/env';
+import { IS_REDUX_TRACE_ENABLE } from '../const';
 import { userInterfaceReducer } from './user-interface';
 import { ActionMap, Actions, makeAction } from './actions';
 
@@ -20,9 +20,8 @@ export const applicationReducer = combineReducers({
 });
 
 export type AppState = ReturnType<typeof applicationReducer>;
-const enableReduxTrace = parseBool(process.env.NEXT_PUBLIC_REDUX_TRACE);
 const composeEnhancers = composeWithDevTools({
-  trace: process.env.NODE_ENV === 'development' && enableReduxTrace,
+  trace: process.env.NODE_ENV === 'development' && IS_REDUX_TRACE_ENABLE,
   traceLimit: 25,
 });
 export const store = createStore(applicationReducer, undefined, composeEnhancers(applyMiddleware(thunk)));
