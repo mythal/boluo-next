@@ -1,9 +1,10 @@
+/* eslint-disable import/no-cycle */
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { userInterfaceReducer } from './user-interface';
 import { parseBool } from '../helper/env';
+import { userInterfaceReducer } from './user-interface';
 import { ActionMap, Actions, makeAction } from './actions';
 
 export function perform<K extends keyof ActionMap, Args extends Parameters<ActionMap[K]>>(type: K, ...args: Args) {

@@ -1,5 +1,5 @@
-import { AppPropsWithLayout } from '../helper/layout';
 import { usePreventScroll } from '@react-aria/overlays';
+import { AppPropsWithLayout } from '../helper/layout';
 import '../styles/globals.tailwind.css';
 
 function registerServiceWorker() {

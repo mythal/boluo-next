@@ -5,6 +5,8 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
   ],
   rules: {
     // https://eslint.org/docs/rules/
@@ -27,5 +29,13 @@ module.exports = {
     'formatjs/no-offset': 'error',
     'formatjs/no-emoji': 'error',
     'formatjs/enforce-default-message': ['error', 'literal'],
+    'import/order': 'warn',
+    'import/newline-after-import': 'warn',
+    'import/first': 'warn',
+    'import/no-mutable-exports': 'warn',
+    'import/no-cycle': 'warn',
+    'import/no-unresolved': 'error',
+    'import/no-self-import': 'error',
+    'import/no-useless-path-segments': 'warn',
   },
 };

@@ -1,8 +1,8 @@
 import React, { FC, useRef } from 'react';
-import { Portal } from './Portal';
+import clsx from 'clsx';
 import { useOutside } from '../../hooks/useOutside';
 import { useOnEsc } from '../../hooks/useOnEsc';
-import clsx from 'clsx';
+import { Portal } from './Portal';
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   dismiss?: () => void;

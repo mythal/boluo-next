@@ -1,6 +1,6 @@
 import React, { Component, ErrorInfo } from 'react';
-import Oops from './Oops';
 import { ChildrenProps, StyleProps } from '../helper/props';
+import Oops from './Oops';
 
 interface Props extends ChildrenProps, StyleProps {}
 

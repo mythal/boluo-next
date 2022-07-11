@@ -1,19 +1,19 @@
-import { Page } from '../../helper/layout';
 import React, { FC, Suspense, useState } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
+import clsx from 'clsx';
+import { GetServerSideProps } from 'next';
+import { Page } from '../../helper/layout';
 import { Providers } from '../../components/global/Providers';
 import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
 import Home from '../../design/Home.mdx';
 import { SchemeSwitch } from '../../components/SchemeSwitch';
-import Head from 'next/head';
 import { Button } from '../../components/fundamental/Button';
 import Icon from '../../components/fundamental/Icon';
 import { Dialog } from '../../components/fundamental/Dialog';
 import { LocaleSwitch } from '../../components/LocaleSwitch';
 import { useRequestNotification } from '../../hooks/useRequestNotification';
-import clsx from 'clsx';
 import { Loading } from '../../components/Loading';
-import { GetServerSideProps } from 'next';
 import { loadSwrProps } from '../../helper/SwrProps';
 
 const DesignRoute: FC<{ tab: keyof typeof tabRouteTable }> = ({ tab }) => {

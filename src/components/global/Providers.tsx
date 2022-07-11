@@ -1,14 +1,14 @@
 import type { FC } from 'react';
 import { useMemo } from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
+import { SWRConfig } from 'swr';
 import type { ChildrenProps } from '../../helper/props';
 
 import { store } from '../../state/store';
-import { Provider as ReduxProvider } from 'react-redux';
 import { ErrorBoundary } from '../ErrorBoundary';
+import type { SwrFallbackProps } from '../../helper/SwrProps';
 import { NextLocaleProvider } from './NextLocaleProvider';
 import { SchemeProvider } from './SchemeProvider';
-import { SWRConfig } from 'swr';
-import type { SwrFallbackProps } from '../../helper/SwrProps';
 import { NotificationList } from './NotificationList';
 
 interface Props extends ChildrenProps, SwrFallbackProps {}

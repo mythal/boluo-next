@@ -1,10 +1,10 @@
 import React, { CSSProperties, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react-dom';
 
+import clsx from 'clsx';
 import { Button } from '../components/fundamental/Button';
 import { Select } from '../components/fundamental/Select';
 import styles from './PopoverDesign.module.css';
-import clsx from 'clsx';
 
 const useBoxScrollPosition = (): MutableRefObject<HTMLDivElement | null> => {
   const boxRef = useRef<HTMLDivElement>(null);

@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { Overlay } from './Overlay';
-import { Button } from './Button';
 import { useIntl } from 'react-intl';
 import { useTransition } from 'transition-hook';
-import { ChildrenProps, StyleProps } from '../../helper/props';
 import clsx from 'clsx';
+import { ChildrenProps, StyleProps } from '../../helper/props';
+import { Button } from './Button';
+import { Overlay } from './Overlay';
 
 interface Props extends StyleProps, ChildrenProps {
   title?: string;

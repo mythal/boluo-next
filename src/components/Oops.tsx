@@ -1,10 +1,10 @@
 import { FormattedMessage } from 'react-intl';
 import React, { useRef } from 'react';
+import clsx from 'clsx';
 import { useContainerQuery } from '../hooks/useContainerQuery';
 import { Text } from './fundamental/Text';
 import { RefreshButton } from './RefreshButton';
 import Icon from './fundamental/Icon';
-import clsx from 'clsx';
 
 export interface Props {
   error: unknown;

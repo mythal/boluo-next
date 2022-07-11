@@ -1,7 +1,7 @@
 import { FC, useRef } from 'react';
-import { SpinnerIcon } from './SpinnerIcon';
-import { useContainerQuery } from '../hooks/useContainerQuery';
 import clsx from 'clsx';
+import { useContainerQuery } from '../hooks/useContainerQuery';
+import { SpinnerIcon } from './SpinnerIcon';
 
 const config = {
   width: {

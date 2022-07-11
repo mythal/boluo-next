@@ -1,8 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import Logo from '../../public/logo.svg';
 import { FormattedMessage } from 'react-intl';
 import Link from 'next/link';
+import Logo from '../../public/logo.svg';
 import { Providers } from '../components/global/Providers';
 import { loadSwrProps, SwrFallbackProps } from '../helper/SwrProps';
 

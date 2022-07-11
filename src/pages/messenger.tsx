@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { selectRandom } from '../helper/random';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
+import { selectRandom } from '../helper/random';
 import { useVirtualListBottomLock } from '../hooks/useVirtualListBottomLock';
 import { useDetectUpScroll } from '../hooks/useDetectUpScroll';
 import { Button } from '../components/fundamental/Button';

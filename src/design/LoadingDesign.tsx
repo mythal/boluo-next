@@ -1,6 +1,6 @@
 import { useState, FC } from 'react';
-import { Loading } from '../components/Loading';
 import clsx from 'clsx';
+import { Loading } from '../components/Loading';
 
 export const LoadingDesign: FC = () => {
   const [resize, setResize] = useState(true);

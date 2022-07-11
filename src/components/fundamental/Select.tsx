@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { useSelect } from 'downshift';
-import { StyleProps } from '../../helper/props';
-import Icon from './Icon';
 import { useTransition } from 'transition-hook';
 import clsx from 'clsx';
-import { useId } from 'react';
+import { StyleProps } from '../../helper/props';
+import Icon from './Icon';
 
 export interface SelectItem {
   label: string;

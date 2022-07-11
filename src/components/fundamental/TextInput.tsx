@@ -1,6 +1,6 @@
 import React from 'react';
-import { DataAttr } from '../../helper/props';
 import clsx from 'clsx';
+import { DataAttr } from '../../helper/props';
 
 type DataAttrProps = DataAttr<{
   state?: 'error' | 'default' | 'warning';

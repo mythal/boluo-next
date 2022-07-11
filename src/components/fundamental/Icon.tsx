@@ -1,5 +1,5 @@
-import { icons } from '../../icons/icons';
 import React from 'react';
+import { icons } from '../../icons/icons';
 
 interface Props {
   icon: keyof typeof icons;

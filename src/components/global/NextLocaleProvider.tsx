@@ -1,10 +1,10 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { IntlErrorCode, OnErrorFn } from '@formatjs/intl';
-import { notify } from '../../state/user-interface';
 import useSWRImmutable from 'swr/immutable';
-import { ChildrenProps } from '../../helper/props';
 import { useRouter } from 'next/router';
+import { notify } from '../../state/user-interface';
+import { ChildrenProps } from '../../helper/props';
 import { IntlMessages, loadMessages, Locale } from '../../helper/locale';
 
 const onError: OnErrorFn = (err) => {

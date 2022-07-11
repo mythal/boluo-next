@@ -1,6 +1,6 @@
-import Oops from '../components/Oops';
 import { useState } from 'react';
 import clsx from 'clsx';
+import Oops from '../components/Oops';
 
 const ErrorHandlingDesign = () => {
   const [resize, setResize] = useState(true);

@@ -1,8 +1,8 @@
-import Icon from './fundamental/Icon';
 import { FormattedMessage } from 'react-intl';
-import { Button } from './fundamental/Button';
 import React, { useCallback } from 'react';
 import { StyleProps } from '../helper/props';
+import { Button } from './fundamental/Button';
+import Icon from './fundamental/Icon';
 
 interface Props extends StyleProps {
   small?: boolean;
