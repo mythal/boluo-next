@@ -2,6 +2,9 @@
   "3cc4Ct": {
     "message": "亮色"
   },
+  "47FYwb": {
+    "message": "Cancel"
+  },
   "FcwBEE": {
     "message": "刷新"
   },
@@ -11,12 +14,9 @@
   "NXI/XL": {
     "message": "自动"
   },
-  "boluo": {
+  "Rffb/Y": {
     "description": "Project name",
-    "message": "菠萝"
-  },
-  "cancel": {
-    "message": "取消"
+    "message": "Boluo"
   },
   "pULdOq": {
     "message": "这可能是网络问题。如果刷新页面后错误仍然存在，请联系管理员。"
@@ -24,11 +24,11 @@
   "rELDbB": {
     "message": "刷新"
   },
-  "submit": {
-    "message": "提交"
-  },
   "tOdNiY": {
     "message": "暗色"
+  },
+  "wSZR47": {
+    "message": "Submit"
   },
   "z/ipXX": {
     "message": "糟糕！"
