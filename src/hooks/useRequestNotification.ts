@@ -11,6 +11,11 @@ export const useRequestNotification = (): Result => {
     typeof window === 'undefined' ? 'default' : Notification.permission
   );
   useEffect(() => {
+    if (!navigator.permissions) {
+      // Safari doesn't support Notification.permission
+      // https://caniuse.com/permissions-api
+      return;
+    }
     navigator.permissions.query({ name: 'notifications' }).then((status) => {
       status.onchange = () => {
         if (status.state === 'granted') {
