@@ -2,6 +2,9 @@
   "3cc4Ct": {
     "message": "Light"
   },
+  "47FYwb": {
+    "message": "Cancel"
+  },
   "FcwBEE": {
     "message": "refresh"
   },
@@ -11,12 +14,9 @@
   "NXI/XL": {
     "message": "Auto"
   },
-  "boluo": {
+  "Rffb/Y": {
     "description": "Project name",
     "message": "Boluo"
-  },
-  "cancel": {
-    "message": "Cancel"
   },
   "pULdOq": {
     "message": "This may be caused by a network problem. If the error persists after refreshing the page, please contact the admin."
@@ -24,11 +24,11 @@
   "rELDbB": {
     "message": "Refresh"
   },
-  "submit": {
-    "message": "Submit"
-  },
   "tOdNiY": {
     "message": "Dark"
+  },
+  "wSZR47": {
+    "message": "Submit"
   },
   "z/ipXX": {
     "message": "Oops"

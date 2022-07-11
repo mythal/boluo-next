@@ -18,7 +18,7 @@ const Home: NextPage<Props> = ({ swrFallback }) => {
         <main className="p-4">
           <Logo />
           <h1 className=" text-3xl">
-            <FormattedMessage defaultMessage="Boluo" id="boluo" description="Project name" />
+            <FormattedMessage defaultMessage="Boluo" description="Project name" />
           </h1>
           <div>
             <div>

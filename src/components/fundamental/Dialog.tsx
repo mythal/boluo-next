@@ -31,10 +31,10 @@ export const Dialog: FC<Props> = ({
   const { stage, shouldMount } = useTransition(show, transitionTimeMs);
   const intl = useIntl();
   if (!submitText) {
-    submitText = intl.formatMessage({ defaultMessage: 'Submit', id: 'submit' });
+    submitText = intl.formatMessage({ defaultMessage: 'Submit' });
   }
   if (!dismissText) {
-    dismissText = intl.formatMessage({ defaultMessage: 'Cancel', id: 'cancel' });
+    dismissText = intl.formatMessage({ defaultMessage: 'Cancel' });
   }
   if (!shouldMount) {
     return null;
