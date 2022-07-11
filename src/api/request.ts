@@ -1,4 +1,5 @@
 import { IS_DEBUG } from '../const';
+import { ApiError, AppErrorBox } from './errors';
 
 export const makeUri = (path: string, query?: object): string => {
   if (path[0] !== '/') {
@@ -26,7 +27,7 @@ export const makeUri = (path: string, query?: object): string => {
 interface AppResponse {
   isOk: boolean;
   ok: unknown;
-  err: unknown;
+  err: ApiError;
 }
 
 export const request = async <T>(
@@ -47,17 +48,22 @@ export const request = async <T>(
     body,
     credentials: 'include',
   });
-  const res = await result;
+  let res: Response;
+  try {
+    res = await result;
+  } catch (cause) {
+    throw new AppErrorBox({ code: 'FETCH_FAIL', cause });
+  }
   let data: AppResponse;
   try {
     data = await res.json();
-  } catch (e) {
-    console.error('Failed to parse JSON', e);
-    throw new Error('Failed to parse JSON');
+  } catch (cause) {
+    console.error('Failed to parse JSON: ', cause);
+    throw new AppErrorBox({ code: 'NOT_JSON', cause });
   }
   if (data.isOk) {
     return data.ok as T;
   } else {
-    throw data.err;
+    throw new AppErrorBox(data.err);
   }
 };
