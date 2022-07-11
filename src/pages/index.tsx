@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Logo from '../../public/logo.svg';
 import { Providers } from '../components/global/Providers';
 import { loadSwrProps, SwrFallbackProps } from '../helper/SwrProps';
+import { Me } from '../components/Me';
 
 interface Props extends SwrFallbackProps {}
 
@@ -20,6 +21,9 @@ const Home: NextPage<Props> = ({ swrFallback }) => {
           <h1 className=" text-3xl">
             <FormattedMessage defaultMessage="Boluo" description="Project name" />
           </h1>
+          <div>
+            <Me />
+          </div>
           <div>
             <div>
               <Link href="/messenger">
