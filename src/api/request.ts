@@ -7,6 +7,9 @@ export const makeUri = (path: string, query?: object): string => {
   } else {
     path = '/api' + path;
   }
+  if (path.at(-1) !== '/') {
+    path = path + '/';
+  }
   if (query === undefined) {
     return path;
   }

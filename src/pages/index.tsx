@@ -35,6 +35,14 @@ const Home: NextPage<Props> = ({ swrFallback }) => {
                 <a className="link">Design</a>
               </Link>
             </div>
+            <div className="flex gap-2">
+              <Link className="link" href="/account/login">
+                <a className="link">Login</a>
+              </Link>
+              <Link className="link" href="/account/logout">
+                <a className="link">Logout</a>
+              </Link>
+            </div>
           </div>
         </main>
       </div>

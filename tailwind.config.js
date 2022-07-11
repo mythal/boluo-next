@@ -13,6 +13,7 @@ module.exports = {
       green: colors.green,
       // Primary colors in dark mode
       blue: colors.blue,
+      neutral: colors.neutral,
       slate: colors.slate,
       gray: colors.gray,
       error: colors.red,
