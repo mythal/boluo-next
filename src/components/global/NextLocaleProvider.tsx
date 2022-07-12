@@ -1,11 +1,13 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { IntlErrorCode, OnErrorFn } from '@formatjs/intl';
+import type { OnErrorFn } from '@formatjs/intl';
+import { IntlErrorCode } from '@formatjs/intl';
 import useSWRImmutable from 'swr/immutable';
 import { useRouter } from 'next/router';
 import { notify } from '../../state/user-interface';
-import { ChildrenProps } from '../../helper/props';
-import { IntlMessages, loadMessages, Locale } from '../../helper/locale';
+import type { ChildrenProps } from '../../helper/props';
+import type { IntlMessages, Locale } from '../../helper/locale';
+import { loadMessages } from '../../helper/locale';
 
 const onError: OnErrorFn = (err) => {
   if (err.code === IntlErrorCode.MISSING_TRANSLATION) {
@@ -16,7 +18,7 @@ const onError: OnErrorFn = (err) => {
 };
 
 const useLoadMessages = (locale: Locale): IntlMessages => {
-  const { data, error } = useSWRImmutable<IntlMessages>(locale, loadMessages);
+  const { data, error } = useSWRImmutable<IntlMessages, unknown>(locale, loadMessages);
   if (error) {
     notify('An error occurred while loading the language data.', 'error');
   }

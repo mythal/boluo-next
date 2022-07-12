@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
-import { StyleProps } from '../helper/props';
+import type { StyleProps } from '../helper/props';
 import { useLocale } from '../hooks/useLocale';
 import { toLocale } from '../helper/locale';
 import { Select } from './fundamental/Select';
 
 export const LocaleSwitch: React.FC<StyleProps> = ({ className }) => {
   const [locale, changeLocale] = useLocale();
-  const handler = async (value: string) => {
+  const handler = (value: string) => {
     changeLocale(toLocale(value));
   };
   const items = useMemo(

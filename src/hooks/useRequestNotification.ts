@@ -3,7 +3,7 @@ import { empty } from '../helper/function';
 
 interface Result {
   permission: typeof Notification.permission;
-  request: () => void;
+  request: () => Promise<void>;
 }
 
 export const useRequestNotification = (): Result => {
@@ -16,6 +16,7 @@ export const useRequestNotification = (): Result => {
       // https://caniuse.com/permissions-api
       return;
     }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     navigator.permissions.query({ name: 'notifications' }).then((status) => {
       status.onchange = () => {
         if (status.state === 'granted') {
@@ -31,10 +32,15 @@ export const useRequestNotification = (): Result => {
   if (typeof Notification === 'undefined') {
     return {
       permission: 'default',
-      request: empty,
+      request: async () => {
+        // empty
+      },
     };
   }
-  const request = () => Notification.requestPermission((permission) => setPermisson(permission));
+  const request = async () => {
+    const permission = await Notification.requestPermission();
+    setPermisson(permission);
+  };
 
   return { permission, request };
 };

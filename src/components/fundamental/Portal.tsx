@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ChildrenProps } from '../../helper/props';
+import type { ChildrenProps } from '../../helper/props';
 
 // See also https://github.com/vercel/next.js/tree/canary/examples/with-portals
 export const Portal: React.FC<ChildrenProps> = React.memo(({ children }) => {

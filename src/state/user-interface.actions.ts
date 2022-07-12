@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { Id, makeId } from '../helper/id';
+import type { Id } from '../helper/id';
+import { makeId } from '../helper/id';
 import type { Locale, Scheme, UiNotification } from './user-interface';
 
 export const switchScheme = (scheme: Scheme) => scheme;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTransition } from 'transition-hook';
 import clsx from 'clsx';
 import type { UiNotification } from '../../state/user-interface';
-import { ChildrenProps, StyleProps } from '../../helper/props';
+import type { ChildrenProps, StyleProps } from '../../helper/props';
 import { ToastCloseButton } from './ToastCloseButton';
 
 interface Props extends StyleProps, ChildrenProps {

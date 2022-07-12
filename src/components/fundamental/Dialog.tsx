@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { useTransition } from 'transition-hook';
 import clsx from 'clsx';
-import { ChildrenProps, StyleProps } from '../../helper/props';
+import type { ChildrenProps, StyleProps } from '../../helper/props';
 import { Button } from './Button';
 import { Overlay } from './Overlay';
 

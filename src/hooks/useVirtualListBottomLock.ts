@@ -1,5 +1,6 @@
-import { MutableRefObject, RefObject, useEffect, useRef } from 'react';
-import { IndexLocationWithAlign, VirtuosoHandle } from 'react-virtuoso';
+import type { MutableRefObject, RefObject } from 'react';
+import { useEffect, useRef } from 'react';
+import type { IndexLocationWithAlign, VirtuosoHandle } from 'react-virtuoso';
 
 export const useVirtualListBottomLock = (
   virtualListRef: RefObject<VirtuosoHandle>,

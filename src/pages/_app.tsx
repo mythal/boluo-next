@@ -1,5 +1,5 @@
 import { usePreventScroll } from '@react-aria/overlays';
-import { AppPropsWithLayout } from '../helper/layout';
+import type { AppPropsWithLayout } from '../helper/layout';
 import '../styles/globals.tailwind.css';
 
 function registerServiceWorker() {
@@ -12,7 +12,7 @@ function registerServiceWorker() {
       })
       .catch(function (error) {
         // registration failed
-        console.log('Registration failed with ' + error);
+        console.log('Registration failed with ' + String(error));
       });
   }
 }

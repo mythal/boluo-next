@@ -1,9 +1,10 @@
-import React, { FC, Suspense, useState } from 'react';
+import type { FC } from 'react';
+import React, { Suspense, useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import clsx from 'clsx';
-import { GetServerSideProps } from 'next';
-import { Page } from '../../helper/layout';
+import type { GetServerSideProps } from 'next';
+import type { Page } from '../../helper/layout';
 import { Providers } from '../../components/global/Providers';
 import { tabRouteTable, useDesignRoute } from '../../design/useDesignRoute';
 import Home from '../../design/Home.mdx';

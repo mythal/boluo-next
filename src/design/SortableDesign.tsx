@@ -1,13 +1,11 @@
 import React, { forwardRef, useState, useId } from 'react';
+import type { DragEndEvent, DragStartEvent, UniqueIdentifier } from '@dnd-kit/core';
 import {
   closestCenter,
   DndContext,
-  DragEndEvent,
   DragOverlay,
-  DragStartEvent,
   KeyboardSensor,
   PointerSensor,
-  UniqueIdentifier,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';

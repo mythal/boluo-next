@@ -2,7 +2,8 @@ import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { Providers } from '../../components/global/Providers';
 import { LoginForm } from '../../components/LoginForm';
-import { loadSwrProps, SwrFallbackProps } from '../../helper/SwrProps';
+import type { SwrFallbackProps } from '../../helper/SwrProps';
+import { loadSwrProps } from '../../helper/SwrProps';
 
 interface Props extends SwrFallbackProps {}
 const Login = ({}: Props) => {

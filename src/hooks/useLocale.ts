@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
-import { Locale, toLocale } from '../helper/locale';
+import type { Locale } from '../helper/locale';
+import { toLocale } from '../helper/locale';
 
 export const useLocale = (): [Locale, (locale: Locale) => void] => {
   const router = useRouter();

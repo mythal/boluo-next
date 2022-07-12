@@ -1,4 +1,5 @@
-import { useCallback, useState, FC } from 'react';
+import type { FC } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from '../components/fundamental/Button';
 import { Dialog } from '../components/fundamental/Dialog';
 import { empty } from '../helper/function';

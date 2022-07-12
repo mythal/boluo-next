@@ -1,4 +1,5 @@
-import { RefObject, useEffect, useState } from 'react';
+import type { RefObject } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useResizeObserver = (ref: RefObject<HTMLElement | null>): DOMRect | null => {
   const [rect, setRect] = useState<DOMRect | null>(null);

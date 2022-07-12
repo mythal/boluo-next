@@ -1,5 +1,6 @@
 import { IS_DEBUG } from '../const';
-import { ApiError, AppErrorBox } from './errors';
+import type { ApiError } from './errors';
+import { AppErrorBox } from './errors';
 
 export const makeUri = (path: string, query?: object): string => {
   if (path[0] !== '/') {
@@ -19,12 +20,13 @@ export const makeUri = (path: string, query?: object): string => {
   }
   const searchParams = new URLSearchParams();
   for (const entry of entities) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const [key, value] = entry;
     if (typeof value === 'boolean' || typeof value === 'number' || typeof value === 'string') {
       searchParams.set(key, String(value));
     }
   }
-  return `${path}?${searchParams}`;
+  return `${path}?${searchParams.toString()}`;
 };
 
 interface AppResponse {
@@ -45,7 +47,7 @@ export const request = async <T>(
   if (IS_DEBUG) {
     headers.append('development', '');
   }
-  const result = await fetch(path, {
+  const fetchPromise = fetch(path, {
     method,
     headers,
     body,
@@ -53,12 +55,13 @@ export const request = async <T>(
   });
   let res: Response;
   try {
-    res = await result;
+    res = await fetchPromise;
   } catch (cause) {
     throw new AppErrorBox({ code: 'FETCH_FAIL', cause });
   }
   let data: AppResponse;
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     data = await res.json();
   } catch (cause) {
     console.error('Failed to parse JSON: ', cause);

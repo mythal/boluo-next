@@ -2,7 +2,7 @@ import React, { useId } from 'react';
 import { useSelect } from 'downshift';
 import { useTransition } from 'transition-hook';
 import clsx from 'clsx';
-import { StyleProps } from '../../helper/props';
+import type { StyleProps } from '../../helper/props';
 import Icon from './Icon';
 
 export interface SelectItem {

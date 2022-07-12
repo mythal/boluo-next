@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
+import type { VirtuosoHandle } from 'react-virtuoso';
+import { Virtuoso } from 'react-virtuoso';
 import { selectRandom } from '../helper/random';
 import { useVirtualListBottomLock } from '../hooks/useVirtualListBottomLock';
 import { useDetectUpScroll } from '../hooks/useDetectUpScroll';

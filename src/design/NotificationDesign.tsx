@@ -31,7 +31,7 @@ const NotificationDesign = () => {
       <div className="my-4 flex items-start gap-4">
         <Button
           onClick={() => {
-            notify(`hello, world ${new Date()}`);
+            notify(`hello, world ${String(new Date())}`);
           }}
         >
           Show
@@ -39,7 +39,7 @@ const NotificationDesign = () => {
 
         <Button
           onClick={() => {
-            notify(`warning!! ${new Date()}`, 'warn');
+            notify(`warning!! ${String(new Date())}`, 'warn');
           }}
         >
           Show warning
@@ -47,7 +47,7 @@ const NotificationDesign = () => {
 
         <Button
           onClick={() => {
-            notify(`error!!! ${new Date()}`, 'error');
+            notify(`error!!! ${String(new Date())}`, 'error');
           }}
         >
           Show error

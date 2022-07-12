@@ -1,4 +1,4 @@
-import { IntlConfig } from 'react-intl';
+import type { IntlConfig } from 'react-intl';
 
 export type IntlMessages = IntlConfig['messages'];
 export type Locale = 'en' | 'ja' | 'zh-CN';

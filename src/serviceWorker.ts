@@ -8,7 +8,7 @@ export {};
 // see https://github.com/microsoft/TypeScript/issues/11781
 const worker = self as unknown as ServiceWorkerGlobalScope & typeof globalThis;
 
-worker.onpush = (event: PushEvent) => {
+worker.onpush = async (event: PushEvent) => {
   const text = event.data?.text() ?? '';
-  worker.registration.showNotification('Boluo', { body: text, renotify: true, tag: 'development' });
+  await worker.registration.showNotification('Boluo', { body: text, renotify: true, tag: 'development' });
 };

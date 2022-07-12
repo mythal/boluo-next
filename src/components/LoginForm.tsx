@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useSWRConfig } from 'swr';
 import { post } from '../api';
-import { LoginResult } from '../api/types/users';
-import { StyleProps } from '../helper/props';
+import type { LoginResult } from '../api/types/users';
+import type { StyleProps } from '../helper/props';
 import { Button } from './fundamental/Button';
 import { TextInput } from './fundamental/TextInput';
 import Oops from './Oops';
@@ -37,8 +38,8 @@ export const LoginForm = ({ className }: StyleProps) => {
       setError(e);
       return;
     }
-    mutate('/users/get_me', result.me);
-    router.push('/');
+    await mutate('/users/get_me', result.me);
+    await router.push('/');
   };
   if (error) {
     return <Oops error={error} className={className} />;

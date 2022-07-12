@@ -1,4 +1,5 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import type { MutableRefObject } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const useDetectUpScroll = (scroller: HTMLDivElement | null, bottomLock: MutableRefObject<boolean>) => {
   const scrollTop = useRef<number>(0);

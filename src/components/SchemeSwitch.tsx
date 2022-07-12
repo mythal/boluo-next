@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { StyleProps } from '../helper/props';
+import type { StyleProps } from '../helper/props';
 import { switchScheme } from '../state/user-interface';
 import { perform, useAppSelector } from '../state/store';
 import { Select } from './fundamental/Select';

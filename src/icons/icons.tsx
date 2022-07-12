@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type React from 'react';
 import Fairy from './fairy.svg';
 import Sun from './sun.svg';
 import Moon from './moon.svg';

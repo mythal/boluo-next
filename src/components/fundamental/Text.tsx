@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { FC } from 'react';
-import { ChildrenProps, StyleProps } from '../../helper/props';
+import type { FC } from 'react';
+import type { ChildrenProps, StyleProps } from '../../helper/props';
 
 interface Props extends StyleProps, ChildrenProps {
   size?: 'small' | 'normal';

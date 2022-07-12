@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { DataAttr } from '../../helper/props';
+import type { DataAttr } from '../../helper/props';
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   DataAttr<{

@@ -1,4 +1,5 @@
-import { IntlMessages, loadMessages, Locale, toLocale } from './locale';
+import type { IntlMessages, Locale } from './locale';
+import { loadMessages, toLocale } from './locale';
 
 export type IntlMessagesFallback = Record<Locale, IntlMessages | undefined>;
 

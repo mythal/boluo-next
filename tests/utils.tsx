@@ -1,5 +1,6 @@
-import { render as jestRender, RenderOptions } from '@testing-library/react';
-import { FC, ReactElement } from 'react';
+import type { RenderOptions } from '@testing-library/react';
+import { render as jestRender } from '@testing-library/react';
+import type { FC, ReactElement } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { store } from '../src/state/store';

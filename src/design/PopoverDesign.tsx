@@ -1,4 +1,5 @@
-import React, { CSSProperties, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
+import type { CSSProperties, MutableRefObject } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react-dom';
 
 import clsx from 'clsx';

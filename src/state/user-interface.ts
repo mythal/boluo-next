@@ -1,10 +1,11 @@
+/* eslint-disable import/no-cycle */
 import type { Reducer } from 'redux';
 import type { IntlConfig } from 'react-intl';
 import type { ReactNode } from 'react';
 import { prop, compose, remove, find, set, appendTo } from 'optics-ts/standalone';
 import type { Id } from '../helper/id';
-// eslint-disable-next-line import/no-cycle
-import { perform, GenericHandle } from './store';
+import type { GenericHandle } from './store';
+import { perform } from './store';
 import type { Action } from './actions';
 // Use the module's type as the action map object.
 import type * as userInterfaceActions from './user-interface.actions';

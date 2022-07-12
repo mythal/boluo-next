@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TextArea, TextInput } from '../components/fundamental/TextInput';
-import { Select, SelectItem } from '../components/fundamental/Select';
+import type { SelectItem } from '../components/fundamental/Select';
+import { Select } from '../components/fundamental/Select';
 
 const FormDesign = () => {
   const selectItems = [

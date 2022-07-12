@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { Button } from '../components/fundamental/Button';
 import Icon from '../components/fundamental/Icon';
 import { SpinnerIcon } from '../components/SpinnerIcon';

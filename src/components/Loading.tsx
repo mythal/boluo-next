@@ -1,4 +1,5 @@
-import { FC, useRef } from 'react';
+import type { FC } from 'react';
+import { useRef } from 'react';
 import clsx from 'clsx';
 import { useContainerQuery } from '../hooks/useContainerQuery';
 import { SpinnerIcon } from './SpinnerIcon';

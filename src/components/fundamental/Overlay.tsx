@@ -1,4 +1,5 @@
-import React, { FC, useRef } from 'react';
+import type { FC } from 'react';
+import React, { useRef } from 'react';
 import clsx from 'clsx';
 import { useOutside } from '../../hooks/useOutside';
 import { useOnEsc } from '../../hooks/useOnEsc';
