@@ -5,6 +5,15 @@
   "47FYwb": {
     "message": "取消"
   },
+  "5sg7KC": {
+    "message": "密码"
+  },
+  "AyGauy": {
+    "message": "登录"
+  },
+  "CoEsov": {
+    "message": "用户名或邮箱"
+  },
   "FcwBEE": {
     "message": "刷新"
   },
@@ -17,6 +26,15 @@
   "Rffb/Y": {
     "description": "Project name",
     "message": "菠萝"
+  },
+  "X2ic5v": {
+    "message": "您已登出"
+  },
+  "aIRWQB": {
+    "message": "返回主页"
+  },
+  "nmSKJK": {
+    "message": "不能为空。"
   },
   "pULdOq": {
     "message": "这可能是网络问题。如果刷新页面后错误仍然存在，请联系管理员。"

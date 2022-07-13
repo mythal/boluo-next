@@ -5,6 +5,15 @@
   "47FYwb": {
     "message": "キャンセル"
   },
+  "5sg7KC": {
+    "message": "パスワード"
+  },
+  "AyGauy": {
+    "message": "ログイン"
+  },
+  "CoEsov": {
+    "message": "ユーザー名またはメール"
+  },
   "FcwBEE": {
     "message": "リフレッシュ"
   },
@@ -17,6 +26,15 @@
   "Rffb/Y": {
     "description": "Project name",
     "message": "パイン"
+  },
+  "X2ic5v": {
+    "message": "ログアウトしました"
+  },
+  "aIRWQB": {
+    "message": "ホームへ戻る"
+  },
+  "nmSKJK": {
+    "message": "入力必須です。"
   },
   "pULdOq": {
     "message": "ネットワークに問題が発生している可能性があります。ページを更新しても問題が解決しない場合は、管理者に連絡してください。"
