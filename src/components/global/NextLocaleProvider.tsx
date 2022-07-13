@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import type { ChildrenProps } from '../../helper/props';
 import type { IntlMessages, Locale } from '../../helper/locale';
 import { loadMessages } from '../../helper/locale';
-import { notify } from '../../state/user-interface';
+import { useNotify } from '../../state/user-interface';
 
 const onError: OnErrorFn = (err) => {
   if (err.code === IntlErrorCode.MISSING_TRANSLATION) {
@@ -18,6 +18,7 @@ const onError: OnErrorFn = (err) => {
 
 const useLoadMessages = (locale: Locale): IntlMessages => {
   const [messages, setMessages] = useState<IntlMessages>(undefined);
+  const notify = useNotify();
   useEffect(() => {
     loadMessages(locale)
       .then(setMessages)
@@ -25,7 +26,7 @@ const useLoadMessages = (locale: Locale): IntlMessages => {
         console.error(e);
         notify('An error occurred while loading the language data.', 'error');
       });
-  }, [locale]);
+  }, [locale, notify]);
   return messages;
 };
 

@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Toast } from '../components/fundamental/Toast';
 import { empty } from '../helper/function';
 import { Button } from '../components/fundamental/Button';
-import { notify } from '../state/user-interface';
+import { useNotify } from '../state/user-interface';
 
 const NotificationDesign = () => {
   const [open, setOpen] = useState(true);
+  const notify = useNotify();
 
   return (
     <div>

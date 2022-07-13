@@ -1,30 +1,38 @@
-import * as userInterface from './user-interface.actions';
+import { useCallback, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import type { Dispatch } from 'redux';
+import type { UserInterfaceActionMap } from './user-interface';
 
-const actionMap = {
-  ...userInterface,
-};
+export type ActionMap = UserInterfaceActionMap;
 
-export type ActionMap = typeof actionMap;
-
-export type Action<K> = K extends keyof ActionMap
+export type Action<ActionName> = ActionName extends keyof ActionMap
   ? {
-      type: K;
-      payload: ReturnType<ActionMap[K]>;
+      type: ActionName;
+      payload: ActionMap[ActionName];
     }
   : never;
 
-export function makeAction<K extends keyof ActionMap, Args extends Parameters<ActionMap[K]>>(
-  type: K,
-  ...args: Args
-): Action<K> {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return {
+export function makeAction<A extends Action<keyof ActionMap>>(type: A['type'], payload: A['payload']): A {
+  const action = {
     type,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    payload: actionMap[type](...args),
-  };
+    payload,
+  } as A;
+  return action;
 }
 
 export type Actions = Action<keyof ActionMap>;
+
+type WaitDispath<Key extends keyof ActionMap> = (payload: ActionMap[Key]) => void;
+
+export const perform =
+  (dispatch: Dispatch) =>
+  <ActionName extends keyof ActionMap>(type: ActionName): WaitDispath<ActionName> =>
+  (payload) => {
+    dispatch(makeAction(type, payload));
+  };
+
+export const usePerform = <ActionName extends keyof ActionMap>(type: ActionName): WaitDispath<ActionName> => {
+  const dispatch = useDispatch();
+  const f = useMemo(() => perform(dispatch)(type), [dispatch, type]);
+  return useCallback((payload: ActionMap[ActionName]) => f(payload), [f]);
+};
