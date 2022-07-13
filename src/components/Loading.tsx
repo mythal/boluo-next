@@ -31,6 +31,7 @@ export const Loading: FC = () => {
       ref={container}
       data-width={width}
       data-height={height}
+      aria-label="Loading..."
       className={clsx(
         'h-full w-full',
         'flex items-center justify-center',
@@ -40,7 +41,7 @@ export const Loading: FC = () => {
         xs && 'text-sm'
       )}
     >
-      <SpinnerIcon label="loading..." />
+      <SpinnerIcon label="loading icon" />
     </div>
   );
 };

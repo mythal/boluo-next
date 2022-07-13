@@ -1,4 +1,5 @@
 import { usePreventScroll } from '@react-aria/overlays';
+import { Providers } from '../components/global/Providers';
 import type { AppPropsWithLayout } from '../helper/layout';
 import '../styles/globals.tailwind.css';
 
@@ -25,6 +26,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
   const title = Component.title;
   usePreventScroll();
-  return getLayout(<Component {...pageProps} />, title);
+  return getLayout(
+    <Providers>
+      <Component {...pageProps} />
+    </Providers>,
+    title
+  );
 }
 export default App;

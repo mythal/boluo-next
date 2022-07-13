@@ -18,6 +18,10 @@
     font-family: Fusion-Pixel-12;
     src: url('/fusion-pixel.woff2');
   }
+
+  #__next {
+    height: 100%;
+  }
 }
 
 @layer components {

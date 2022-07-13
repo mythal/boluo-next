@@ -2,14 +2,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Providers } from '../../components/global/Providers';
 import { useLogout } from '../../hooks/useLogout';
 
 const Logout = () => {
   const logout = useLogout();
   useEffect(() => logout);
   return (
-    <Providers>
+    <>
       <Head>
         <title>Logout - Boluo</title>
       </Head>
@@ -27,7 +26,7 @@ const Logout = () => {
           </div>
         </div>
       </div>
-    </Providers>
+    </>
   );
 };
 
