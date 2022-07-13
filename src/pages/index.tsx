@@ -1,20 +1,18 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import { FormattedMessage } from 'react-intl';
 import Link from 'next/link';
 import Logo from '../../public/logo.svg';
 import { Me } from '../components/Me';
+import { Title } from '../components/fundamental/Title';
 
 const Home: NextPage = () => {
   return (
     <div>
-      <Head>
-        <title>Playground</title>
-      </Head>
+      <Title name="Playground" />
       <main className="p-4">
         <Logo />
         <h1 className=" text-3xl">
-          <FormattedMessage defaultMessage="Boluo" description="Project name" />
+          <FormattedMessage defaultMessage="Boluo" />
         </h1>
         <div>
           <Me />
