@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import type { ThunkDispatch } from 'redux-thunk';
 import thunk from 'redux-thunk';
@@ -9,14 +8,9 @@ import { userInterfaceReducer } from './user-interface';
 import type { ActionMap, Actions } from './actions';
 import { makeAction } from './actions';
 
-export function perform<K extends keyof ActionMap, Args extends Parameters<ActionMap[K]>>(type: K, ...args: Args) {
-  store.dispatch(makeAction(type, ...args));
+export function perform<K extends keyof ActionMap>(type: K, payload: ActionMap[K]) {
+  store.dispatch(makeAction(type, payload));
 }
-
-export type GenericHandle<M extends ActionMap, K extends keyof ActionMap, S> = (
-  payload: ReturnType<M[K]>
-) => (state: S) => S; // currying
-
 export const applicationReducer = combineReducers({
   interface: userInterfaceReducer,
 });

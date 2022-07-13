@@ -2,11 +2,12 @@ import { useCallback, useEffect, useRef } from 'react';
 import { startSchemeSwitching, stopSchemeSwitching } from '../helper/scheme';
 import { isDaytime } from '../helper/time';
 import { useAppSelector } from '../state/store';
-import { switchScheme } from '../state/user-interface';
+import { useSwitchScheme } from '../state/user-interface';
 
 export const useInitializeTheme = () => {
   const scheme = useAppSelector((state) => state.interface.scheme);
   const schemeRef = useRef<typeof scheme>(scheme);
+  const switchScheme = useSwitchScheme();
 
   useEffect(() => {
     // update scheme ref
@@ -16,7 +17,7 @@ export const useInitializeTheme = () => {
     if (storageScheme && storageScheme !== scheme) {
       switchScheme(storageScheme);
     }
-  }, [scheme]);
+  }, [scheme, switchScheme]);
 
   // watch the scheme change in other pages
   useEffect(() => {
@@ -29,7 +30,7 @@ export const useInitializeTheme = () => {
     };
     window.addEventListener('storage', listenSchemeChange);
     return () => window.removeEventListener('storage', listenSchemeChange);
-  }, []);
+  }, [switchScheme]);
 
   // set <meta name="color-scheme"/>
   useEffect(() => {
