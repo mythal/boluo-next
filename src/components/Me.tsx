@@ -5,5 +5,8 @@ export const Me = () => {
   if (!me) {
     return <span>Not logged in</span>;
   }
+  if (me === 'LOADING') {
+    return <span>[...]</span>;
+  }
   return <span>{me.user.nickname}</span>;
 };
