@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import type { OnErrorFn } from '@formatjs/intl';
 import { IntlErrorCode } from '@formatjs/intl';
-import useSWRImmutable from 'swr/immutable';
 import { useRouter } from 'next/router';
-import { notify } from '../../state/user-interface';
 import type { ChildrenProps } from '../../helper/props';
 import type { IntlMessages, Locale } from '../../helper/locale';
 import { loadMessages } from '../../helper/locale';
+import { notify } from '../../state/user-interface';
 
 const onError: OnErrorFn = (err) => {
   if (err.code === IntlErrorCode.MISSING_TRANSLATION) {
@@ -18,14 +17,16 @@ const onError: OnErrorFn = (err) => {
 };
 
 const useLoadMessages = (locale: Locale): IntlMessages => {
-  const { data, error } = useSWRImmutable<IntlMessages, unknown>(locale, loadMessages);
-  if (error) {
-    notify('An error occurred while loading the language data.', 'error');
-  }
-  if (!data) {
-    return undefined;
-  }
-  return data;
+  const [messages, setMessages] = useState<IntlMessages>(undefined);
+  useEffect(() => {
+    loadMessages(locale)
+      .then(setMessages)
+      .catch((e) => {
+        console.error(e);
+        notify('An error occurred while loading the language data.', 'error');
+      });
+  }, [locale]);
+  return messages;
 };
 
 export const toLocale = (data: unknown): Locale => {
