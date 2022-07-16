@@ -14,7 +14,7 @@ function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body className="h-full w-full dark:bg-bgDark dark:text-gray-50">
+      <body className="h-full w-full bg-bg text-text">
         <Main />
         <div id="portal" />
         <NextScript />

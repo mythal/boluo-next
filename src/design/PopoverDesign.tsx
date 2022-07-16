@@ -52,7 +52,7 @@ export const PopoverDesign = () => {
         </p>
         <div
           ref={boxRef}
-          className="relative h-[20em] w-[30em] resize overflow-scroll overscroll-contain border border-black bg-gray-100 dark:bg-gray-900"
+          className="relative h-[20em] w-[30em] resize overflow-scroll overscroll-contain border border-black bg-design-popoverBox"
         >
           <div className="inner flex h-[2000px] w-[2000px] items-center justify-center">
             <Button ref={reference}>I am a useless button</Button>

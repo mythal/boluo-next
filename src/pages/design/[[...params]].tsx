@@ -54,7 +54,7 @@ const Design: Page = ({ swrFallback }) => {
   const { permission, request } = useRequestNotification();
   return (
     <div className="flex">
-      <div className="h-screen bg-gray-100 py-4 px-9 dark:bg-slate-800">
+      <div className="h-screen bg-design-sidebar py-4 px-9">
         <div>
           <Button aria-label="Settings" onClick={() => setSettingDialog(true)}>
             <Icon icon="settings" />

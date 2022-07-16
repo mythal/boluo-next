@@ -45,8 +45,8 @@ export const Dialog: FC<Props> = ({
       dismiss={dismiss}
       data-stage={stage}
       className={clsx(
-        'rounded border-[0.125rem] border-solid border-gray-300 dark:border-gray-900',
-        'min-w-[14em] bg-gray-50  p-4 opacity-0 dark:bg-slate-800',
+        'rounded border-[0.125rem] border-solid border-dialog-border',
+        'min-w-[14em] bg-dialog-bg p-4 opacity-0',
         'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
         'dark:shadow-[rgba(0, 0, 0, 0.25)] shadow-1 shadow-[rgba(0,0,0,0.03)]',
         stage === 'enter' && 'opacity-100 transition-all duration-200',
