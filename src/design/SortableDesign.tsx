@@ -23,8 +23,7 @@ interface SortableItemProps {
   id: UniqueIdentifier;
 }
 const item = clsx(
-  'text-black w-full p-4 cursor-move bg-green-200 border border-green-300 hover:border-black',
-  'dark:text-white dark:bg-green-700'
+  'text-text w-full p-4 cursor-move bg-design-sortItem border border-transprent hover:border-design-sortItemBorder'
 );
 
 function SortableItem({ id }: SortableItemProps) {

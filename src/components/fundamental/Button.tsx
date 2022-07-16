@@ -22,14 +22,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ childr
         isSmall && 'min-h-[2rem] py-0.5 px-3',
 
         type === 'default' && [
-          'bg-gray-300 text-black hover-enabled:bg-gray-200',
-          'active-enabled:bg-gray-400 dark:bg-gray-600',
-          'dark:text-white dark:hover-enabled:bg-gray-500 dark:active-enabled:bg-gray-600',
+          'bg-button-default-bg text-button-default-text',
+          'hover-enabled:bg-button-default-hover active-enabled:bg-button-default-active',
         ],
 
         type === 'primary' && [
-          'bg-green-600 text-white hover-enabled:bg-green-500 active-enabled:bg-green-700',
-          'dark:bg-blue-600 dark:hover-enabled:bg-blue-500 dark:active-enabled:bg-blue-700',
+          'bg-button-primary-bg text-button-primary-text',
+          'hover-enabled:bg-button-primary-hover active-enabled:bg-button-primary-active',
         ],
         className
       )}

@@ -51,13 +51,10 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
             'flex w-full justify-between gap-1 p-2',
             'cursor-pointer rounded',
             'disabled:cursor-not-allowed',
-            'border-1/2 border-gray-300 bg-white text-black',
-            'dark:border-gray-600 dark:bg-gray-900 dark:text-white',
-            'disabled:bg-gray-100 disabled:text-gray-500',
-            'dark:disabled:bg-black dark:disabled:text-gray-500',
-            'hover-enabled:border-gray-500 hover-enabled:bg-gray-200',
-            'dark:hover-enabled:border-gray-500 dark:hover-enabled:bg-gray-800',
-            isOpen && 'border-gray-500 bg-gray-200 dark:border-gray-500 dark:bg-black'
+            'border-1/2 border-select-button-border bg-select-button-bg text-select-button-text',
+            'disabled:bg-select-button-disabled disabled:text-select-button-disabledText',
+            'hover-enabled:border-select-button-hoverBorder hover-enabled:bg-select-button-hover',
+            isOpen && 'border-select-button-openBorder bg-select-button-open'
           )}
           aria-label="toggle menu"
           type="button"
@@ -78,8 +75,7 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
         className={clsx(
           'absolute z-10 m-0 mt-1 w-full select-none list-none rounded border p-0',
           'origin-top scale-y-0 transition-all duration-100',
-          'border border-black shadow-menu dark:border-gray-600',
-          'text-black dark:text-white',
+          'border border-select-list-border text-select-list-text shadow-menu',
           stage === 'enter' && 'scale-y-100'
         )}
       >
@@ -93,15 +89,12 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
               className={clsx(
                 'cursor-pointer px-4 py-3',
                 'first-of-type:rounded-t last-of-type:rounded-b',
-                !highlighted && !selected && ['bg-gray-100 text-black', 'dark:bg-black dark:text-white'],
-                'hover:bg-gray-50',
-                'dark:hover:bg-gray-600',
-                highlighted && !selected && 'bg-gray-50 dark:bg-gray-600',
+                !highlighted && !selected && ['bg-select-item-bg text-select-item-text'],
+                'hover:bg-select-item-hover',
+                highlighted && !selected && 'bg-select-item-highlighted',
                 selected && [
-                  'text-white',
-                  'hover:bg-green-600',
-                  'dark:hover:bg-blue-600',
-                  highlighted ? 'bg-green-600 dark:bg-blue-600' : 'bg-green-700 dark:bg-blue-800',
+                  'text-white hover:bg-select-item-selectedHover',
+                  highlighted ? 'bg-select-item-selectedHighlighted' : 'bg-select-item-selected',
                 ]
               )}
             >
