@@ -48,7 +48,7 @@ export const Dialog: FC<Props> = ({
         'rounded border-[0.125rem] border-solid border-dialog-border',
         'min-w-[14em] bg-dialog-bg p-4 opacity-0',
         'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-        'dark:shadow-[rgba(0, 0, 0, 0.25)] shadow-1 shadow-[rgba(0,0,0,0.03)]',
+        'shadow-1 shadow-dialog-shadow',
         stage === 'enter' && 'opacity-100 transition-all duration-200',
         stage === 'leave' && ['opacity-0 transition-all duration-200', '-translate-x-1/2 translate-y-[30em]'],
         className

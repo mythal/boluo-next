@@ -32,6 +32,7 @@ const lightTheme = {
     dialog: {
       border: gray[300],
       bg: gray[50],
+      shadow: 'rgba(0, 0, 0, 0.25)',
     },
     toast: {
       default: gray[700],
@@ -126,6 +127,7 @@ const darkTheme = {
     dialog: {
       border: gray[900],
       bg: slate[800],
+      shadow: 'rgba(0, 0, 0, 0.03)',
     },
     toast: {
       default: gray[900],
