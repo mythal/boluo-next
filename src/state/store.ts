@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { IS_REDUX_TRACE_ENABLE } from '../const';
-import { userInterfaceReducer } from './user-interface';
+import { recordSchemeMiddleware, userInterfaceReducer } from './user-interface';
 import type { ActionMap, Actions } from './actions';
 import { makeAction } from './actions';
 
@@ -19,8 +19,14 @@ export type AppState = ReturnType<typeof applicationReducer>;
 const composeEnhancers = composeWithDevTools({
   trace: process.env.NODE_ENV === 'development' && IS_REDUX_TRACE_ENABLE,
   traceLimit: 25,
+  actionsDenylist: [],
 });
-export const store = createStore(applicationReducer, undefined, composeEnhancers(applyMiddleware(thunk)));
+
+export const store = createStore(
+  applicationReducer,
+  undefined,
+  composeEnhancers(applyMiddleware(recordSchemeMiddleware, thunk))
+);
 export type AppDispatch = ThunkDispatch<AppState, unknown, Actions>;
 
 export const useAppDispatch = (): AppDispatch => {
