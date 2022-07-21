@@ -48,7 +48,7 @@ const lightTheme = {
         disabled: gray[100],
         disabledText: gray[500],
         hoverBorder: gray[500],
-        hover: gray[200],
+        hover: gray[50],
         openBorder: gray[500],
         open: gray[200],
       },

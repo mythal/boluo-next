@@ -49,7 +49,7 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
         <button
           className={clsx(
             'flex w-full justify-between gap-1 p-2',
-            'cursor-pointer rounded',
+            'cursor-pointer rounded shadow-1/2 shadow-gray-200',
             'disabled:cursor-not-allowed',
             'border-1/2 border-select-button-border bg-select-button-bg text-select-button-text',
             'disabled:bg-select-button-disabled disabled:text-select-button-disabledText',
@@ -64,7 +64,9 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
           aria-disabled={disabled}
         >
           <span>{selectedItem?.label}</span>
-          <span>{isOpen ? <Icon icon="chevrons-up" /> : <Icon icon="chevrons-down" />}</span>
+          <span>
+            <Icon icon="chevrons-up" className={clsx(isOpen || 'rotate-180', 'duration-150300 transition-transform')} />
+          </span>
         </button>
       </div>
       <ul
@@ -74,7 +76,7 @@ export const Select: React.FC<Props> = ({ items, value, onChange, label, classNa
         aria-hidden={!isOpen}
         className={clsx(
           'absolute z-10 m-0 mt-1 w-full select-none list-none rounded border p-0',
-          'origin-top scale-y-0 transition-all duration-100',
+          'origin-top scale-y-0 transition-all duration-75',
           'border border-select-list-border text-select-list-text shadow-menu',
           stage === 'enter' && 'scale-y-100'
         )}
