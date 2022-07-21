@@ -8,7 +8,7 @@ import { makeId } from '../helper/id';
 import type { SelfMapper } from '../helper/function';
 import { identity } from '../helper/function';
 import type { GenericHandler } from './handlers';
-import type { Action, Actions } from './actions';
+import type { Action, AppAction } from './actions';
 import { usePerform } from './actions';
 import type { AppDispatch } from './store';
 
@@ -81,7 +81,7 @@ export const useSwitchScheme = () => {
   );
 };
 
-export const recordSchemeMiddleware = () => (next: AppDispatch) => (action: Actions) => {
+export const recordSchemeMiddleware = () => (next: AppDispatch) => (action: AppAction) => {
   if (action.type === 'switchScheme') {
     localStorage.setItem('SCHEME', action.payload);
   }
