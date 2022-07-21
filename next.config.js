@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withMDX = require('@next/mdx')();
+
 const ANALYZE = Boolean(process.env.ANALYZE);
 const BACKEND_URL = process.env.BACKEND_URL || 'https://test.boluo.chat';
 
@@ -17,6 +18,7 @@ module.exports = withMDX(
     eslint: {
       dirs: ['src', 'tests'],
     },
+    output: 'standalone',
     async rewrites() {
       return [
         {
