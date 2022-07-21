@@ -4,13 +4,11 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   rules: {
     // https://eslint.org/docs/rules/
-    'no-empty': 'off',
     // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'error',
     // https://github.com/yannickcr/eslint-plugin-react#list-of-supported-rules
     'react/prop-types': 'off',
-    'react/display-name': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'formatjs/no-offset': 'error',

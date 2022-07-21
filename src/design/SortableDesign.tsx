@@ -54,6 +54,8 @@ export const Item = forwardRef<HTMLDivElement, { id: UniqueIdentifier }>(({ id, 
     </div>
   );
 });
+Item.displayName = 'SortableItemOverlay';
+
 export function SortableDesign() {
   const id = useId();
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
