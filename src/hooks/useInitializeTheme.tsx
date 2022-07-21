@@ -12,12 +12,18 @@ export const useInitializeTheme = () => {
   useEffect(() => {
     // update scheme ref
     schemeRef.current = scheme;
+  }, [scheme, switchScheme]);
+
+  useEffect(() => {
     // sync scheme state from localStorage
     const storageScheme = localStorage.getItem('SCHEME');
-    if (storageScheme && storageScheme !== scheme) {
-      switchScheme(storageScheme);
+    if (storageScheme && storageScheme !== schemeRef.current) {
+      const handle = window.setTimeout(() => {
+        switchScheme(storageScheme);
+      }, 100);
+      return () => window.clearTimeout(handle);
     }
-  }, [scheme, switchScheme]);
+  }, [switchScheme]);
 
   // watch the scheme change in other pages
   useEffect(() => {

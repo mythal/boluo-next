@@ -8,8 +8,9 @@ import { makeId } from '../helper/id';
 import type { SelfMapper } from '../helper/function';
 import { identity } from '../helper/function';
 import type { GenericHandler } from './handlers';
-import type { Action } from './actions';
+import type { Action, Actions } from './actions';
 import { usePerform } from './actions';
+import type { AppDispatch } from './store';
 
 export interface UserInterfaceActionMap {
   notify: UiNotification;
@@ -71,15 +72,20 @@ export const useSwitchScheme = () => {
   return useCallback(
     (schemeString: string) => {
       if (schemeString === 'dark' || schemeString === 'light') {
-        localStorage.setItem('SCHEME', schemeString);
         perform(schemeString);
       } else {
-        localStorage.setItem('SCHEME', 'auto');
         perform('auto');
       }
     },
     [perform]
   );
+};
+
+export const recordSchemeMiddleware = () => (next: AppDispatch) => (action: Actions) => {
+  if (action.type === 'switchScheme') {
+    localStorage.setItem('SCHEME', action.payload);
+  }
+  next(action);
 };
 
 export const useNotify = () => {
