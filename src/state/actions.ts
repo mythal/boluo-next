@@ -20,7 +20,7 @@ export function makeAction<A extends Action<keyof ActionMap>>(type: A['type'], p
   return action;
 }
 
-export type Actions = Action<keyof ActionMap>;
+export type AppAction = Action<keyof ActionMap>;
 
 type WaitDispath<Key extends keyof ActionMap> = (payload: ActionMap[Key]) => void;
 

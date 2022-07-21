@@ -5,7 +5,7 @@ import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { IS_REDUX_TRACE_ENABLE } from '../const';
 import { recordSchemeMiddleware, userInterfaceReducer } from './user-interface';
-import type { ActionMap, Actions } from './actions';
+import type { ActionMap, AppAction } from './actions';
 import { makeAction } from './actions';
 
 export function perform<K extends keyof ActionMap>(type: K, payload: ActionMap[K]) {
@@ -27,7 +27,7 @@ export const store = createStore(
   undefined,
   composeEnhancers(applyMiddleware(recordSchemeMiddleware, thunk))
 );
-export type AppDispatch = ThunkDispatch<AppState, unknown, Actions>;
+export type AppDispatch = ThunkDispatch<AppState, unknown, AppAction>;
 
 export const useAppDispatch = (): AppDispatch => {
   return useReduxDispatch<AppDispatch>();
